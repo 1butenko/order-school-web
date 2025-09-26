@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { Navigation } from "@/components/Navigation";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const GothamPro = localFont({
+  src: [
+    { path: "/fonts/GothamPro/GothamProBlack/GothamProBlack.woff", weight: "900", style: "normal" },
+    { path: "/fonts/GothamPro/GothamProBlackItalic/GothamProBlackItalic.woff", weight: "900", style: "italic" },
+    { path: "/fonts/GothamPro/GothamProBold/GothamProBold.woff", weight: "700", style: "normal" },
+    { path: "/fonts/GothamPro/GothamProBoldItalic/GothamProBoldItalic.woff", weight: "700", style: "italic" },
+    { path: "/fonts/GothamPro/GothamProMedium/GothamProMedium.woff", weight: "500", style: "normal" },
+    { path: "/fonts/GothamPro/GothamProMediumItalic/GothamProMediumItalic.woff", weight: "500", style: "italic" },
+    { path: "/fonts/GothamPro/GothamProRegular/GothamProRegular.woff", weight: "400", style: "normal" },
+    { path: "/fonts/GothamPro/GothamProItalic/GothamProItalic.woff", weight: "400", style: "italic" },
+    { path: "/fonts/GothamPro/GothamProLight/GothamProLight.woff", weight: "300", style: "normal" },
+    { path: "/fonts/GothamPro/GothamProLightItalic/GothamProLightItalic.woff", weight: "300", style: "italic" },
+  ],
+  variable: "--font-gotham-pro",
 });
 
 // TODO !!!
@@ -45,8 +53,9 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${GothamPro.variable} antialiased`}
       >
+        <Navigation />
         {children}
       </body>
     </html>
