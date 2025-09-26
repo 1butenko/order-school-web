@@ -13,7 +13,7 @@ import logo from "@/assets/logo.png";
 
 export function Navigation() {
   return (
-    <header className="w-full h-36 shadow-md flex items-center justify-between px-24 py-16 font-gotham">
+    <header className="w-full h-36 shadow-md flex items-center justify-between px-24 py-16 font-gotham fixed top-0 left-0 z-50">
       <Image src={logo} alt="Logo" height={36} />
       <NavigationMenu className="hidden md:block">
         <NavigationMenuList className="font-medium text-lg uppercase text-white">
@@ -35,7 +35,7 @@ export function Navigation() {
             <NavigationMenuLink
               href="#audience"
             >
-              Структура курсу
+              Для кого
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
