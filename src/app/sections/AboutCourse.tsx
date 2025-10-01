@@ -1,3 +1,5 @@
+import type { AnimatedProps } from "@/types/motion";
+
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 

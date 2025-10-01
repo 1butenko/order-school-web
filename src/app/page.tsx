@@ -5,7 +5,7 @@ import AboutCourse from "./sections/AboutCourse";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background font-sans">
-      <Hero />
+      <Hero id="top" />
       <AboutQuote />
       <AboutCourse />
     </div>
