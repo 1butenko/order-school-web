@@ -8,7 +8,10 @@ import { AnimatedProps } from "@/types/motion";
 
 export default function Knowledge({ id }: AnimatedProps) {
   return (
-    <section className="w-full min-h-screen py-20 overflow-hidden">
+    <section
+      id={id}
+      className="w-full min-h-screen py-20 overflow-x-hidden"
+    >
       <div className="max-w-6xl mx-auto text-center text-foreground px-4">
         <motion.h1
           className="text-4xl tracking-wider uppercase font-sans mb-2"
@@ -33,7 +36,7 @@ export default function Knowledge({ id }: AnimatedProps) {
       </div>
 
       <motion.div
-        className="w-full mt-8"
+        className="w-full mt-8 overflow-hidden"
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -42,7 +45,7 @@ export default function Knowledge({ id }: AnimatedProps) {
         <Image
           src={knowledge}
           alt="Навички і знання, які ти отримаєш"
-          className="w-full h-auto object-contain"
+          className="w-full h-auto max-w-full object-contain"
           priority
         />
       </motion.div>
