@@ -1,15 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import johndewey from "@/assets/john-dewey.png";
 
 export default function AboutQuote() {
   return (
     <section
-      className="relative w-[1437px] h-[425px] bg-[#E6E1D0] mx-auto flex items-center justify-between"
+      className="relative w-[1425px] h-[625px] bg-[#E6E1D0] mx-auto flex items-center justify-between"
     >
       {/* Цитата*/}
-      <div className="relative w-[1000px]">
+      <div className="relative w-[1213px]">
         <p
-          className="uppercase text-[#191a21] leading-[1.5]"
+          className="uppercase text-[#191a21] leading-[1.7] text-left pl-25"
           style={{
             fontFamily: '"Cy Grotesk", sans-serif',
             fontWeight: 600,
@@ -23,7 +25,7 @@ export default function AboutQuote() {
           className="mt-4 uppercase text-[#191a21] block"
           style={{
             fontFamily: '"Cy Grotesk", sans-serif',
-            fontWeight: 600,
+            fontWeight: 650,
             fontSize: "36px",
           }}
         ></span>

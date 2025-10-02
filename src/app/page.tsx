@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background font-sans">
       <Hero id="top" />
-      {/* <AboutQuote /> */}
-      {/* <AboutCourse /> */}
+      <AboutQuote />
+      <AboutCourse />
       <Knowlege id="knowledge" />
       <Structure id="structure" />
     </div>
