@@ -43,6 +43,11 @@ export function Navigation() {
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
+            <NavigationMenuLink href="#timeline">
+              Таймлайн модулів
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
             <NavigationMenuLink href="#audience">
               Для кого
             </NavigationMenuLink>
