@@ -2,45 +2,46 @@
 
 import knowledge from "@/assets/knowledge.png";
 import Image from "next/image";
-import { motion } from "framer-motion";
-
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { AnimatedProps } from "@/types/motion";
 
 export default function Knowledge({ id }: AnimatedProps) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+  const scaleImg = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 1.1]);
+  const opacityText = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
   return (
     <section
       id={id}
+      ref={ref}
       className="w-full min-h-screen py-20 overflow-x-hidden"
     >
-      <div className="max-w-6xl mx-auto text-center text-foreground px-4">
-        <motion.h1
-          className="text-4xl tracking-wider uppercase font-sans mb-2"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
+      <motion.div
+        style={{ opacity: opacity1, y: y1 }}
+        className="max-w-6xl mx-auto text-center text-foreground px-4"
+      >
+        <h1 className="text-4xl tracking-wider uppercase font-sans mb-2">
           Навички і знання, які ти отримаєш
-        </motion.h1>
-
-        <motion.h2
-          className="text-lg font-mono font-medium"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
+        </h1>
+        <h2 className="text-lg font-mono font-medium">
           Ти розберешся, як працює політика на різних рівнях — від ідей та
           історії до сучасних процесів:
-        </motion.h2>
-      </div>
+        </h2>
+      </motion.div>
 
       <motion.div
+        style={{ scale: scaleImg, opacity: opacity1 }}
         className="w-full mt-8 overflow-hidden"
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.2 }}
       >
         <Image
           src={knowledge}
@@ -51,11 +52,8 @@ export default function Knowledge({ id }: AnimatedProps) {
       </motion.div>
 
       <motion.div
+        style={{ opacity: opacityText, y: y1 }}
         className="max-w-4xl mx-auto mt-8 font-mono font-medium text-justify text-lg bg-primary px-4 py-6 rounded-2xl text-white"
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.3 }}
-        viewport={{ once: true, amount: 0.3 }}
       >
         Крім цього, на тебе чекають візити до посольств, зустрічі з відомими
         спікерами та дослідницькі завдання, щоб глибше зрозуміти політичні
