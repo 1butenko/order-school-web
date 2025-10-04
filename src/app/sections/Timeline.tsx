@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import modle1 from '@/assets/modle1.png';
+import { AnimatedProps } from '@/types/motion';
 // import modle2 from '@/assets/modle2.png';
 // import modle3 from '@/assets/modle3.png';
 // import modle4 from '@/assets/modle4.png';
@@ -57,7 +58,7 @@ const modules = [
   }
 ];
 
-export default function Timeline() {
+export default function Timeline({ id }: AnimatedProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

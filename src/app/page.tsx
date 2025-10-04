@@ -4,6 +4,7 @@ import AboutCourse from "./sections/AboutCourse";
 import Knowlege from "./sections/Knowledge";
 import Structure from "./sections/Structure";
 import Timeline from "./sections/Timeline";
+import Audience from "./sections/Audience";
 
 export default function Home() {
   return (
@@ -13,7 +14,8 @@ export default function Home() {
       <AboutCourse />
       <Knowlege id="knowledge" />
       <Structure id="structure" />
-      <Timeline/>
+      <Timeline id="timeline" />
+      <Audience id="audience" />
     </div>
   );
 }
