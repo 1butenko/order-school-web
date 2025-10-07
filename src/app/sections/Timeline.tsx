@@ -4,6 +4,19 @@ import TimeLineImage from "@/assets/TimelineImg";
 import { AnimatedProps } from "@/types/motion";
 
 import HoverInfo from "@/components/sections/HoverInfo";
+import TimelineFigure from "@/components/sections/TimelineFigure";
+import model1 from "@/assets/model1(1).png";
+import model1_2 from "@/assets/model1(2).png";
+import model2 from "@/assets/model2.png";
+import model2_2 from "@/assets/model2(2).png";
+import model3 from "@/assets/model3.png";
+import model3_2 from "@/assets/model3(2).png";
+import model3_3 from "@/assets/model3(3).png";
+import model3_4 from "@/assets/model3(4).png";
+import model4 from "@/assets/model4.png";
+import model4__2 from "@/assets/model4(2).png";
+import model5 from "@/assets/model5.png";
+
 
 export default function Timeline({ id }: AnimatedProps) {
   return (
@@ -19,7 +32,41 @@ export default function Timeline({ id }: AnimatedProps) {
           <TimeLineImage />
         </div>
 
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+        {/* Decorative figures to mimic the poster collage */}
+        <div className="absolute inset-0 pointer-events-none">
+
+          {/* Top left - near module 1 (person sitting) */}
+          <TimelineFigure src={model1} alt="person sitting" left="2%" top="3%" width={300} height={340} className="opacity-90" />
+          
+          {/* Top left - near module 1 (notebook/calendar) */}
+          <TimelineFigure src={model1_2} alt="notebook" left="12%" top="1%" width={180} height={200} className="opacity-85" />
+
+          {/* Left side - near module 2 (collage) */}
+         
+          <TimelineFigure src={model2} alt="collage right" left="60%" top="27%" width={280} height={200} className="opacity-90" />
+          <TimelineFigure src={model2_2} alt="collage right" left="67%" top="25%" width={280} height={200} className="opacity-90" />
+
+          {/* Right side - near module 3 (large collage) */}
+          <TimelineFigure src={model3} alt="collage left" right="70%" top="50%" width={320} height={240} className="opacity-85" />
+          <TimelineFigure src={model3_2} alt="collage left" right="85%" top="58%" width={320} height={240} className="opacity-85" />
+          <TimelineFigure src={model3_3} alt="collage left" right="55%" top="58%" width={320} height={240} className="opacity-85" />
+
+          <TimelineFigure src={model3_4} alt="collage left" right="57%" top="56.5%" width={320} height={240} className="opacity-85" />
+          <TimelineFigure src={model3_4} alt="collage left" right="57%" top="58%" width={320} height={240} className="opacity-85" />
+          <TimelineFigure src={model3_4} alt="collage left" right="57%" top="59.5%" width={320} height={240} className="opacity-85" />
+          <TimelineFigure src={model3_4} alt="collage left" right="57%" top="61%" width={320} height={240} className="opacity-85" />
+          
+
+          {/* Left side - near module 4 (tractor/machinery) */}
+          <TimelineFigure src={model4} alt="machinery" left="67%" top="70%" width={240} height={180} className="opacity-85" />
+          <TimelineFigure src={model4__2} alt="machinery" left="75%" top="72%" width={240} height={180} className="opacity-85" />
+          
+          {/* Right bottom - near module 5 (historical photos) */}
+          <TimelineFigure src={model5} alt="historical collage" right="60%" top="90%" width={260} height={200} className="opacity-90" />
+          
+        </div>
+
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10">
           <HoverInfo
             label="Вступ"
             text="Знайомство зі структурою курсу, форматом занять і основними навичками: аргументація, дебати, робота з кейсами. На практиці випробуємо, як виглядає семінар у форматі діалогу."

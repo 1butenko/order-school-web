@@ -28,7 +28,7 @@ export default function HoverInfo({
 
   return (
       <div
-        className="absolute pointer-events-auto cursor-pointer"
+        className="absolute pointer-events-auto cursor-pointer z-20"
         style={{ top, left, right, bottom }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}

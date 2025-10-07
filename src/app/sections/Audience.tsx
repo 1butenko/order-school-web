@@ -49,7 +49,7 @@ export default function Audience({ id } : AnimatedProps) {
             {/* Row 2: Спеціальності - With line breaks */}
             <div className="flex flex-col gap-2">
               <p className="gotham-pro text-lg md:text-xl leading-[110%] tracking-[0.02em]">
-                <span className="text-[#191A21]">Ті, хто планує вступати на </span>
+                <span className="text-[#191A21]">Ті, хто планує вступати на </span><br></br>
                 <span className="text-[#F42B39]">спеціальності:</span>
               </p>
               <p className="gotham-pro text-[#191A21] text-lg md:text-xl leading-[110%] tracking-[0.02em]">
