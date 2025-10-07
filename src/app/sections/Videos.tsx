@@ -58,7 +58,7 @@ export default function Videos({ id }: AnimatedProps) {
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 my-8 sm:my-12 md:my-16 lg:my-18">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 my-8 sm:my-12 md:my-16 lg:my-18">
             <motion.div variants={itemVariants}>
               <VideoPlayer videoSrc={interviewOne} posterSrc={interviewOneBg} />
             </motion.div>

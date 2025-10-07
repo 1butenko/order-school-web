@@ -6,18 +6,20 @@ import Structure from "./sections/Structure";
 import Timeline from "./sections/Timeline";
 import Audience from "./sections/Audience";
 import Videos from "./sections/Videos";
+import Faq from "./sections/Faq";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background font-sans">
       <Hero id="top" />
-      <AboutQuote />
-      <AboutCourse />
+      {/* <AboutQuote /> */}
+      {/* <AboutCourse /> */}
       <Knowlege id="knowledge" />
       <Structure id="structure" />
       {/* <Timeline id="timeline" /> */}
       {/* <Audience id="audience" /> */}
       <Videos id="interview" />
+      <Faq />
     </div>
   );
 }
