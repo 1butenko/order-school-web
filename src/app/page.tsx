@@ -10,7 +10,6 @@ import Faq from "./sections/Faq";
 import Footer from "./sections/Footer";
 import Map from "./sections/Map";
 
-import { MapProvider } from "@/providers/google-maps";
 
 export default function Home() {
   return (
@@ -25,10 +24,7 @@ export default function Home() {
       <Videos id="interview" />
       <Faq />
       <Footer />
-      
-      <MapProvider>
-        <Map />
-      </MapProvider>
+      <Map />
     </div>
   );
 }
