@@ -17,7 +17,7 @@ export default function Home() {
       <Structure id="structure" />
       {/* <Timeline id="timeline" /> */}
       {/* <Audience id="audience" /> */}
-      <Videos id="videos" />
+      <Videos id="interview" />
     </div>
   );
 }
