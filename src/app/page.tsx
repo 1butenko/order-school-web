@@ -5,6 +5,7 @@ import Knowlege from "./sections/Knowledge";
 import Structure from "./sections/Structure";
 import Timeline from "./sections/Timeline";
 import Audience from "./sections/Audience";
+import Videos from "./sections/Videos";
 
 export default function Home() {
   return (
@@ -14,8 +15,9 @@ export default function Home() {
       <AboutCourse />
       <Knowlege id="knowledge" />
       <Structure id="structure" />
-      <Timeline id="timeline" />
-      <Audience id="audience" />
+      {/* <Timeline id="timeline" /> */}
+      {/* <Audience id="audience" /> */}
+      <Videos id="videos" />
     </div>
   );
 }
