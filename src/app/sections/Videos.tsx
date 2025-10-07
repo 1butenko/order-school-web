@@ -34,7 +34,7 @@ export default function Videos({ id }: AnimatedProps) {
       className="relative w-full min-h-screen py-20 bg-cover bg-center bg-no-repeat"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: false, amount: 0.3 }}
     >
       <motion.div
         className="relative z-10 max-w-6xl mx-auto text-center text-foreground px-4 mb-16"
@@ -56,7 +56,7 @@ export default function Videos({ id }: AnimatedProps) {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 my-8 sm:my-12 md:my-16 lg:my-18">
             <motion.div variants={itemVariants}>
