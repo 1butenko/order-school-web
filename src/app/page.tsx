@@ -5,6 +5,7 @@ import Knowlege from "./sections/Knowledge";
 import Structure from "./sections/Structure";
 import Timeline from "./sections/Timeline";
 import Audience from "./sections/Audience";
+import Teachers from "./sections/Teachers";
 import Videos from "./sections/Videos";
 import Faq from "./sections/Faq";
 import Footer from "./sections/Footer";
@@ -22,6 +23,7 @@ export default function Home() {
       {/* <Timeline id="timeline" /> */}
       {/* <Audience id="audience" /> */}
       <Videos id="interview" />
+      <Teachers id="teachers" />
       <Faq />
       <Footer />
       <Map />
