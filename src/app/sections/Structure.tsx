@@ -44,7 +44,7 @@ export default function Structure({ id }: AnimatedProps) {
         >
           Річна програма гуртка поділена на модулі відповідно до кожної теми.
           Кожен навчальний модуль триває 2 тижні і складається з трьох логічно
-          пов’язаних занять: Теорія, Практика та Досвід.
+          пов'язаних занять: Теорія, Практика та Досвід.
         </motion.h2>
       </div>
 
@@ -59,8 +59,8 @@ export default function Structure({ id }: AnimatedProps) {
           },
         }}
       >
-        <div className="w-full flex justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-48 items-start">
+        <div className="w-full flex justify-center px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-start max-w-7xl">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -94,7 +94,7 @@ export default function Structure({ id }: AnimatedProps) {
             >
               <StructureCols
                 header="3. Досвід"
-                paragph1="Заняття на якому учні можуть творчо розвинути власні інтереси в межах теми. Окрім можливості запропонувати власну активність, ми будемо відвідувати державні інституції, посольства, слухати запрошених експертів, а також такі активності як: ігри, творчі завдання, презентації, кіноклуби."
+                paragph1="Заняття на якому учні можуть творчо розвинути власні інтереси в межах теми. Окрім можливості запропонувати власну активність, ми будемо відвідувати державні інституції, посольства, слухатизапрошених експертів, а також такі активності як: ігри, творчі завдання, презентації, кіноклуби."
                 paragph2="— на творчій самореалізації та розширенні досвіду учнів через власні ініціативи, зовнішні візити й різноманітні активності."
                 span="Акцент"
               />
@@ -102,16 +102,21 @@ export default function Structure({ id }: AnimatedProps) {
           </div>
         </div>
 
-        <div className="w-full flex justify-center mt-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-48 items-end">
+        <div className="w-full flex justify-center mt-16 md:mt-20 lg:mt-24 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-end max-w-7xl w-full">
             {[col1, col2, col3].map((img, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="w-full flex justify-center"
               >
-                <Image src={img} alt={`Column ${index + 1}`} className="w-96 h-auto" />
+                <Image
+                  src={img}
+                  alt={`Column ${index + 1}`}
+                  className="w-full max-w-sm md:max-w-md lg:max-w-full h-auto object-contain"
+                />
               </motion.div>
             ))}
           </div>
