@@ -6,12 +6,12 @@ import johndewey from "@/assets/john-dewey.png";
 export default function AboutQuote() {
   return (
     <section
-      className="relative w-[1425px] h-[625px] bg-[#E6E1D0] mx-auto flex items-center justify-between"
+      className="relative w-full h-[625px] bg-[#E6E1D0] mx-auto flex items-center justify-between"
     >
       {/* Цитата*/}
       <div className="relative w-[1213px]">
         <p
-          className="uppercase text-[#191a21] leading-[1.7] text-left pl-25"
+          className="uppercase text-[#191a21] leading-[1.7] text-left pl-20"
           style={{
             fontFamily: '"Cy Grotesk", sans-serif',
             fontWeight: 600,
@@ -32,8 +32,8 @@ export default function AboutQuote() {
 
         {/* SVG  */}
         <svg
-          className="absolute bottom-0 left-0"
-          width="1215"
+          className="absolute bottom-0 left-0" 
+          width="1195"
           height="223"
           viewBox="0 0 1215 223"
           fill="none"
