@@ -1,61 +1,48 @@
 "use client";
 
 import Image from "next/image";
-import johndewey from "@/assets/john-dewey.png";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+import quote from "@/assets/quote.png";
 
 export default function AboutQuote() {
+  const sectionRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const textX = useTransform(scrollYProgress, [0, 0.5], [-100, 0]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [0, 0.5, 1]);
+  
+  const imageX = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [0, 0.5, 1]);
+  const imageRotate = useTransform(scrollYProgress, [0, 0.5], [15, 0]);
+
   return (
-    <section
-      className="relative w-full h-[625px] bg-[#E6E1D0] mx-auto flex items-center justify-between"
+    <section 
+      ref={sectionRef}
+      className="relative w-full min-h-screen my-auto bg-cover bg-center bg-no-repeat flex items-center justify-center"
     >
-      {/* Цитата*/}
-      <div className="relative w-[1213px]">
-        <p
-          className="uppercase text-[#191a21] leading-[1.7] text-left pl-20"
-          style={{
-            fontFamily: '"Cy Grotesk", sans-serif',
-            fontWeight: 600,
-            fontSize: "36px",
-          }}
+      <div className="grid grid-cols-4 grid-rows-1 gap-1">
+        <motion.div 
+          className="col-span-3 flex items-center justify-center"
+          style={{ x: textX, opacity: textOpacity }}
         >
-          “Демократія має народжуватися у кожному новому поколінні, і саме
-          освіта допомагає їй з’явитися на світ.” — Джон Дьюї
-        </p>
-        <span
-          className="mt-4 uppercase text-[#191a21] block"
-          style={{
-            fontFamily: '"Cy Grotesk", sans-serif',
-            fontWeight: 650,
-            fontSize: "36px",
-          }}
-        ></span>
-
-        {/* SVG  */}
-        <svg
-          className="absolute bottom-0 left-0" 
-          width="1195"
-          height="223"
-          viewBox="0 0 1215 223"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+          <div className="w-full border-4 border-l-0 py-16 rounded-r-4xl">
+            <h1 className="ml-16 font-sans uppercase font-bold text-4xl/11 max-w-7xl tracking-wide">
+              "Демократія має народжуватися у кожному новому поколінні, і саме освіта допомагає їй з'явитися на світ." — Джон Дьюї
+            </h1>
+          </div>
+        </motion.div>
+        <motion.div 
+          className="col-start-4"
+          style={{ x: imageX, opacity: imageOpacity, rotate: imageRotate }}
         >
-          <path
-            d="M0 2H1185C1200.46 2 1213 14.536 1213 30V193C1213 208.464 1200.46 221 1185 221H0"
-            stroke="#F42B39"
-            strokeWidth="3"
-          />
-        </svg>
-      </div>
-
-      {/* Фото Джона Дьюї */}
-      <div className="relative w-[311px] h-[443px]">
-        <Image
-          src={johndewey}
-          alt="John Dewey"
-          width={311}
-          height={443}  
-          priority
-        />
+          <Image src={quote} alt="John Dewey" />
+        </motion.div>
       </div>
     </section>
   );

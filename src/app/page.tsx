@@ -14,7 +14,7 @@ import Map from "./sections/Map";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background font-sans">
+    <div className="min-h-screen bg-background font-sans overflow-x-hidden">
       <Hero id="top" />
       <AboutQuote />
       {/* <AboutCourse /> */}
@@ -23,7 +23,7 @@ export default function Home() {
       {/* <Timeline id="timeline" /> */}
       {/* <Audience id="audience" /> */}
       <Videos id="interview" />
-      <Teachers id="teachers" />
+      <Teachers />
       <Faq />
       <Footer />
       <Map />
