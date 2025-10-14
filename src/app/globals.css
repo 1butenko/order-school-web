@@ -122,3 +122,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .hero-image { clip-path: path("M0% 10% Q0% 0% 10% 0% H90% Q100% 0% 100% 10% V66.34% Q100% 76.34% 90% 76.34% H55.05% Q50.05% 76.34% 50.05% 86.34% V90% Q50% 100% 40% 100% H10% Q0% 100% 0% 90% Z"); }
+}
