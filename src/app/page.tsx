@@ -20,8 +20,8 @@ export default function Home() {
       {/* <AboutCourse /> */}
       <Knowlege id="knowledge" />
       <Structure id="structure" />
-      <Timeline id="timeline" /> 
-      <Audience id="audience" />
+      {/* <Timeline id="timeline" />  */}
+      <Audience />
       <Videos id="interview" />
       <Teachers />
       <Faq />
