@@ -10,6 +10,7 @@ import Videos from "./sections/Videos";
 import Faq from "./sections/Faq";
 import Footer from "./sections/Footer";
 import Map from "./sections/Map";
+import NamedAfter from "./sections/NamedAfter";
 
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
       <Audience />
       <Videos id="interview" />
       <Teachers />
+      <NamedAfter />
       <Faq />
       <Footer />
       <Map />
