@@ -17,7 +17,7 @@ export default function Home() {
     <div className="min-h-screen bg-background font-sans overflow-x-hidden">
       <Hero id="top" />
       <AboutQuote />
-      <AboutCourse />
+      {/* <AboutCourse /> */}
       <Knowlege id="knowledge" />
       <Structure id="structure" />
       <Timeline id="timeline" /> 
