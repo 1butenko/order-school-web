@@ -21,7 +21,7 @@ export default function Home() {
       {/* <AboutCourse /> */}
       <Knowlege id="knowledge" />
       <Structure id="structure" />
-      {/* <Timeline id="timeline" />  */}
+      <Timeline id="timeline" /> 
       <Audience />
       <Videos id="interview" />
       <Teachers />

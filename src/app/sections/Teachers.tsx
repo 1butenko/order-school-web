@@ -88,43 +88,57 @@ export default function Teachers() {
       </div>
 
       <div className="flex flex-wrap items-center justify-center mt-18">
-        {teachers.map((teacher, idx) => (
-          <Swiper
-            key={idx}
-            effect={"flip"}
-            grabCursor={true}
-            modules={[EffectFlip, Pagination, Navigation]}
-            className="w-full max-w-md h-[600px]"
-          >
-            <SwiperSlide>
-              <motion.div
-                className="relative w-full h-full bg-primary rounded-2xl font-mono text-2xl/7 text-center text-white font-medium flex flex-col items-center justify-center p-4"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="w-full h-128 relative mb-4">
-                  <Image
-                    src={teacher.img}
-                    alt={`Teacher: ${teacher.name} ${teacher.surname}`}
-                    className="rounded-2xl border-2 border-foreground object-cover"
-                    fill
-                  />
-                </div>
-                <h2 className="text-2xl font-bold">{teacher.name}</h2>
-                <h2 className="text-2xl font-bold">{teacher.surname}</h2>
-              </motion.div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <TeacherDescription
-                name={teacher.name}
-                surname={teacher.surname}
-                description={teacher.description}
-              />
-            </SwiperSlide>
-          </Swiper>
-        ))}
+        {teachers.map((teacher, idx) => {
+          let swiperRef: any = null;
+
+          return (
+            <Swiper
+              key={idx}
+              effect={"flip"}
+              grabCursor={true}
+              modules={[EffectFlip, Pagination, Navigation]}
+              className="w-full max-w-md h-[600px] cursor-pointer"
+              onSwiper={(swiper) => (swiperRef = swiper)}
+              onClick={() => {
+                if (!swiperRef) return;
+                if (swiperRef.isEnd) {
+                  swiperRef.slidePrev();
+                } else {
+                  swiperRef.slideNext();
+                }
+              }}
+            >
+              <SwiperSlide className="cursor-pointer">
+                <motion.div
+                  className="relative w-full h-full bg-primary rounded-2xl font-mono text-2xl/7 text-center text-white font-medium flex flex-col items-center justify-center p-4"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <div className="w-full h-128 relative mb-4">
+                    <Image
+                      src={teacher.img}
+                      alt={`Teacher: ${teacher.name} ${teacher.surname}`}
+                      className="rounded-2xl border-2 border-foreground object-cover"
+                      fill
+                    />
+                  </div>
+                  <h2 className="text-2xl font-bold">{teacher.name}</h2>
+                  <h2 className="text-2xl font-bold">{teacher.surname}</h2>
+                </motion.div>
+              </SwiperSlide>
+
+              <SwiperSlide className="cursor-pointer">
+                <TeacherDescription
+                  name={teacher.name}
+                  surname={teacher.surname}
+                  description={teacher.description}
+                />
+              </SwiperSlide>
+            </Swiper>
+          );
+        })}
       </div>
     </motion.section>
   );
