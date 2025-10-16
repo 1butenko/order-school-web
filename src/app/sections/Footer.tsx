@@ -13,9 +13,9 @@ export default function Footer() {
             Більше про гурток дізнавайся написавши нам у телеграм або на пошту
           </h2>
           <div className="mx-auto max-w-xs flex justify-between mt-12">
-            <FooterIcon icon={Instagram} />
-            <FooterIcon icon={Mail} />
-            <FooterIcon icon={Send} />
+            <a href="https://www.instagram.com/polithurtok_kse"><FooterIcon icon={Instagram} /></a>
+            <a href="mailto:polithurtok@kse.org.ua"><FooterIcon icon={Mail} /></a>
+            <a href="https://t.me/polithurtok_kse"><FooterIcon icon={Send} /></a>
           </div>
         </div>
       </div>

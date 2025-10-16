@@ -22,9 +22,8 @@ export default function Knowledge({ id }: AnimatedProps) {
 
   return (
     <section
-      id={id}
       ref={ref}
-      className="w-full min-h-screen py-20 overflow-x-hidden"
+      className="w-full min-h-screen py-20 overflow-x-hidden" id={id}
     >
       <motion.div
         style={{ opacity: opacity1, y: y1 }}

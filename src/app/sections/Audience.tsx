@@ -1,52 +1,94 @@
 "use client";
 
-import React, { useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 import Image from "next/image";
-import { motion, useInView, Variants, Transition } from "framer-motion";
-
 import audience from "@/assets/audience.png";
+import { Button } from "@/components/ui/button";
 
 export default function Audience() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-100px" });
+  const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.2 });
+  const controls = useAnimation();
 
-  const transition: Transition = {
-    duration: 0.8,
-    ease: "easeOut",
-  };
-
-  const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition },
-  };
+  useEffect(() => {
+    if (inView) {
+      controls.start({
+        opacity: 1,
+        y: 0,
+        x: 0,
+        transition: { duration: 0.8, ease: "easeOut" },
+      });
+    } else {
+      controls.start({
+        opacity: 0,
+        y: 50,
+        x: -100,
+      });
+    }
+  }, [controls, inView]);
 
   return (
-    <section id="audience" className="relative w-full min-h-screen">
-      <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        variants={fadeInUp}
-        className="max-w-5xl ml-32 text-left text-foreground px-4"
-      >
-        <h1 className="text-4xl tracking-wider uppercase font-sans mb-2">
-          Для кого створений Гурток Політичних Студій
-        </h1>
-      </motion.div>
+    <section
+      id="audience"
+      ref={ref}
+      className="relative w-full min-h-screen py-20"
+    >
+      <div className="grid grid-cols-3 grid-rows-3 gap-0 pl-32 pr-64">
+        <motion.div
+          className="col-span-2"
+          initial={{ opacity: 0, y: 50 }}
+          animate={controls}
+        >
+          <div className="max-w-5xl text-left text-foreground px-4">
+            <h1 className="text-4xl tracking-wider uppercase font-sans mb-2">
+              Для кого створений Гурток Політичних Студій
+            </h1>
+          </div>
+        </motion.div>
 
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0, transition: { ...transition, delay: 0.2 } } : {}}
-        className="w-full overflow-hidden"
-      >
-        <Image
-          src={audience}
-          alt="Для кого створений Гурток Політичних Студій"
-          className="w-full h-auto max-w-full object-contain"
-          priority
-        />
-      </motion.div>
+        <motion.div
+          className="row-span-3 col-start-3"
+          initial={{ opacity: 0, x: -100 }}
+          animate={controls}
+        >
+          <Image src={audience} alt="Audience Image" />
+        </motion.div>
+
+        <motion.div
+          className="col-span-2 row-span-2 row-start-2 ml-16"
+          initial={{ opacity: 0 }}
+          animate={controls}
+        >
+          <ul className="list-disc max-w-128 custom-bullets text-lg font-mono font-medium space-y-4">
+            <li>Учні 8-11 класів</li>
+            <li>
+              Ті, хто планує вступати на{" "}
+              <span className="text-primary">спеціальності:</span> політологія,
+              міжнародні відносини, право, соціологія, філософія, журналістика
+            </li>
+            <li>
+              Ще не визначилися з напрямом, але зацікавлені в соціальних науках
+            </li>
+            <li>
+              Бажаючі здобути загальну ерудицію в питаннях політичних та
+              соціальних процесів
+            </li>
+          </ul>
+
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={controls}
+            transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
+          >
+            <a href="https://forms.gle/Cqax94UHrydS7tEq6">
+              <Button className="mt-16 text-xl py-8 px-12 uppercase font-semibold font-sans tracking-wider hover:bg-white hover:text-primary cursor-pointer">
+                Дізнатися більше
+              </Button>
+            </a>
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
@@ -72,6 +72,8 @@ export default function Teachers() {
     },
   ];
 
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
+
   return (
     <motion.section
       className="relative w-full min-h-screen py-20 bg-cover"
@@ -79,6 +81,7 @@ export default function Teachers() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.2 }}
       transition={{ duration: 0.8 }}
+      id="teachers"
     >
       <div className="max-w-6xl mx-auto text-center text-foreground px-4">
         <h1 className="text-4xl tracking-wider uppercase font-sans mb-2">
@@ -108,14 +111,24 @@ export default function Teachers() {
                 }
               }}
             >
-              <SwiperSlide className="cursor-pointer">
+             <SwiperSlide className="cursor-pointer">
                 <motion.div
-                  className="relative w-full h-full bg-primary rounded-2xl font-mono text-2xl/7 text-center text-white font-medium flex flex-col items-center justify-center p-4"
+                  className="relative w-full h-full bg-primary rounded-2xl font-mono text-2xl/7 text-center text-white font-medium flex flex-col items-center justify-center p-4 overflow-hidden"
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6 }}
+                  whileHover="hover"
                 >
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent rounded-2xl pointer-events-none z-20"
+                    variants={{
+                      hover: { opacity: 1 },
+                    }}
+                    initial={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  
                   <div className="w-full h-128 relative mb-4">
                     <Image
                       src={teacher.img}
@@ -124,8 +137,23 @@ export default function Teachers() {
                       fill
                     />
                   </div>
-                  <h2 className="text-2xl font-bold">{teacher.name}</h2>
-                  <h2 className="text-2xl font-bold">{teacher.surname}</h2>
+                  
+                  <motion.div
+                    className="absolute bottom-32 left-1/2 -translate-x-1/2 pointer-events-none z-30"
+                    variants={{
+                      hover: { y: 0, opacity: 1 },
+                    }}
+                    initial={{ y: 30, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <span className="text-white text-xl font-bold whitespace-nowrap">
+                      Читати більше
+                    </span>
+                    <div className="my-2 mx-auto max-w-3xs h-1 bg-primary rounded-full"></div>
+                  </motion.div>
+                  
+                  <h2 className="text-2xl font-bold relative z-10">{teacher.name}</h2>
+                  <h2 className="text-2xl font-bold relative z-10">{teacher.surname}</h2>
                 </motion.div>
               </SwiperSlide>
 

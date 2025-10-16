@@ -111,4 +111,4 @@ export default function AboutCourse() {
       </div>
     </section>
   );
-}
+} 

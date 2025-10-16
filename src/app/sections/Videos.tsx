@@ -35,6 +35,7 @@ export default function Videos({ id }: AnimatedProps) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }}
+      id={id}
     >
       <motion.div
         className="relative z-10 max-w-6xl mx-auto text-center text-foreground px-4 mb-16"

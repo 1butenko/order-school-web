@@ -4,6 +4,8 @@ import "./globals.css";
 
 import { Navigation } from "@/components/Navigation";
 
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 const gothamPro = localFont({
   src: [
     {
@@ -100,13 +102,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="uk">
       <body
         className={`${grotesk.variable} ${gothamPro.variable} antialiased`}
       >
         <Navigation />
         {children}
       </body>
+      <GoogleAnalytics gaId="G-7D74XW0FZ1" />
     </html>
   );
 }
