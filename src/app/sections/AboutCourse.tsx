@@ -1,116 +1,113 @@
 "use client";
 
-import type { AnimatedProps } from "@/types/motion";
-
+import { motion, useAnimation, easeOut } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 import Image from "next/image";
-import kse_building from "@/assets/kse-building.png";
 import { Button } from "@/components/ui/button";
-import { section } from "framer-motion/client";
+import kse_building from "@/assets/kse-building.png";
 
 export default function AboutCourse() {
+  const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.2 });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, inView]);
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: easeOut },
+    },
+  };
+
+  const fadeRight = {
+    hidden: { opacity: 0, x: 100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: easeOut },
+    },
+  };
+
   return (
     <section
       id="about"
-      className="relative w-full min-h-screen"
+      ref={ref}
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <div className="w-full h-full mx-auto flex flex-col gap-10">
-        <div className="relative flex justify-center ">
-          <h2
-            className="text-[36px] font-[700] tracking-[.08em] text-[#191a21] rounded-[26px] px-1 py-2 uppercase"
-            style={{ fontFamily: "var(--second-family)" }}
-          >
-            <span className="block">Чому варто обрати Київський</span>
-            <span className="block">
-              гурток <span className="text-accent-foreground">політичних</span>{" "}
-              студій?
-            </span>
-          </h2>
-          <svg
-            className="absolute right-0 top-full -translate-y-[12px] md:-translate-y-[90px] w-[1360px] h-[82px] max-w-none pointer-events-none"
-            width="1360"
-            height="72"
-            viewBox="0 0 1360 82"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            role="presentation"
-          >
-            <path
-              d="M0 79.5H830C844.36 79.5 856 67.8594 856 53.5V28C856 13.6406 867.641 2 882 2H1383.5"
-              stroke="#F42B39"
-              strokeWidth="4"
-            />
-          </svg>
-        </div>
+      <div className="grid grid-cols-3 grid-rows-3 gap-4">
+        <motion.div
+          className="col-span-2"
+          variants={fadeUp}
+          initial="hidden"
+          animate={controls}
+        >
+          <div className="max-w-6xl ml-16 text-left text-foreground">
+            <h1 className="text-4xl/12 tracking-wider uppercase font-sans mb-2">
+              Чому варто обрати Київський Гурток{" "}
+              <span className="text-primary">Політичних</span> Студій?
+            </h1>
+          </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center ml-16">
-          <div className="space-y-6 text-black text-base md:text-lg leading-relaxed max-w-[663px] min-h-[274px]">
+        <motion.div
+          className="row-span-3 col-start-3"
+          variants={fadeRight}
+          initial="hidden"
+          animate={controls}
+        >
+          <Image src={kse_building} alt="KSE building" />
+        </motion.div>
+
+        <motion.div
+          className="col-span-2 row-span-2 row-start-2"
+          variants={fadeUp}
+          initial="hidden"
+          animate={controls}
+          transition={{ delay: 0.3 }}
+        >
+          <div className="max-w-4xl ml-16 text-justify font-mono font-medium tracking-wide">
             <p>
               Це практичний курс від факультету соціальних наук{" "}
-              <span className="font-semibold text-accent-foreground">KSE</span>{" "}
-              для учнів{" "}
-              <span className="font-semibold text-accent-foreground">
-                8–11 класів
-              </span>
-              , які хочуть глибше зрозуміти політику та суспільство. Навчання
+              <span className="text-primary">KSE</span> для{" "}
+              <span className="text-primary">учнів 8–11 класів</span>, які
+              хочуть глибше зрозуміти політику та суспільство. Навчання
               відбувається офлайн у головному кампусі університету. Тут ви
               ознайомитеся з основами{" "}
-              <span className="font-semibold text-accent-foreground">
+              <span className="text-primary">
                 політичних наук і політичної філософії
               </span>
               , вивчите історію політичних ідей та їхній вплив на сучасність. Ви
               отримаєте інструменти, які допоможуть розуміти політичні процеси
               та впливати на зміни у суспільстві.
             </p>
-            <p>
+
+            <p className="mt-8">
               Без зайвих спрощень, казуальності і поверхневості. Лише поглиблене
               вивчення першоджерел і літератури, практичні кейси та власні
               дослідження.
             </p>
 
-            <p className="text-center mt-20">
-              <span
-                className="font-[100] text-[26px] leading-[1.1] tracking-[0.02em] text-[#000]"
-                style={{ fontFamily: "var(--font-family)" }}
-              >
-                Старт навчання 18 жовтня
-              </span>
-            </p>
-
-            <svg
-              className="absolute right-130 top-full -translate-y-[12px] md:-translate-y-[270px] -left-3 w-[960px] h-[82px] max-w-none pointer-events-none"
-              width="1360"
-              height="72"
-              viewBox="0 0 1360 82"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              role="presentation"
-            >
-              <path
-                d="M0 79.5H830C844.36 79.5 856 67.8594 856 53.5V28C856 13.6406 867.641 2 882 2H1383.5"
-                stroke="#F42B39"
-                strokeWidth="4"
-              />
-            </svg>
-
-            {/* Кнопка */}
-            <Button className="bg-[#F42B39] hover:bg-[#dc2230] text-white font-semibold rounded-[15px] w-[313px] h-[84px] uppercase shadow-md tracking-wide block mx-auto text-[16px] mt-10">
-              Реєструйся вже зараз
-            </Button>
+            <div className="mt-16">
+              <h2 className="text-xl font-semibold">
+                Поспішай, кількість місць обмежена
+              </h2>
+              <a href="https://forms.gle/Cqax94UHrydS7tEq6">
+                <Button className="mt-4 text-xl py-8 px-12 uppercase font-semibold font-sans tracking-wider hover:bg-white hover:text-primary cursor-pointer">
+                  Дізнатися більше
+                </Button>
+              </a>
+            </div>
           </div>
-
-          {/* Фото */}
-          <div className="relative w-full left-12 h-[650px] md:h-[630px] z-10">
-            <Image
-              src={kse_building}
-              alt="KSE building"
-              fill
-              className="object-cover rounded-bl-[15px] z-1"
-              priority
-            />
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

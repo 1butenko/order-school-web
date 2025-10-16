@@ -86,8 +86,9 @@ export function Navigation() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-
-      <Button className="uppercase">Хочу на курс</Button>
+      <a href="https://forms.gle/Cqax94UHrydS7tEq6">
+        <Button className="uppercase py-6 px-12 rounded-xl hover:bg-white hover:text-primary cursor-pointer">Хочу на курс</Button>
+      </a>
     </header>
   );
 }
