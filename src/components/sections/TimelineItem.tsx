@@ -15,9 +15,9 @@ export default function TimelineItem({module, date, text, label, image} : Timeli
   return (
     <li className="group relative grid grid-cols-2 odd:-me-3 even:-ms-3">
       <div className="relative flex items-start gap-4 group-odd:flex-row-reverse group-odd:text-right group-even:order-last">
-        <span className="size-3 shrink-0 rounded-full bg-primary"></span>
+        <span className="size-3 shrink-0 rounded-full bg-primary absolute top-1/2"></span>
 
-        <div className="-mt-2 mx-12">
+        <div className="mt-48 mx-12">
           <div>
             <h3 className="text-4xl font-medium text-foreground font-sans tracking-wider">
               {module}
@@ -34,7 +34,7 @@ export default function TimelineItem({module, date, text, label, image} : Timeli
           </div>
         </div>
       </div>
-      <Image src={image} alt="Module Image" className="mx-auto p-16" />
+      <Image src={image} alt="Module Image" className="mx-auto p-16 min-w-200" />
     </li>
   );
 }

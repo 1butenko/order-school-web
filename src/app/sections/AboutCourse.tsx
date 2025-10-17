@@ -50,7 +50,7 @@ export default function AboutCourse() {
           initial="hidden"
           animate={controls}
         >
-          <div className="max-w-6xl ml-16 text-left text-foreground">
+          <div className="max-w-6xl ml-16 mt-16 text-left text-foreground">
             <h1 className="text-4xl/12 tracking-wider uppercase font-sans mb-2">
               Чому варто обрати Київський Гурток{" "}
               <span className="text-primary">Політичних</span> Студій?
@@ -58,13 +58,17 @@ export default function AboutCourse() {
           </div>
         </motion.div>
 
-        <motion.div
+       <motion.div
           className="row-span-3 col-start-3"
           variants={fadeRight}
           initial="hidden"
           animate={controls}
         >
-          <Image src={kse_building} alt="KSE building" />
+          <Image 
+            src={kse_building} 
+            alt="KSE building" 
+            className="w-full h-auto min-w-[700px] object-cover"
+          />
         </motion.div>
 
         <motion.div

@@ -102,7 +102,7 @@ export default function Structure({ id }: AnimatedProps) {
           </div>
         </div>
 
-        <div className="w-full flex justify-center mt-16 md:mt-20 lg:mt-24 px-4">
+        <div className="w-full flex justify-center mt-10 md:mt-14 lg:mt-16 px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-end max-w-7xl w-full">
             {[col1, col2, col3].map((img, index) => (
               <motion.div

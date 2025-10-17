@@ -41,7 +41,7 @@ export default function Audience() {
           animate={controls}
         >
           <div className="max-w-5xl text-left text-foreground px-4">
-            <h1 className="text-4xl tracking-wider uppercase font-sans mb-2">
+            <h1 className="text-4xl tracking-wider uppercase font-sans mb-2 mt-32">
               Для кого створений Гурток Політичних Студій
             </h1>
           </div>
@@ -52,7 +52,7 @@ export default function Audience() {
           initial={{ opacity: 0, x: -100 }}
           animate={controls}
         >
-          <Image src={audience} alt="Audience Image" />
+          <Image src={audience} alt="Audience Image" className="min-w-150" />
         </motion.div>
 
         <motion.div

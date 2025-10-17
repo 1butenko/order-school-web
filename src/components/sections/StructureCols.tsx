@@ -14,7 +14,7 @@ export default function StructureCols({
       </h3>
       <p className="text-base text-justify font-mono font-medium mt-2">
         {paragph1} <br />
-        <span className="text-primary">{span}</span> {paragph2}
+        <p className="mt-4"><span className="text-primary">{span} </span>{paragph2}</p>
       </p>
     </div>
   );

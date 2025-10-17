@@ -24,7 +24,7 @@ export default function AboutQuote() {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full min-h-screen my-auto flex items-center justify-center"
+      className="relative w-full mt-20 flex items-center justify-center"
     >
       <div className="grid grid-cols-4 grid-rows-1 gap-1">
         <motion.div 
