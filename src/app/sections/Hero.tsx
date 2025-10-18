@@ -17,7 +17,7 @@ export default function Hero({ id }: AnimatedProps) {
           fill
           priority
           className="object-cover"
-          style={{ objectPosition: 'center 45%' }}
+          style={{ objectPosition: 'center 80%' }}
         />
       </div>
 
