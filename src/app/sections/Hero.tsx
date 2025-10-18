@@ -9,25 +9,41 @@ import { Button } from "@/components/ui/button";
 export default function Hero({ id }: AnimatedProps) {
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
-      <div className="absolute inset-0 z-0">
+      {/* Mobile Image */}
+      <div className="absolute inset-0 z-0 md:hidden">
         <Image
           src={hero}
           alt="Hero background"
           fill
           priority
-          className="object-cover object-center border-b-4 border-primary"
+          className="object-cover"
+          style={{ objectPosition: 'center 45%' }}
         />
       </div>
 
-      <div className="relative z-10 flex items-center justify-left min-h-screen">
-        <div className="mt-96 ml-16">
-          <h1 className="text-white text-5xl/14 font-bold font-sans max-w-6xl uppercase tracking-wider">
+      {/* Desktop Image */}
+      <div className="absolute inset-0 z-0 hidden md:block">
+        <Image
+          src={hero}
+          alt="Hero background"
+          fill
+          priority
+          className="object-cover border-b-4 border-primary"
+          style={{ objectPosition: 'center center' }}
+        />
+      </div>
+
+      <div className="relative z-10 flex items-end md:items-center justify-start min-h-screen">
+        <div className="pb-[94px] md:pb-0 px-[27px] md:px-0 md:mt-96 md:ml-16 w-full md:w-auto">
+          <h1 className="text-white text-xl leading-[22px] md:text-5xl md:leading-[56px] font-normal md:font-bold font-sans max-w-[333px] md:max-w-6xl uppercase tracking-[0] md:tracking-wider drop-shadow-2xl">
             Стань частиною Гуртка з{" "}
-            <span className="text-primary">політології</span> від КSE. <br />{" "}
+            <span className="text-primary drop-shadow-2xl">політології</span> від КSE <br />
             Відкривай світ суспільних змін
           </h1>
           <a href="https://forms.gle/Cqax94UHrydS7tEq6">
-            <Button className="uppercase bg-white text-primary mt-16 py-8 px-16 text-2xl tracking-wider hover:text-white cursor-pointer">Хочу на курс</Button>
+            <Button className="uppercase bg-white text-primary mt-[26px] md:mt-16 h-11 md:h-auto md:py-8 w-[231px] md:w-auto md:px-16 text-sm md:text-2xl tracking-[0] md:tracking-wider hover:bg-primary hover:text-white cursor-pointer rounded-[10px] flex items-center justify-center font-normal transition-all shadow-lg">
+              Хочу на курс
+            </Button>
           </a>
         </div>
       </div>

@@ -24,24 +24,33 @@ export default function AboutQuote() {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full mt-20 flex items-center justify-center"
+      className="relative w-full mt-12 md:mt-20 flex items-center justify-center px-4 md:px-0"
     >
-      <div className="grid grid-cols-4 grid-rows-1 gap-1">
+      <div className="grid grid-cols-[1fr_auto] md:grid-cols-4 md:grid-rows-1 gap-4 md:gap-1 w-full max-w-7xl items-center">
         <motion.div 
-          className="col-span-3 flex items-center justify-center"
-          style={{ x: textX, opacity: textOpacity }}
+          className="md:col-span-3 flex items-center justify-center"
+          style={{ 
+            x: typeof window !== 'undefined' && window.innerWidth >= 768 ? textX : 0, 
+            opacity: typeof window !== 'undefined' && window.innerWidth >= 768 ? textOpacity : 1 
+          }}
         >
-          <div className="w-full border-4 border-l-0 py-16 rounded-r-4xl">
-            <h1 className="ml-16 font-sans uppercase font-bold text-4xl/11 max-w-7xl tracking-wide">
+          <div className="w-full border-4 md:border-l-0 py-6 md:py-16 px-4 md:px-0 rounded-2xl md:rounded-r-4xl border-primary">
+            <h1 className="md:ml-16 font-sans uppercase font-bold text-base md:text-4xl leading-tight md:leading-[44px] tracking-wide">
               "Демократія має народжуватися у кожному новому поколінні, і саме освіта допомагає їй з'явитися на світ." — Джон Дьюї
             </h1>
           </div>
         </motion.div>
         <motion.div 
-          className="col-start-4"
-          style={{ x: imageX, opacity: imageOpacity, rotate: imageRotate }}
+          className="md:col-start-4 flex justify-end md:justify-start"
+          style={{ 
+            x: typeof window !== 'undefined' && window.innerWidth >= 768 ? imageX : 0, 
+            opacity: typeof window !== 'undefined' && window.innerWidth >= 768 ? imageOpacity : 1,
+            rotate: typeof window !== 'undefined' && window.innerWidth >= 768 ? imageRotate : 0
+          }}
         >
-          <Image src={quote} alt="John Dewey" />
+          <div className="w-32 md:w-full flex-shrink-0">
+            <Image src={quote} alt="John Dewey" className="w-full h-auto" />
+          </div>
         </motion.div>
       </div>
     </section>
