@@ -16,14 +16,12 @@ export default function Audience() {
       controls.start({
         opacity: 1,
         y: 0,
-        x: 0,
         transition: { duration: 0.8, ease: "easeOut" },
       });
     } else {
       controls.start({
         opacity: 0,
         y: 50,
-        x: -100,
       });
     }
   }, [controls, inView]);
@@ -32,133 +30,118 @@ export default function Audience() {
     <section
       id="audience"
       ref={ref}
-      className="relative w-full min-h-screen py-12 md:py-20 bg-[#E8E3D6] overflow-hidden"
+      className="relative w-full min-h-screen py-12 md:py-20 bg-[#E8E3D6]"
     >
       {/* Mobile Layout */}
-      <div className="md:hidden relative px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={controls}
-        >
-          <h1 className="text-2xl tracking-normal uppercase font-sans font-bold mb-6 text-black">
-            Для кого створений Гурток Політичних Студій
-          </h1>
-        </motion.div>
+      <div className="md:hidden px-6">
+        <h1 className="text-2xl tracking-normal uppercase font-sans font-bold mb-8 text-black">
+          Для кого створений Гурток Політичних Студій
+        </h1>
 
-        <div className="relative">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={controls}
-            className="relative z-10"
-          >
-            <ul className="list-disc custom-bullets text-base font-mono font-normal space-y-4 text-black ml-5">
-              <li className="leading-relaxed">
-                <span className="font-semibold">Учні 8-11 класів</span>
-              </li>
-              <li className="leading-relaxed">
-                Ті, хто планує вступати на{" "}
-                <span className="text-primary font-semibold">спеціальності:</span> політологія,
-                міжнародні відносини, право, соціологія, філософія, журналістика
-              </li>
-              <li className="leading-relaxed">
-                Ще не визначилися з напрямом, але зацікавлені в соціальних науках
-              </li>
-              <li className="leading-relaxed">
-                Бажаючі здобути загальну ерудицію в питаннях політичних та
-                соціальних процесів
-              </li>
-            </ul>
+        <ul className="space-y-6 text-black mb-8">
+          <li className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+            <span className="font-sans font-bold text-base">Учні 8-11 класів</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+            <span className="font-sans text-base">
+              Ті, хто планує вступати на{" "}
+              <span className="text-primary font-bold">спеціальності:</span>{" "}
+              політологія, міжнародні відносини, право, соціологія, філософія, журналістика
+            </span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+            <span className="font-sans text-base">
+              Ще не визначилися з напрямом, але зацікавлені в соціальних науках
+            </span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+            <span className="font-sans text-base">
+              Бажаючі здобути загальну ерудицію в питаннях політичних та соціальних процесів
+            </span>
+          </li>
+        </ul>
 
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={controls}
-              transition={{ delay: 0.8, duration: 0.8, ease: "easeOut"}}
-              className="mt-8"
-            >
-              <a href="https://forms.gle/Cqax94UHrydS7tEq6">
-                <Button className="text-base py-6 px-8 uppercase font-bold font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer rounded-[20px] w-full">
-                  Дізнатися більше
-                </Button>
-              </a>
-            </motion.div>
-          </motion.div>
+        <a href="https://forms.gle/Cqax94UHrydS7tEq6">
+          <Button className="text-base py-6 px-8 uppercase font-bold font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer rounded-[20px] w-full">
+            Дізнатися більше
+          </Button>
+        </a>
 
-          {/* Mobile Image - справа */}
-          <motion.div
-            className="absolute right-0 top-0 w-[50%] h-full pointer-events-none"
-            initial={{ opacity: 0, x: 100 }}
-            animate={controls}
-          >
-            <div className="relative w-full h-[500px]">
-              <Image 
-                src={audience} 
-                alt="Audience Image" 
-                fill
-                className="object-contain object-right-top"
-              />
-            </div>
-          </motion.div>
+        <div className="mt-8">
+          <Image 
+            src={audience} 
+            alt="Audience Image" 
+            className="w-full h-auto"
+          />
         </div>
       </div>
 
       {/* Desktop Layout */}
-      <div className="hidden md:grid md:grid-cols-3 md:grid-rows-3 md:gap-0 md:pl-32 md:pr-64">
-        <motion.div
-          className="md:col-span-2"
-          initial={{ opacity: 0, y: 50 }}
-          animate={controls}
-        >
-          <div className="max-w-5xl text-left text-black px-4">
-            <h1 className="text-4xl tracking-wider uppercase font-sans font-bold mb-2 mt-32">
-              Для кого створений Гурток Політичних Студій
-            </h1>
+      <div className="hidden md:block">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="grid grid-cols-2 gap-12 items-center">
+            {/* Ліва колонка */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={controls}
+              className="space-y-10"
+            >
+              <h1 className="text-3xl lg:text-4xl tracking-wide uppercase font-sans font-bold text-black leading-tight">
+                Для кого створений<br />Гурток Політичних<br />Студій
+              </h1>
+
+              <ul className="space-y-6 text-black">
+                <li className="flex items-start gap-4">
+                  <span className="w-3 h-3 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                  <span className="font-sans font-bold text-lg">Учні 8-11 класів</span>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="w-3 h-3 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                  <span className="font-sans text-lg">
+                    Ті, хто планує вступати на{" "}
+                    <span className="text-primary font-bold">спеціальності:</span>{" "}
+                    політологія, міжнародні відносини, право, соціологія, філософія, журналістика
+                  </span>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="w-3 h-3 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                  <span className="font-sans text-lg">
+                    Ще не визначилися з напрямом, але зацікавлені в соціальних науках
+                  </span>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="w-3 h-3 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                  <span className="font-sans text-lg">
+                    Бажаючі здобути загальну ерудицію в питаннях політичних та соціальних процесів
+                  </span>
+                </li>
+              </ul>
+
+              <a href="https://forms.gle/Cqax94UHrydS7tEq6">
+                <Button className="text-xl py-7 px-12 uppercase font-bold font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer rounded-[20px]">
+                  Дізнатися більше
+                </Button>
+              </a>
+            </motion.div>
+
+            {/* Права колонка - зображення */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={controls}
+              className="relative"
+            >
+              <Image 
+                src={audience} 
+                alt="Audience Image" 
+                className="w-full h-auto"
+              />
+            </motion.div>
           </div>
-        </motion.div>
-
-        <motion.div
-          className="md:row-span-3 md:col-start-3"
-          initial={{ opacity: 0, x: -100 }}
-          animate={controls}
-        >
-          <Image src={audience} alt="Audience Image" className="min-w-150" />
-        </motion.div>
-
-        <motion.div
-          className="md:col-span-2 md:row-span-2 md:row-start-2 ml-16"
-          initial={{ opacity: 0 }}
-          animate={controls}
-        >
-          <ul className="list-disc max-w-128 custom-bullets text-lg font-mono font-medium space-y-4 text-black">
-            <li className="leading-relaxed">
-              <span className="font-semibold">Учні 8-11 класів</span>
-            </li>
-            <li className="leading-relaxed">
-              Ті, хто планує вступати на{" "}
-              <span className="text-primary font-semibold">спеціальності:</span> політологія,
-              міжнародні відносини, право, соціологія, філософія, журналістика
-            </li>
-            <li className="leading-relaxed">
-              Ще не визначилися з напрямом, але зацікавлені в соціальних науках
-            </li>
-            <li className="leading-relaxed">
-              Бажаючі здобути загальну ерудицію в питаннях політичних та
-              соціальних процесів
-            </li>
-          </ul>
-
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={controls}
-            transition={{ delay: 0.8, duration: 0.8, ease: "easeOut"}}
-            className="mt-16"
-          >
-            <a href="https://forms.gle/Cqax94UHrydS7tEq6">
-              <Button className="text-xl py-8 px-12 uppercase font-semibold font-sans tracking-wider hover:bg-white hover:text-primary cursor-pointer rounded-[20px]">
-                Дізнатися більше
-              </Button>
-            </a>
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

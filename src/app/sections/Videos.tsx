@@ -2,6 +2,7 @@
 
 import { AnimatedProps } from "@/types/motion";
 import { motion, Variants, Transition } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 import VideoPlayer from "@/components/sections/VideoPlayer";
 
@@ -29,25 +30,109 @@ const itemVariants: Variants = {
 };
 
 export default function Videos({ id }: AnimatedProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        const container = scrollRef.current;
+        const scrollLeft = container.scrollLeft;
+        const itemWidth = container.offsetWidth * 0.75; // 75vw
+        const newIndex = Math.round(scrollLeft / (itemWidth + 16)); // 16 is gap
+        setActiveIndex(newIndex);
+      }
+    };
+
+    const container = scrollRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+      return () => container.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
   return (
     <motion.section
-      className="relative w-full min-h-screen py-20 bg-cover bg-center bg-no-repeat"
+      className="relative w-full min-h-screen py-12 md:py-20 bg-[#E8E3D6]"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }}
       id={id}
     >
       <motion.div
-        className="relative z-10 max-w-6xl mx-auto text-center text-foreground px-4 mb-16"
+        className="relative z-10 max-w-6xl mx-auto text-center text-black px-4 mb-8 md:mb-16"
         variants={itemVariants}
       >
-        <h1 className="text-4xl tracking-wider uppercase font-sans mb-2">
+        <h1 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2">
           Інтервʼю з випускниками
         </h1>
       </motion.div>
 
+      {/* Mobile - Horizontal Scroll */}
+      <div className="md:hidden">
+        <div 
+          ref={scrollRef}
+          className="overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth"
+        >
+          <div className="flex gap-4 px-[12.5vw] pb-4 items-center">
+            <div 
+              className={`flex-shrink-0 w-[75vw] snap-center transition-all duration-300 ${
+                activeIndex === 0 ? 'scale-100 opacity-100' : 'scale-90 opacity-60'
+              }`}
+            >
+              <VideoPlayer 
+                videoSrc={interviewOne} 
+                posterSrc={interviewOneBg}
+              />
+            </div>
+            <div 
+              className={`flex-shrink-0 w-[75vw] snap-center transition-all duration-300 ${
+                activeIndex === 1 ? 'scale-100 opacity-100' : 'scale-90 opacity-60'
+              }`}
+            >
+              <VideoPlayer 
+                videoSrc={interviewTwo} 
+                posterSrc={interviewTwoBg}
+              />
+            </div>
+            <div 
+              className={`flex-shrink-0 w-[75vw] snap-center transition-all duration-300 ${
+                activeIndex === 2 ? 'scale-100 opacity-100' : 'scale-90 opacity-60'
+              }`}
+            >
+              <VideoPlayer
+                videoSrc={interviewThree}
+                posterSrc={interviewThreeBg}
+              />
+            </div>
+          </div>
+        </div>
+        
+        {/* Dots Indicator */}
+        <div className="flex justify-center gap-2 mt-4">
+          {[0, 1, 2].map((index) => (
+            <button
+              key={index}
+              onClick={() => {
+                if (scrollRef.current) {
+                  const itemWidth = scrollRef.current.offsetWidth * 0.75;
+                  scrollRef.current.scrollTo({
+                    left: index * (itemWidth + 16),
+                    behavior: 'smooth'
+                  });
+                }
+              }}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                activeIndex === index ? 'bg-primary w-6' : 'bg-black/30'
+              }`}
+              aria-label={`Go to video ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop - Grid Layout */}
       <div
-        className="bg-cover bg-center bg-no-repeat py-12"
+        className="hidden md:block bg-cover bg-center bg-no-repeat py-12"
         style={{
           backgroundImage: `url(${sectionBackground.src})`,
         }}
@@ -61,15 +146,27 @@ export default function Videos({ id }: AnimatedProps) {
         >
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 my-8 sm:my-12 md:my-16 lg:my-18">
             <motion.div variants={itemVariants}>
-              <VideoPlayer videoSrc={interviewOne} posterSrc={interviewOneBg} />
+              <VideoPlayer 
+                videoSrc={interviewOne} 
+                posterSrc={interviewOneBg}
+                name="Віталій"
+                grade="10 клас"
+              />
             </motion.div>
             <motion.div variants={itemVariants}>
-              <VideoPlayer videoSrc={interviewTwo} posterSrc={interviewTwoBg} />
+              <VideoPlayer 
+                videoSrc={interviewTwo} 
+                posterSrc={interviewTwoBg}
+                name="Марія"
+                grade="11 клас"
+              />
             </motion.div>
             <motion.div variants={itemVariants}>
               <VideoPlayer
                 videoSrc={interviewThree}
                 posterSrc={interviewThreeBg}
+                name="Олександр"
+                grade="10 клас"
               />
             </motion.div>
           </div>

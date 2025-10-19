@@ -121,16 +121,14 @@ export default function AboutCourse() {
 
         {/* Зображення KSE - Mobile (внизу з оверлеєм) */}
         <motion.div
-          className="relative md:hidden w-screen h-[420px] ml-10 mt-8"
+          className="relative md:hidden w-screen h-[420px]  mt-8"
           variants={fadeUp}
           initial="hidden"
           animate={controls}
         >
-          {/* Червоний оверлей зліва знизу */}
-          <div className="absolute left-0 bottom-0 w-[60%] h-[68%] bg-primary z-0 rounded-l-[30px]" />
           
           {/* Зображення */}
-          <div className="absolute right-0 top-0 w-[70%] h-full z-10">
+          <div className="absolute right-0 top-0 w-[80%] h-full z-10">
             <div className="relative w-full h-full">
               <Image 
                 src={kse_building_mobile} 

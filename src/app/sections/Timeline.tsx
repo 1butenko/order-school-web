@@ -21,7 +21,7 @@ export default function Timeline({ id }: AnimatedProps) {
         </h2>
       </div>
 
-      <ol className="relative mt-12 md:mt-20 space-y-8 before:absolute before:left-6 md:before:left-1/2 before:top-0 before:h-full before:w-[3px] before:-translate-x-1/2 md:before:-translate-x-1/2 before:rounded-full before:bg-primary dark:before:bg-gray-700">
+      <ol className="relative mt-12 md:mt-20 space-y-8 before:absolute before:left-7.5 before:top-0 before:h-full before:w-[3px] before:bg-primary md:before:left-1/2 md:before:-translate-x-1/2">
         <TimelineItem
           module="Модуль 1"
           date="01.11 - 08.11"
