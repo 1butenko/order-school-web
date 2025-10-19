@@ -21,8 +21,12 @@ const navLinks = [
 ];
 
 import logo from "@/assets/logo.png"
+import logo_mobile from "@/assets/logo-main.svg"
+import icon_email from "@/assets/icon-email.png"
+
 import order from "@/assets/order.png"
 import kse from "@/assets/KSE.png"
+
 
 export function Navigation() {
   const [scrolled, setScrolled] = React.useState(false);
@@ -71,7 +75,7 @@ export function Navigation() {
       >
         
         {/* Logo */}
-        <Image src={scrolled ? kse : logo} alt="Logo" className="h-12 md:h-auto w-auto" />
+        <Image src={scrolled ? logo_mobile : logo} alt="Logo" className="h-12 md:h-auto w-auto" />
 
         {/* Desktop Navigation */}
         <NavigationMenu className="hidden lg:block">
@@ -123,8 +127,7 @@ export function Navigation() {
         <div className="flex flex-col h-screen overflow-hidden">
           {/* Header with Logo and Close Button */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/30 flex-shrink-0">
-            <Image src={order} alt="Order" className="h-12 w-auto" priority quality={100} />
-            <Image src={kse} alt="KSE" className="h-10 w-auto" priority quality={100} />
+            <Image src={logo_mobile} alt="Logo" className="h-12 w-auto" priority quality={100} />
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="w-10 h-10 flex items-center justify-center flex-shrink-0"
@@ -182,22 +185,22 @@ export function Navigation() {
               </p>
               
               {/* Social Icons */}
-              <div className="flex justify-center gap-6 pb-6">
+              <div className="flex justify-center gap-4 pb-6">
                 <a
                   href="mailto:contact@example.com"
-                  className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white"
+                  className="w-16 h-16 rounded-full border-1 border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white flex-shrink-0"
                   aria-label="Email"
                 >
-                  <span className="text-4xl font-black leading-none" style={{ fontFamily: 'Arial, sans-serif' }}>M</span>
+                  <Image src={icon_email} alt="Email Icon" className="w-7 h-7" width={28} height={28} />
                 </a>
                 <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white"
+                  className="w-16 h-16 rounded-full border-1 border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white flex-shrink-0"
                   aria-label="Instagram"
                 >
-                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
@@ -207,10 +210,10 @@ export function Navigation() {
                   href="https://t.me/yourgroup"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white"
+                  className="w-16 h-16 rounded-full border-1 border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white flex-shrink-0"
                   aria-label="Telegram"
                 >
-                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                   </svg>
                 </a>
