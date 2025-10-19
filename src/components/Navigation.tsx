@@ -120,17 +120,17 @@ export function Navigation() {
           mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
-        <div className="flex flex-col h-full overflow-y-auto">
+        <div className="flex flex-col h-screen overflow-hidden">
           {/* Header with Logo and Close Button */}
-          <div className="flex items-center justify-between px-6 py-6 h-[100px] border-b border-white/30 flex-shrink-0">
-            <Image src={order} alt="Order" className="h-14 w-auto" />
-            <Image src={kse} alt="KSE" className="h-[60%] w-auto" />
+          <div className="flex items-center justify-between px-6 py-4 border-b border-white/30 flex-shrink-0">
+            <Image src={order} alt="Order" className="h-12 w-auto" priority quality={100} />
+            <Image src={kse} alt="KSE" className="h-10 w-auto" priority quality={100} />
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="w-12 h-12 flex items-center justify-center"
+              className="w-10 h-10 flex items-center justify-center flex-shrink-0"
               aria-label="Close menu"
             >
-              <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+              <svg className="w-9 h-9 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
@@ -144,7 +144,7 @@ export function Navigation() {
                 <a
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-white font-bold text-xl uppercase px-6 py-6 hover:bg-white/5 transition-all"
+                  className="text-white font-bold text-base uppercase px-6 py-4 hover:bg-white/5 transition-all"
                 >
                   {link.text}
                 </a>
@@ -156,48 +156,48 @@ export function Navigation() {
           </nav>
 
           {/* Bottom Section */}
-          <div className="mt-auto px-6 pb-12 pt-8 space-y-6 flex-shrink-0">
+          <div className="mt-auto px-6 pb-6 pt-4 space-y-4 flex-shrink-0">
             {/* Start Date */}
-            <p className="text-white text-center text-xl font-normal">
+            <p className="text-white text-center text-base font-normal">
               Старт навчання 18 жовтня
             </p>
 
             {/* CTA Button */}
-            <a href="https://forms.gle/Cqax94UHrydS7tEq6" className="block px-20">
+            <a href="https://forms.gle/Cqax94UHrydS7tEq6" className="block px-6">
               <Button 
                 variant="outline"
-                className="w-full uppercase py-3 px-8 text-lg font-bold bg-transparent border-[1px] border-white text-white hover:bg-white hover:text-primary rounded-[10px] transition-all"
+                className="w-full uppercase py-3.5 px-6 text-base font-bold bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary rounded-[10px] transition-all"
               >
                 Хочу на курс
               </Button>
             </a>
 
             {/* Social Media Section */}
-            <div className="pt-8">
-              <h3 className="text-white text-center text-3xl font-black mb-4 tracking-wide">
+            <div className="pt-2">
+              <h3 className="text-white text-center text-xl font-black mb-2 tracking-wide">
                 Наші соціальні мережі
               </h3>
-              <p className="text-white text-center text-xl font-normal mb-10 leading-relaxed">
+              <p className="text-white text-center text-sm font-normal mb-4 leading-snug px-4">
                 Більше про гурток дізнавайся написавши нам у телеграм або на пошту
               </p>
               
               {/* Social Icons */}
-              <div className="flex justify-center gap-8 pb-44">
+              <div className="flex justify-center gap-6 pb-6">
                 <a
                   href="mailto:contact@example.com"
-                  className="w-24 h-24 rounded-full border-[1px] border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white"
+                  className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white"
                   aria-label="Email"
                 >
-                  <span className="text-6xl font-black leading-none" style={{ fontFamily: 'Arial, sans-serif' }}>M</span>
+                  <span className="text-4xl font-black leading-none" style={{ fontFamily: 'Arial, sans-serif' }}>M</span>
                 </a>
                 <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-24 h-24 rounded-full border-[1px] border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white"
+                  className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white"
                   aria-label="Instagram"
                 >
-                  <svg className="w-11 h-11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
@@ -207,10 +207,10 @@ export function Navigation() {
                   href="https://t.me/yourgroup"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-24 h-24 rounded-full border-[1px] border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white"
+                  className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white"
                   aria-label="Telegram"
                 >
-                  <svg className="w-11 h-11" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                   </svg>
                 </a>
