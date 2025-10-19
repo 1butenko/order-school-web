@@ -188,12 +188,15 @@ export function Navigation() {
               <div className="flex justify-center gap-4 pb-6">
                 <a
                   href="mailto:contact@example.com"
-                  className="w-16 h-16 rounded-full border-1 border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white flex-shrink-0"
+                  className="w-16 h-16 rounded-full border-1 border-white flex items-center justify-center hover:bg-white transition-all text-white flex-shrink-0 group"
                   aria-label="Email"
                 >
-                  <Image src={icon_email} alt="Email Icon" className="w-7 h-7" width={28} height={28} />
+                  <svg className="w-7 h-7 text-white group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" ry="2"/>
+                    <path d="M3 7l9 6 9-6"/>
+                  </svg>
                 </a>
-                <a
+                  <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
