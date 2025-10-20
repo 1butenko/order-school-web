@@ -24,7 +24,7 @@ export default function AboutQuote() {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full mt-12 md:mt-20 flex items-center justify-center px-4 md:px-0"
+      className="relative w-full mt-12 md:mt-20 flex items-center justify-center px-0 md:px-0"
     >
       <div className="grid grid-cols-[1fr_auto] md:grid-cols-[4fr_1fr] md:grid-rows-1 gap-4 md:gap-1 w-full max-w-[1800px] items-center">
         <motion.div 
@@ -34,7 +34,7 @@ export default function AboutQuote() {
             opacity: typeof window !== 'undefined' && window.innerWidth >= 768 ? textOpacity : 1 
           }}
         >
-          <div className="w-full border-3 md:border-l-0 py-6 md:py-10 px-4 md:px-16  md:rounded-r-4xl border-primary">
+          <div className="w-full border-3 md:border-l-0 py-6 md:py-10 px-4 md:px-16 rounded-r-4xl border-primary">
             <h1 className="font-sans uppercase md:normal-case font-bold text-base md:text-3xl md:leading-snug tracking-wide md:tracking-normal">
               "Демократія має народжуватися у кожному новому поколінні, і саме освіта допомагає їй з'явитися на світ." — Джон Дьюї
             </h1>

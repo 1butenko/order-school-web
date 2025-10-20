@@ -1,6 +1,7 @@
 "use client";
 
 import knowledge from "@/assets/knowledge.png";
+import knowledgeMobile from "@/assets/knowledge-mobile.svg";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -23,16 +24,16 @@ export default function Knowledge({ id }: AnimatedProps) {
   return (
     <section
       ref={ref}
-      className="w-full min-h-screen py-20 overflow-x-hidden" id={id}
+      className="w-full min-h-screen py-12 md:py-20 overflow-x-hidden" id={id}
     >
       <motion.div
         style={{ opacity: opacity1, y: y1 }}
-        className="max-w-6xl mx-auto text-center text-foreground px-4"
+        className="max-w-6xl mx-auto text-center text-foreground px-6 md:px-4"
       >
-        <h1 className="text-4xl tracking-wider uppercase font-sans mb-2">
+        <h1 className="hidden md:block text-[22px] leading-[30px] md:text-4xl tracking-normal md:tracking-wider uppercase font-sans font-bold mb-2">
           Навички і знання, які ти отримаєш
         </h1>
-        <h2 className="text-lg font-mono font-medium">
+        <h2 className="hidden md:block text-lg font-mono font-medium">
           Ти розберешся, як працює політика на різних рівнях — від ідей та
           історії до сучасних процесів:
         </h2>
@@ -40,19 +41,27 @@ export default function Knowledge({ id }: AnimatedProps) {
 
       <motion.div
         style={{ scale: scaleImg, opacity: opacity1 }}
-        className="w-full mt-8 overflow-hidden"
+        className="w-full mt-6 md:mt-8 overflow-hidden px-4 md:px-0"
       >
+        {/* Desktop version */}
         <Image
           src={knowledge}
           alt="Навички і знання, які ти отримаєш"
-          className="w-full h-auto max-w-full object-contain"
+          className="hidden md:block w-full h-auto max-w-full object-contain"
+          priority
+        />
+        {/* Mobile version */}
+        <Image
+          src={knowledgeMobile}
+          alt="Навички і знання"
+          className="block md:hidden w-full h-auto max-w-full object-contain"
           priority
         />
       </motion.div>
 
       <motion.div
         style={{ opacity: opacityText, y: y1 }}
-        className="max-w-4xl mx-auto mt-8 font-mono font-medium text-justify text-lg bg-primary px-4 py-6 rounded-2xl text-white"
+        className="max-w-4xl mt-6 md:mt-8 font-mono font-medium text-justify text-[15px] leading-[20px] md:text-lg bg-primary px-6 md:px-8 py-6 md:py-6 rounded-[24px] md:rounded-2xl text-white mx-4 md:mx-auto"
       >
         Крім цього, на тебе чекають візити до посольств, зустрічі з відомими
         спікерами та дослідницькі завдання, щоб глибше зрозуміти політичні
