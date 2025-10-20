@@ -74,10 +74,8 @@ export function Navigation() {
         }`}
       >
         
-        {/* Logo */}
         <Image src={scrolled ? logo_mobile : logo} alt="Logo" className="h-12 md:h-auto w-auto" />
 
-        {/* Desktop Navigation */}
         <NavigationMenu className="hidden lg:block">
           <NavigationMenuList className="font-medium text-lg uppercase space-x-4">
             {navLinks.map((link) => (
@@ -97,14 +95,12 @@ export function Navigation() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        {/* Desktop CTA Button */}
         <a href="https://forms.gle/Cqax94UHrydS7tEq6" className="hidden lg:block">
           <Button className="uppercase py-6 px-12 rounded-xl hover:bg-white hover:text-primary cursor-pointer">
             Хочу на курс
           </Button>
         </a>
 
-        {/* Mobile Burger Menu */}
         {!mobileMenuOpen && (
           <button
             className="lg:hidden flex flex-col gap-[6px] w-8 h-6 z-50"
@@ -118,14 +114,12 @@ export function Navigation() {
         )}
       </header>
 
-      {/* Mobile Menu - Full Screen */}
       <div
         className={`lg:hidden fixed inset-0 bg-primary z-[60] transition-all duration-300 ${
           mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
         <div className="flex flex-col h-screen overflow-hidden">
-          {/* Header with Logo and Close Button */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/30 flex-shrink-0">
             <Image src={logo} alt="Logo" className="h-12 w-auto" priority quality={100} />
             <button
@@ -140,7 +134,6 @@ export function Navigation() {
             </button>
           </div>
 
-          {/* Navigation Links */}
           <nav className="flex flex-col flex-shrink-0">
             {navLinks.map((link, index) => (
               <React.Fragment key={link.href}>
@@ -158,14 +151,11 @@ export function Navigation() {
             ))}
           </nav>
 
-          {/* Bottom Section */}
           <div className="mt-auto px-6 pb-6 pt-4 space-y-4 flex-shrink-0">
-            {/* Start Date */}
             <p className="text-white text-center text-base font-normal">
               Старт навчання 18 жовтня
             </p>
 
-            {/* CTA Button */}
             <a href="https://forms.gle/Cqax94UHrydS7tEq6" className="block px-6">
               <Button 
                 variant="outline"
@@ -175,7 +165,6 @@ export function Navigation() {
               </Button>
             </a>
 
-            {/* Social Media Section */}
             <div className="pt-2">
               <h3 className="text-white text-center text-xl font-black mb-2 tracking-wide">
                 Наші соціальні мережі
@@ -184,10 +173,9 @@ export function Navigation() {
                 Більше про гурток дізнавайся написавши нам у телеграм або на пошту
               </p>
               
-              {/* Social Icons */}
               <div className="flex justify-center gap-4 pb-6">
                 <a
-                  href="mailto:contact@example.com"
+                  href="mailto:polithurtok@kse.org.ua"
                   className="w-16 h-16 rounded-full border-1 border-white flex items-center justify-center hover:bg-white transition-all text-white flex-shrink-0 group"
                   aria-label="Email"
                 >
@@ -197,7 +185,7 @@ export function Navigation() {
                   </svg>
                 </a>
                   <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/polithurtok_kse"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-16 h-16 rounded-full border-1 border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white flex-shrink-0"
@@ -210,7 +198,7 @@ export function Navigation() {
                   </svg>
                 </a>
                 <a
-                  href="https://t.me/yourgroup"
+                  href="https://t.me/polithurtok_kse"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-16 h-16 rounded-full border-1 border-white flex items-center justify-center hover:bg-white hover:text-primary transition-all text-white flex-shrink-0"
