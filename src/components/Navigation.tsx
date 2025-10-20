@@ -20,7 +20,7 @@ const navLinks = [
   { href: "#interview", text: "Інтерв'ю" },
 ];
 
-import logo from "@/assets/logo.png"
+import logo from "@/assets/logo.svg"
 import logo_mobile from "@/assets/logo-main.svg"
 import icon_email from "@/assets/icon-email.png"
 

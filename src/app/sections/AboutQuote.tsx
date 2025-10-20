@@ -26,7 +26,7 @@ export default function AboutQuote() {
       ref={sectionRef}
       className="relative w-full mt-12 md:mt-20 flex items-center justify-center px-0 md:px-0"
     >
-      <div className="grid grid-cols-[1fr_auto] md:grid-cols-[4fr_1fr] md:grid-rows-1 gap-4 md:gap-1 w-full max-w-[1800px] items-center">
+      <div className="grid grid-cols-1 md:grid-cols-[4fr_1fr] md:grid-rows-1 gap-4 md:gap-1 w-full max-w-[1800px] items-center">
         <motion.div 
           className="flex items-center justify-center"
           style={{ 
@@ -41,7 +41,7 @@ export default function AboutQuote() {
           </div>
         </motion.div>
         <motion.div 
-          className="flex justify-end md:justify-start"
+          className="hidden md:flex justify-end md:justify-start"
           style={{ 
             x: typeof window !== 'undefined' && window.innerWidth >= 768 ? imageX : 0, 
             opacity: typeof window !== 'undefined' && window.innerWidth >= 768 ? imageOpacity : 1,
