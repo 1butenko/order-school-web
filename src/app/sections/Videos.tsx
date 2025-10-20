@@ -38,8 +38,8 @@ export default function Videos({ id }: AnimatedProps) {
       if (scrollRef.current) {
         const container = scrollRef.current;
         const scrollLeft = container.scrollLeft;
-        const itemWidth = container.offsetWidth * 0.75; // 75vw
-        const newIndex = Math.round(scrollLeft / (itemWidth + 16)); // 16 is gap
+        const itemWidth = container.offsetWidth * 0.75;
+        const newIndex = Math.round(scrollLeft / (itemWidth + 16));
         setActiveIndex(newIndex);
       }
     };
@@ -52,7 +52,7 @@ export default function Videos({ id }: AnimatedProps) {
   }, []);
   return (
     <motion.section
-      className="relative w-full min-h-screen py-12 md:py-20 bg-[#E8E3D6]"
+      className="relative w-full min-h-screen py-12 md:py-20"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }}
@@ -149,24 +149,18 @@ export default function Videos({ id }: AnimatedProps) {
               <VideoPlayer 
                 videoSrc={interviewOne} 
                 posterSrc={interviewOneBg}
-                name="Віталій"
-                grade="10 клас"
               />
             </motion.div>
             <motion.div variants={itemVariants}>
               <VideoPlayer 
                 videoSrc={interviewTwo} 
                 posterSrc={interviewTwoBg}
-                name="Марія"
-                grade="11 клас"
               />
             </motion.div>
             <motion.div variants={itemVariants}>
               <VideoPlayer
                 videoSrc={interviewThree}
                 posterSrc={interviewThreeBg}
-                name="Олександр"
-                grade="10 клас"
               />
             </motion.div>
           </div>
