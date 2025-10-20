@@ -60,7 +60,7 @@ export default function Structure({ id }: AnimatedProps) {
         }}
       >
         <div className="w-full flex justify-center px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-end max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24 md:gap-8 lg:gap-12 xl:gap-16 items-end max-w-7xl">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}

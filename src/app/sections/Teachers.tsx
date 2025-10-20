@@ -90,7 +90,7 @@ export default function Teachers() {
         <div className="my-2 mx-auto max-w-3xs h-1 bg-primary rounded-full"></div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center mt-18">
+      <div className="flex flex-wrap items-center justify-center mt-18 mx-2 sm:mx-0">
         {teachers.map((teacher, idx) => {
           let swiperRef: any = null;
 
@@ -100,7 +100,7 @@ export default function Teachers() {
               effect={"flip"}
               grabCursor={true}
               modules={[EffectFlip, Pagination, Navigation]}
-              className="w-full max-w-md h-[600px] cursor-pointer"
+              className="w-full max-w-md h-[600px] cursor-pointer my-4 sm:my-0"
               onSwiper={(swiper) => (swiperRef = swiper)}
               onClick={() => {
                 if (!swiperRef) return;
