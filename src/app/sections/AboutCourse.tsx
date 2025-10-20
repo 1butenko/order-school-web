@@ -107,11 +107,11 @@ export default function AboutCourse() {
             </p>
 
             <div className="mt-6 md:mt-16">
-              <h2 className="text-[17px] md:text-xl font-bold mb-4 text-black">
+              <h2 className="text-[19px] md:text-xl font-bold mb-4 text-black">
                 Поспішай, кількість місць обмежена
               </h2>
               <a href="https://forms.gle/Cqax94UHrydS7tEq6">
-                <Button className="bg-primary hover:bg-primary/90 text-white mt-2 text-[17px] md:text-xl py-7 md:py-8 px-8 md:px-12 uppercase font-bold font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer w-full md:w-auto rounded-[20px] transition-colors">
+                <Button className="bg-primary hover:bg-primary/90 text-white mt-2 text-[19px] md:text-xl py-7 md:py-8 px-8 md:px-12 uppercase font-bold font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer w-full md:w-auto rounded-[20px] transition-colors">
                   Дізнатися більше
                 </Button>
               </a>
