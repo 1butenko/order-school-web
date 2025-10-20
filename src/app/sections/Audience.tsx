@@ -31,7 +31,7 @@ export default function Audience() {
     <section
       id="audience"
       ref={ref}
-      className="relative w-full min-h-screen py-10 md:py-20 bg-[#E8E3D6]"
+      className="relative w-full min-h-screen py-10 md:py-20"
     >
       {/* Mobile Layout */}
       <div className="md:hidden relative min-h-screen overflow-hidden">

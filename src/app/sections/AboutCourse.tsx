@@ -42,7 +42,7 @@ export default function AboutCourse() {
     <section
       id="about"
       ref={ref}
-      className="relative w-full min-h-screen flex items-start justify-start overflow-hidden bg-[#E8E3D6] pt-24 pb-12 md:py-0 md:items-center md:justify-center"
+      className="relative w-full min-h-screen flex items-start justify-start overflow-hidden pt-24 pb-12 md:py-0 md:items-center md:justify-center"
     >
       <div className="w-full max-w-[430px] md:max-w-none md:grid md:grid-cols-3 md:grid-rows-3 md:gap-4 px-6 md:px-0">
         {/* Заголовок */}

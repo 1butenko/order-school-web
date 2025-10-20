@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Timeline({ id }: AnimatedProps) {
   return (
-    <section id="timeline" className="relative w-full min-h-screen py-12 md:py-20 bg-[#E8E3D6]">
+    <section id="timeline" className="relative w-full min-h-screen py-12 md:py-20">
       <div className="max-w-6xl mx-auto text-center text-black px-6 md:px-4">
         <h1 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2 md:mb-2">
           Таймлайн модулів

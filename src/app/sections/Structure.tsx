@@ -60,12 +60,12 @@ export default function Structure({ id }: AnimatedProps) {
         }}
       >
         <div className="w-full flex justify-center px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-start max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-end max-w-7xl">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col"
+              className="flex flex-col h-full"
             >
               <StructureCols
                 header="1. Теорія"
@@ -73,11 +73,11 @@ export default function Structure({ id }: AnimatedProps) {
                 paragph2="— на засвоєнні теоретичної основи та ключових понять через аналіз дискусій і прикладів із політичної практики."
                 span="Акцент"
               />
-              <div className="mt-8 w-full flex justify-center">
+              <div className="mt-auto pt-8 w-full flex justify-center items-end">
                 <Image
                   src={col1}
                   alt="Column 1"
-                  className="w-full max-w-sm md:max-w-md lg:max-w-full h-auto object-contain"
+                  className="w-full max-w-sm md:max-w-md lg:max-w-full h-auto object-contain object-bottom"
                 />
               </div>
             </motion.div>
@@ -86,7 +86,7 @@ export default function Structure({ id }: AnimatedProps) {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex flex-col"
+              className="flex flex-col h-full"
             >
               <StructureCols
                 header="2. Практика"
@@ -94,11 +94,11 @@ export default function Structure({ id }: AnimatedProps) {
                 paragph2="— на розвитку аналітичних і комунікаційних навичок через активне залучення."
                 span="Акцент"
               />
-              <div className="mt-8 w-full flex justify-center">
+              <div className="mt-auto pt-8 w-full flex justify-center items-end">
                 <Image
                   src={col2}
                   alt="Column 2"
-                  className="w-full max-w-sm md:max-w-md lg:max-w-full h-auto object-contain"
+                  className="w-full max-w-sm md:max-w-md lg:max-w-full h-auto object-contain object-bottom"
                 />
               </div>
             </motion.div>
@@ -107,7 +107,7 @@ export default function Structure({ id }: AnimatedProps) {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-col"
+              className="flex flex-col h-full"
             >
               <StructureCols
                 header="3. Досвід"
@@ -115,11 +115,11 @@ export default function Structure({ id }: AnimatedProps) {
                 paragph2="— на творчій самореалізації та розширенні досвіду учнів через власні ініціативи, зовнішні візити й різноманітні активності."
                 span="Акцент"
               />
-              <div className="mt-8 w-full flex justify-center">
+              <div className="mt-auto pt-8 w-full flex justify-center items-end">
                 <Image
                   src={col3}
                   alt="Column 3"
-                  className="w-full max-w-sm md:max-w-md lg:max-w-full h-auto object-contain"
+                  className="w-full max-w-sm md:max-w-md lg:max-w-full h-auto object-contain object-bottom"
                 />
               </div>
             </motion.div>
