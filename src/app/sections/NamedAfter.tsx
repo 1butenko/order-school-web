@@ -24,26 +24,32 @@ export default function NamedAfter() {
     threshold: 0.2,
   });
 
-useEffect(() => {
-  if (inViewText) {
-    controlsText.start("visible");
-  } else {
-    controlsText.start("hidden");
-  }
+  useEffect(() => {
+    if (inViewText) {
+      controlsText.start("visible");
+    } else {
+      controlsText.start("hidden");
+    }
 
-  if (inViewImage) {
-    controlsImage.start("visible");
-  } else {
-    controlsImage.start("hidden");
-  }
+    if (inViewImage) {
+      controlsImage.start("visible");
+    } else {
+      controlsImage.start("hidden");
+    }
 
-  if (inViewQuote) {
-    controlsQuote.start("visible");
-  } else {
-    controlsQuote.start("hidden");
-  }
-}, [inViewText, inViewImage, inViewQuote, controlsText, controlsImage, controlsQuote]);
-
+    if (inViewQuote) {
+      controlsQuote.start("visible");
+    } else {
+      controlsQuote.start("hidden");
+    }
+  }, [
+    inViewText,
+    inViewImage,
+    inViewQuote,
+    controlsText,
+    controlsImage,
+    controlsQuote,
+  ]);
 
   const textVariant: Variants = {
     hidden: { opacity: 0, y: 50 },
@@ -100,7 +106,8 @@ useEffect(() => {
               процвітання й загальне благо суспільства та держави залежать
               передусім від якісної освіти, а ключем до неї є викладачі. Ми
               створили наш гурток, натхненні його ідеалами й принципами. Коротку
-              частину його життя і захоплення читайте на <span className="text-primary underline cursor-pointer">
+              частину його життя і захоплення читайте на{" "}
+              <span className="text-primary underline cursor-pointer">
                 <a href="https://www.ukrainer.net/radio/">Ukrainer</a>
               </span>
             </p>
@@ -130,9 +137,9 @@ useEffect(() => {
         initial="hidden"
         animate={controlsQuote}
         variants={quoteVariant}
-        className="text-justify font-sans text-4xl flex justify-center items-center my-40"
+        className="text-justify font-sans text-sm sm:text-4xl flex justify-center items-center my-1 sm:my-40 mx-2 sm:mx-0"
       >
-        <div className="max-w-7xl bg-primary p-8 rounded-2xl text-white">
+        <div className="max-w-7xl bg-primary py-2 px-4 sm:p-8 rounded-2xl text-white">
           “Змінити світ – це вкласти свою працю в цей світ, тобто відчути, що не
           даром проходять дні. Це виконувати свої обов’язки перед родиною, перед
           суспільством. Ну і допомагати, по можливості, дітям.” — Леонід Пасько
