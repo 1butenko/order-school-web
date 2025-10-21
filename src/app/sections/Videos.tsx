@@ -32,6 +32,7 @@ export default function Videos({ id }: AnimatedProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Detect phone
   useEffect(() => {
     const checkMobile = () =>
       /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -56,22 +57,21 @@ export default function Videos({ id }: AnimatedProps) {
     }
   }, []);
 
+  // ✅ If phone — simplified static version (no animation, no loader)
   if (isMobile) {
     return (
-      <section
-        className="relative w-full min-h-screen py-12 md:py-20"
-        id={id}
-      >
+      <section className="relative w-full min-h-screen py-12 md:py-20" id={id}>
         <div className="relative z-10 max-w-6xl mx-auto text-center text-black px-4 mb-8 md:mb-16">
           <h1 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2">
             Інтервʼю з випускниками
           </h1>
         </div>
 
+        {/* Mobile - Horizontal Scroll */}
         <div className="md:hidden">
           <div
             ref={scrollRef}
-            className="overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth"
+            className="overflow-x-auto scrollbar-hide snap-x snap-mandatory"
           >
             <div className="flex gap-4 px-[12.5vw] pb-4 items-center">
               {[ 
@@ -81,18 +81,21 @@ export default function Videos({ id }: AnimatedProps) {
               ].map((v, i) => (
                 <div
                   key={i}
-                  className={`flex-shrink-0 w-[75vw] snap-center transition-all duration-300 ${
-                    activeIndex === i
-                      ? "scale-100 opacity-100"
-                      : "scale-90 opacity-60"
-                  }`}
+                  className="flex-shrink-0 w-[75vw] snap-center"
                 >
-                  <VideoPlayer videoSrc={v.src} posterSrc={v.bg} />
+                  {/* 🔥 Pass disableLoader prop to VideoPlayer to remove loading animation */}
+                  <VideoPlayer 
+                    videoSrc={v.src} 
+                    posterSrc={v.bg} 
+                    disableLoader 
+                    disableAnimation 
+                  />
                 </div>
               ))}
             </div>
           </div>
 
+          {/* Dots Indicator */}
           <div className="flex justify-center gap-2 mt-4">
             {[0, 1, 2].map((index) => (
               <button
@@ -102,11 +105,11 @@ export default function Videos({ id }: AnimatedProps) {
                     const itemWidth = scrollRef.current.offsetWidth * 0.75;
                     scrollRef.current.scrollTo({
                       left: index * (itemWidth + 16),
-                      behavior: "smooth",
+                      behavior: "auto", // ⚡ no smooth scroll for faster feel
                     });
                   }
                 }}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 rounded-full ${
                   activeIndex === index ? "bg-primary w-6" : "bg-black/30"
                 }`}
                 aria-label={`Go to video ${index + 1}`}
@@ -118,6 +121,7 @@ export default function Videos({ id }: AnimatedProps) {
     );
   }
 
+  // ✅ Desktop version (with animations)
   return (
     <motion.section
       className="relative w-full min-h-screen py-12 md:py-20"
