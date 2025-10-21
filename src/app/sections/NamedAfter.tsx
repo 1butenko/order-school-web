@@ -68,7 +68,7 @@ export default function NamedAfter() {
 
             <p className="text-[#191a21] text-[15px] md:text-[17px] lg:text-[18px] leading-[1.75] font-mono font-medium text-justify">
               Гурток названо на честь Леоніда Паська — вчителя, педагога й наставника, чиє життя було присвячене освіті та громадянському служінню. Леонід викладав історію, був головою Світловодського осередку «Пласту», а також наставником у радіогуртку. Він навчив нас любити й віддавати, бути відкритими як до світу, так і до людей, служити одне одному. Леонід завжди наголошував, що процвітання й загальне благо суспільства та держави залежать передусім від якісної освіти, а ключем до неї є викладачі. Ми створили наш гурток, натхненні його ідеалами й принципами. Коротку частину його життя і захоплення читайте на{" "}
-              <span className="text-primary underline cursor-pointer">
+              <span className="text-primary font-bold underline cursor-pointer">
                 <a href="https://www.ukrainer.net/radio/">Ukrainer</a>
               </span>
             </p>
@@ -99,10 +99,10 @@ export default function NamedAfter() {
         initial="hidden"
         animate={controlsQuote}
         variants={quoteVariant}
-        className="text-justify font-sans text-sm sm:text-4xl flex justify-center items-center my-1 sm:my-40 mx-2 sm:mx-0"
+        className="text-justify font-sans text-sm sm:text-4xl font-medium flex justify-center items-center my-1 sm:my-40 mx-2 sm:mx-0"
       >
         <div className="max-w-7xl bg-primary py-2 px-4 sm:p-8 rounded-2xl text-white">
-          “Змінити світ – це вкласти свою працю в цей світ, тобто відчути, що не даром проходять дні. Це виконувати свої обов’язки перед родиною, перед суспільством. Ну і допомагати, по можливості, дітям.” — Леонід Пасько
+          "Змінити світ – це вкласти свою працю в цей світ, тобто відчути, що не даром проходять дні. Це виконувати свої обов'язки перед родиною, перед суспільством. Ну і допомагати, по можливості, дітям." — Леонід Пасько
         </div>
       </motion.div>
     </section>

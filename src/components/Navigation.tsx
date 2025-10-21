@@ -152,14 +152,11 @@ export function Navigation() {
           </nav>
 
           <div className="mt-auto px-6 pb-6 pt-4 space-y-4 flex-shrink-0">
-            <p className="text-white text-center text-base font-normal">
-              Старт навчання 18 жовтня
-            </p>
 
-            <a href="https://forms.gle/Cqax94UHrydS7tEq6" className="block px-6">
+            <a href="https://forms.gle/Cqax94UHrydS7tEq6" className="flex justify-center px-6">
               <Button 
                 variant="outline"
-                className="w-full uppercase py-3.5 px-6 text-base font-bold bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary rounded-[10px] transition-all"
+                className="uppercase py-5 px-6 text-base font-bold bg-transparent border-1 border-white text-white hover:bg-white hover:text-primary rounded-[10px] transition-all"
               >
                 Хочу на курс
               </Button>

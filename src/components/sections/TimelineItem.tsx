@@ -45,7 +45,7 @@ export default function TimelineItem({module, date, text, label, image} : Timeli
           <h3 className="text-lg font-bold text-black font-sans tracking-normal uppercase">
             {module}
           </h3>
-          <time className="text-lg font-bold text-black font-sans tracking-normal">
+          <time className="text-lg font-medium text-black font-sans tracking-normal">
             {date}
           </time>
         </div>

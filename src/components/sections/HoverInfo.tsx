@@ -30,7 +30,7 @@ export default function HoverInfo({
           </h3>
 
           <div className="w-full bg-white rounded mt-2">
-            <p className="font-mono font-normal text-sm py-4 px-4 text-black text-left">
+            <p className="font-mono font-medium text-sm py-4 px-4 text-black text-left">
               {text}
             </p>
           </div>

@@ -105,19 +105,19 @@ export default function AboutCourse() {
           animate={controls}
           transition={{ delay: 0.3 }}
         >
-          <div className="max-w-4xl md:ml-16 text-justify font-mono font-normal tracking-normal text-[15px] leading-[20px] md:text-base text-black">
+          <div className="max-w-4xl md:ml-16 text-justify font-mono font-medium tracking-normal text-[15px] leading-[20px] md:text-base text-black">
             {" "}
             <p>
               {" "}
               Це практичний курс від факультету соціальних наук{" "}
-              <span className="text-primary font-semibold">KSE</span> для{" "}
-              <span className="text-primary font-semibold">
+              <span className="text-primary font-bold">KSE</span> для{" "}
+              <span className="text-primary font-bold">
                 учнів 8–11 класів
               </span>
               , які хочуть глибше зрозуміти політику та суспільство. Навчання
               відбувається офлайн у головному кампусі університету. Тут ви
               ознайомитеся з основами{" "}
-              <span className="text-primary font-semibold">
+              <span className="text-primary font-bold">
                 {" "}
                 політичних наук і політичної філософії{" "}
               </span>{" "}
@@ -166,7 +166,7 @@ export default function AboutCourse() {
 
         {isMobile && (
           <motion.div>
-              <Button className="bg-primary text-white mt-2 text-xs md:text-xl py-7 md:py-8 px-8 md:px-12 uppercase font-bold font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer w-full md:w-auto rounded-xl transition-colors">
+              <Button className="bg-primary text-white mt-2 text-xs md:text-xl py-7 md:py-8 px-8 md:px-12 uppercase font-medium font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer w-full md:w-auto rounded-xl transition-colors">
                     Дізнатися більше
                   </Button>
           </motion.div>
