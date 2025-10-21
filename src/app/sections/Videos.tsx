@@ -8,6 +8,12 @@ import VideoPlayer from "@/components/sections/VideoPlayer";
 import interviewOneBg from "@/assets/prev_interview_1.png";
 import sectionBackground from "@/assets/videos-bg.png";
 
+import interviewTwo from "../../../videos/int2.mp4";
+import interviewTwoBg from "@/assets/prev_interview_2.png";
+
+import interviewThreeBg from "@/assets/prev_interview_3.png";
+
+
 import interviewOne from "../../../videos/int1.mp4";
 
 const transition: Transition = { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] };
@@ -27,7 +33,7 @@ const itemVariants: Variants = {
 export default function Videos({ id }: AnimatedProps) {
   return (
     <motion.section
-      className="relative w-full min-h-screen py-12 md:py-20"
+      className="hidden md:block relative w-full min-h-screen py-12 md:py-20"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }}
@@ -42,17 +48,8 @@ export default function Videos({ id }: AnimatedProps) {
         </h1>
       </motion.div>
 
-      {/* Mobile - Single Video Centered */}
-      <div className="md:hidden px-4">
-        <VideoPlayer 
-          videoSrc={interviewOne} 
-          posterSrc={interviewOneBg}
-        />
-      </div>
-
-      {/* Desktop - Single Video Centered */}
       <div
-        className="hidden md:block bg-cover bg-center bg-no-repeat py-12"
+        className="bg-cover bg-center bg-no-repeat py-12"
         style={{
           backgroundImage: `url(${sectionBackground.src})`,
         }}
@@ -64,11 +61,23 @@ export default function Videos({ id }: AnimatedProps) {
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
         >
-          <div className="flex justify-center my-8 sm:my-12 md:my-16 lg:my-18">
+          <div className="flex justify-center gap-12 my-8 sm:my-12 md:my-16 lg:my-18">
             <motion.div variants={itemVariants} className="w-full max-w-2xl">
               <VideoPlayer 
                 videoSrc={interviewOne} 
                 posterSrc={interviewOneBg}
+              />
+            </motion.div>
+            <motion.div variants={itemVariants} className="w-full max-w-2xl">
+              <VideoPlayer 
+                videoSrc={interviewTwo} 
+                posterSrc={interviewThreeBg}
+              />
+            </motion.div>
+            <motion.div variants={itemVariants} className="w-full max-w-2xl">
+              <VideoPlayer 
+                videoSrc={interviewTwo} 
+                posterSrc={interviewTwoBg}
               />
             </motion.div>
           </div>
