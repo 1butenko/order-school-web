@@ -16,10 +16,6 @@ export default function Timeline({ id }: AnimatedProps) {
         <h1 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2 md:mb-2">
           Таймлайн модулів
         </h1>
-        <h2 className="text-sm md:text-lg font-mono font-medium md:font-medium">
-          Ви можете обирати будь-який модуль або повну річну програму
-        </h2>
-
       </div>
 
       <ol className="relative mt-12 md:mt-20 space-y-8 before:absolute before:left-7.5 before:top-0 before:h-full before:w-[3px] before:bg-primary md:before:left-1/2 md:before:-translate-x-1/2">
