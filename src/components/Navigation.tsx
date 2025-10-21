@@ -74,7 +74,7 @@ export function Navigation() {
         }`}
       >
         
-        <Image src={scrolled ? logo_mobile : logo} alt="Logo" className="h-12 md:h-auto w-auto" />
+        <Image src={scrolled ? logo_mobile : logo} alt="Logo" className="h-7 md:h-12 w-auto pr-5" />
 
         <NavigationMenu className="hidden lg:block">
           <NavigationMenuList className="font-medium text-lg uppercase space-x-4">
@@ -121,7 +121,7 @@ export function Navigation() {
       >
         <div className="flex flex-col h-screen overflow-hidden">
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/30 flex-shrink-0">
-            <Image src={logo} alt="Logo" className="h-12 w-auto" priority quality={100} />
+            <Image src={logo} alt="Logo" className="h-8 w-auto" priority quality={100} />
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="w-10 h-10 flex items-center justify-center flex-shrink-0"
