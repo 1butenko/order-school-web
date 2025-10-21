@@ -109,14 +109,14 @@ export default function Audience() {
                 Для кого створений<br />Гурток Політичних<br />Студій
               </h1>
 
-              <ul className="space-y-6 text-black">
+              <ul className="space-y-6 text-black font-sans">
                 <li className="flex items-start gap-4">
                   <span className="w-3 h-3 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
-                  <span className="font-sans font-bold text-lg">Учні 8-11 класів</span>
+                  <span className="font-mono font-bold text-lg">Учні 8-11 класів</span>
                 </li>
                 <li className="flex items-start gap-4">
                   <span className="w-3 h-3 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
-                  <span className="font-sans text-lg">
+                  <span className="font-mono font-bold text-lg">
                     Ті, хто планує вступати на{" "}
                     <span className="text-primary font-bold">спеціальності:</span>{" "}
                     політологія, міжнародні відносини, право, соціологія, філософія, журналістика
@@ -124,13 +124,13 @@ export default function Audience() {
                 </li>
                 <li className="flex items-start gap-4">
                   <span className="w-3 h-3 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
-                  <span className="font-sans text-lg">
+                  <span className="font-mono font-bold text-lg">
                     Ще не визначилися з напрямом, але зацікавлені в соціальних науках
                   </span>
                 </li>
                 <li className="flex items-start gap-4">
                   <span className="w-3 h-3 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
-                  <span className="font-sans text-lg">
+                  <span className="font-mono font-bold text-lg">
                     Бажаючі здобути загальну ерудицію в питаннях політичних та соціальних процесів
                   </span>
                 </li>
