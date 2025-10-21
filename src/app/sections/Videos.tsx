@@ -11,9 +11,9 @@ import interviewTwoBg from "@/assets/prev_interview_2.png";
 import interviewThreeBg from "@/assets/prev_interview_3.png";
 import sectionBackground from "@/assets/videos-bg.png";
 
-import interviewOne from "../../../videos/interview_1.mp4";
-import interviewTwo from "../../../videos/interview_2.mp4";
-import interviewThree from "../../../videos/interview_3.mp4";
+import interviewOne from "../../../videos/int1.mp4";
+import interviewTwo from "../../../videos/int2.mp4";
+// import interviewThree from "../../../videos/interview_3.mp4";
 
 const transition: Transition = { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] };
 
@@ -100,7 +100,7 @@ export default function Videos({ id }: AnimatedProps) {
               }`}
             >
               <VideoPlayer
-                videoSrc={interviewThree}
+                videoSrc={interviewOne}
                 posterSrc={interviewThreeBg}
               />
             </div>
@@ -159,7 +159,7 @@ export default function Videos({ id }: AnimatedProps) {
             </motion.div>
             <motion.div variants={itemVariants}>
               <VideoPlayer
-                videoSrc={interviewThree}
+                videoSrc={interviewOne}
                 posterSrc={interviewThreeBg}
               />
             </motion.div>

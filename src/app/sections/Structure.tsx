@@ -16,7 +16,7 @@ export default function Structure({ id }: AnimatedProps) {
     <section className="w-full min-h-screen py-20 overflow-x-hidden" id={id}>
       <div className="max-w-4xl mx-auto text-foreground px-4">
         <motion.h1
-          className="text-4xl tracking-wider uppercase font-sans text-center"
+          className="text-2xl md:text-4xl tracking-wider uppercase font-sans text-center"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -26,7 +26,7 @@ export default function Structure({ id }: AnimatedProps) {
         </motion.h1>
 
         <motion.div
-          className="my-6 flex justify-center"
+          className="my-4 md:my-6 flex justify-center"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
