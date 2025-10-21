@@ -1,9 +1,7 @@
 "use client";
-
 import { useState } from "react";
 import Video from "next-video";
 import Instaplay from "player.style/instaplay/react";
-
 import type { Asset } from "next-video/dist/assets.js";
 import type { StaticImageData } from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -13,9 +11,7 @@ interface VideoPlayerProps {
   posterSrc: StaticImageData | string;
   name?: string;
   grade?: string;
-  /** disables the loading skeleton */
   disableLoader?: boolean;
-  /** disables the opacity fade-in transition */
   disableAnimation?: boolean;
 }
 
@@ -31,7 +27,6 @@ export default function VideoPlayer({
 
   return (
     <div className="rounded-2xl relative overflow-hidden">
-      {/* ⛔️ Loader disabled on mobile if disableLoader=true */}
       {!disableLoader && isLoading && (
         <Skeleton className="absolute inset-0 rounded-2xl aspect-9/16" />
       )}
@@ -40,6 +35,9 @@ export default function VideoPlayer({
         src={videoSrc}
         theme={Instaplay}
         poster={posterSrc}
+        muted
+        playsInline
+        preload="auto"
         onLoadedData={() => setIsLoading(false)}
         onCanPlay={() => setIsLoading(false)}
         style={{
