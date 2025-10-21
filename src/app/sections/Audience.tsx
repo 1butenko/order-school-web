@@ -49,7 +49,7 @@ export default function Audience() {
 
         {/* Content */}
         <div className="relative z-10 px-6 py-8">
-          <h1 className="text-2xl tracking-tight uppercase font-mono font-black mb-8 text-black leading-tight">
+          <h1 className="text-2xl tracking-tight uppercase font-mono font-bold mb-8 text-black leading-tight">
             Для кого створений Гурток Політичних Студій
           </h1>
 
@@ -63,7 +63,7 @@ export default function Audience() {
             {/* Item 2 */}
             <div className="bg-[#E8DDD0]/80 backdrop-blur-sm rounded-2xl p-5 flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-primary mt-0.5 flex-shrink-0"></span>
-              <span className="font-mono text-base text-black leading-snug">
+              <span className="font-mono font-medium text-base text-black leading-snug">
                 Плануєте вступати на{" "}
                 <span className="text-primary font-bold">спеціальності</span>{" "}
                 політологія, міжнародні відносини, право, соціологія, філософія, журналістика
@@ -73,7 +73,7 @@ export default function Audience() {
             {/* Item 3 */}
             <div className="bg-[#E8DDD0]/80 backdrop-blur-sm rounded-2xl p-5 flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-primary mt-0.5 flex-shrink-0"></span>
-              <span className="font-mono text-base text-black leading-snug">
+              <span className="font-mono font-medium text-base text-black leading-snug">
                 Бажаєте здобути загальну ерудицію у питаннях політичних та соціальних процесів
               </span>
             </div>
@@ -81,14 +81,14 @@ export default function Audience() {
             {/* Item 4 */}
             <div className="bg-[#E8DDD0]/80 backdrop-blur-sm rounded-2xl p-5 flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-primary mt-0.5 flex-shrink-0"></span>
-              <span className="font-mono text-base text-black leading-snug">
+              <span className="font-mono font-medium text-base text-black leading-snug">
                 Ще не визначилися з напрямом, але зацікавлені у соціальних науках
               </span>
             </div>
           </div>
 
           <a href="https://forms.gle/Cqax94UHrydS7tEq6">
-            <Button className="text-base bg-[#F42B39] py-7 px-8 uppercase font-black font-mono tracking-wide hover:bg-white hover:text-primary cursor-pointer rounded-[20px] w-full">
+            <Button className="text-base bg-[#F42B39] py-7 px-8 uppercase font-medium font-mono tracking-wide hover:bg-white hover:text-primary cursor-pointer rounded-[20px] w-full">
               Дізнатися більше
             </Button>
           </a>

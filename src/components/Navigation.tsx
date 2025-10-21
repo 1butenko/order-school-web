@@ -67,22 +67,22 @@ export function Navigation() {
   return (
     <>
       <header
-        className={`w-full h-20 md:h-36 flex items-center justify-between px-6 md:px-24 py-4 md:py-16 font-mono fixed top-0 left-0 z-50 transition-all duration-300 ${
+        className={`w-full h-20 md:h-36 flex items-center justify-between gap-2 lg:gap-4 xl:gap-6 px-4 md:px-8 lg:px-12 xl:px-20 py-4 md:py-16 font-mono fixed top-0 left-0 z-50 transition-all duration-300 ${
           scrolled
             ? "bg-background text-foreground shadow-md border-border rounded-br-lg rounded-bl-lg"
             : "bg-transparent text-white"
         }`}
       >
-        
-        <Image src={scrolled ? logo_mobile : logo} alt="Logo" className="h-7 md:h-12 w-auto pr-5" />
 
-        <NavigationMenu className="hidden lg:block">
-          <NavigationMenuList className="font-medium text-lg uppercase space-x-4">
+        <Image src={scrolled ? logo_mobile : logo} alt="Logo" className="h-7 md:h-12 w-auto flex-shrink-0" />
+
+        <NavigationMenu className="hidden lg:block flex-1">
+          <NavigationMenuList className="flex justify-center font-medium text-[10px] lg:text-xs xl:text-sm 2xl:text-base uppercase space-x-1 lg:space-x-2 xl:space-x-3 2xl:space-x-4">
             {navLinks.map((link) => (
               <NavigationMenuItem key={link.href}>
                 <NavigationMenuLink
                   href={link.href}
-                  className={`bg-transparent p-2 transition-colors duration-300 ${
+                  className={`bg-transparent px-1 xl:px-2 py-2 transition-colors duration-300 whitespace-nowrap inline-block ${
                     `#${activeSection}` === link.href
                       ? "text-primary font-bold"
                       : "hover:text-primary/80"
@@ -95,8 +95,8 @@ export function Navigation() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <a href="https://forms.gle/Cqax94UHrydS7tEq6" className="hidden lg:block">
-          <Button className="uppercase py-6 px-12 rounded-xl hover:bg-white hover:text-primary cursor-pointer">
+        <a href="https://forms.gle/Cqax94UHrydS7tEq6" className="hidden lg:block flex-shrink-0">
+          <Button className="uppercase py-4 lg:py-3 xl:py-4 2xl:py-6 px-3 lg:px-4 xl:px-6 2xl:px-12 text-[10px] lg:text-xs xl:text-sm 2xl:text-base rounded-xm hover:bg-white hover:text-primary cursor-pointer whitespace-nowrap">
             Хочу на курс
           </Button>
         </a>
@@ -152,14 +152,16 @@ export function Navigation() {
           </nav>
 
           <div className="mt-auto px-6 pb-6 pt-4 space-y-4 flex-shrink-0">
-            <a href="https://forms.gle/Cqax94UHrydS7tEq6" className="block px-6">
-              <Button 
-                variant="outline"
-                className="w-full uppercase py-3.5 px-6 text-base font-bold bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary rounded-[10px] transition-all"
-              >
-                Хочу на курс
-              </Button>
-            </a>
+            <div className="flex justify-center px-6">
+              <a href="https://forms.gle/Cqax94UHrydS7tEq6">
+                <Button 
+                  variant="outline"
+                  className="uppercase py-5 px-6 text-base font-bold bg-transparent border-1 border-white text-white hover:bg-white hover:text-primary rounded-[10px] transition-all"
+                >
+                  Хочу на курс
+                </Button>
+              </a>
+            </div>
 
             <div className="pt-2">
               <h3 className="text-white text-center text-xl font-black mb-2 tracking-wide">

@@ -35,13 +35,13 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-2xl tracking-wide font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180 cursor-pointer",
+          "flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-base md:text-2xl tracking-wide font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180 cursor-pointer",
           className
         )}
         {...props}
       >
         {children}
-        <ChevronDownIcon className="text-muted-foreground pointer-events-none size-9 shrink-0 translate-y-0.5 transition-transform duration-200 cursor-pointer" />
+        <ChevronDownIcon className="text-muted-foreground pointer-events-none size-6 md:size-9 shrink-0 translate-y-0.5 transition-transform duration-200 cursor-pointer" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )
@@ -55,7 +55,7 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-m font-medium"
+      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm md:text-base font-medium"
       {...props}
     >
       <div className={cn("pt-0 pb-4", className)}>{children}</div>
