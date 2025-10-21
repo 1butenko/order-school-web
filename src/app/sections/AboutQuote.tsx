@@ -34,8 +34,8 @@ export default function AboutQuote() {
             opacity: typeof window !== 'undefined' && window.innerWidth >= 768 ? textOpacity : 1 
           }}
         >
-          <div className="w-full border-3 md:border-l-0 py-6 md:py-10 px-4 md:px-16 rounded-r-4xl border-primary">
-            <h1 className="font-sans uppercase md:normal-case font-bold text-base md:text-3xl md:leading-snug tracking-wide md:tracking-normal">
+          <div className="w-full border-3 border-l-0 md:border-l-0 py-6 md:py-10 px-4 md:px-16 rounded-r-4xl border-primary mr-2">
+            <h1 className="font-sans normal-case md:normal-case font-bold text-base md:text-3xl md:leading-snug tracking-wide md:tracking-normal">
               "Демократія має народжуватися у кожному новому поколінні, і саме освіта допомагає їй з'явитися на світ." — Джон Дьюї
             </h1>
           </div>

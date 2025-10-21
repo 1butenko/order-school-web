@@ -72,7 +72,7 @@ export default function AboutCourse() {
           animate={controls}
         >
           <div className="max-w-6xl md:ml-16 md:mt-16 text-left text-black">
-            <h1 className="text-[22px] leading-[30px] md:text-4xl/12 tracking-normal md:tracking-wider uppercase font-bold font-sans">
+            <h1 className="text-2xl leading-[30px] md:text-4xl/12 tracking-normal md:tracking-wider uppercase font-bold font-sans">
               Чому варто обрати Київський Гурток{" "}
               <span className="text-primary">Політичних</span> Студій?
             </h1>

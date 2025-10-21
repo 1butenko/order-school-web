@@ -84,10 +84,10 @@ export default function Teachers() {
       id="teachers"
     >
       <div className="max-w-6xl mx-auto text-center text-foreground px-4">
-        <h1 className="text-4xl tracking-wider uppercase font-sans mb-2">
+        <h1 className="text-2xl md:text-4xl tracking-wider uppercase font-sans mb-2">
           Викладачі
         </h1>
-        <div className="my-2 mx-auto max-w-3xs h-1 bg-primary rounded-full"></div>
+        <div className="my-2 mx-auto max-w-36 md:max-w-3xs h-1 bg-primary rounded-full"></div>
       </div>
 
       <div className="flex flex-wrap items-center justify-center mt-18 mx-2 sm:mx-0">

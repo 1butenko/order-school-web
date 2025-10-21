@@ -152,10 +152,6 @@ export function Navigation() {
           </nav>
 
           <div className="mt-auto px-6 pb-6 pt-4 space-y-4 flex-shrink-0">
-            <p className="text-white text-center text-base font-normal">
-              Старт навчання 18 жовтня
-            </p>
-
             <a href="https://forms.gle/Cqax94UHrydS7tEq6" className="block px-6">
               <Button 
                 variant="outline"
