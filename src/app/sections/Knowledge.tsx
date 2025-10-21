@@ -22,10 +22,11 @@ export default function Knowledge({ id }: AnimatedProps) {
   const opacityText = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <section
-      ref={ref}
-      className="w-full min-h-screen py-12 md:py-20 overflow-x-hidden" id={id}
-    >
+<section
+  ref={ref}
+  className="w-full md:min-h-screen py-12 md:py-20 overflow-x-hidden"
+  id={id}
+>
       <motion.div
         style={{ opacity: opacity1, y: y1 }}
         className="max-w-6xl mx-auto text-center text-foreground px-6 md:px-4"
