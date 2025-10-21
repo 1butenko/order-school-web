@@ -3,7 +3,7 @@
 import type { AnimatedProps } from "@/types/motion";
 import Image from "next/image";
 import hero from "@/assets/hero.png";
-import heroMobile from "@/assets/kse-mobile.png";
+import heroMobile from "@/assets/Hero_mobile.png";
 
 import { Button } from "@/components/ui/button";
 
