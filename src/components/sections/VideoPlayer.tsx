@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Video from "next-video";
 import Instaplay from "player.style/instaplay/react";
 import type { Asset } from "next-video/dist/assets.js";
@@ -24,10 +24,18 @@ export default function VideoPlayer({
   disableAnimation = false,
 }: VideoPlayerProps) {
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () =>
+      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    setIsMobile(checkMobile());
+  }, []);
 
   return (
     <div className="rounded-2xl relative overflow-hidden">
-      {!disableLoader && isLoading && (
+      {/* 🧱 Show skeleton only if not disabled and not on mobile */}
+      {!disableLoader && !isMobile && isLoading && (
         <Skeleton className="absolute inset-0 rounded-2xl aspect-9/16" />
       )}
 
@@ -35,16 +43,16 @@ export default function VideoPlayer({
         src={videoSrc}
         theme={Instaplay}
         poster={posterSrc}
-        muted
         playsInline
-        preload="auto"
+        muted
+        preload="metadata"
         onLoadedData={() => setIsLoading(false)}
         onCanPlay={() => setIsLoading(false)}
         style={{
           "--media-primary-color": "#FFFFFF",
           "--media-secondary-color": "#F42B39",
           "--media-accent-color": "#F42B39",
-          opacity: disableAnimation ? 1 : isLoading ? 0 : 1,
+          opacity: disableAnimation || isMobile ? 1 : isLoading ? 0 : 1,
           transition: disableAnimation ? "none" : "opacity 0.3s ease-in-out",
         }}
       />

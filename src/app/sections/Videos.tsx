@@ -32,7 +32,6 @@ export default function Videos({ id }: AnimatedProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Detect phone
   useEffect(() => {
     const checkMobile = () =>
       /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -57,7 +56,7 @@ export default function Videos({ id }: AnimatedProps) {
     }
   }, []);
 
-  // ✅ If phone — simplified static version (no animation, no loader)
+  // ✅ Mobile version (simplified for performance)
   if (isMobile) {
     return (
       <section className="relative w-full min-h-screen py-12 md:py-20" id={id}>
@@ -67,35 +66,31 @@ export default function Videos({ id }: AnimatedProps) {
           </h1>
         </div>
 
-        {/* Mobile - Horizontal Scroll */}
+        {/* Mobile Horizontal Scroll */}
         <div className="md:hidden">
           <div
             ref={scrollRef}
             className="overflow-x-auto scrollbar-hide snap-x snap-mandatory"
           >
             <div className="flex gap-4 px-[12.5vw] pb-4 items-center">
-              {[ 
+              {[
                 { src: interviewOne, bg: interviewOneBg },
                 { src: interviewTwo, bg: interviewTwoBg },
-                { src: interviewOne, bg: interviewThreeBg }
+                { src: interviewOne, bg: interviewThreeBg },
               ].map((v, i) => (
-                <div
-                  key={i}
-                  className="flex-shrink-0 w-[75vw] snap-center"
-                >
-                  {/* 🔥 Pass disableLoader prop to VideoPlayer to remove loading animation */}
-                  <VideoPlayer 
-                    videoSrc={v.src} 
-                    posterSrc={v.bg} 
-                    disableLoader 
-                    disableAnimation 
+                <div key={i} className="flex-shrink-0 w-[75vw] snap-center">
+                  <VideoPlayer
+                    videoSrc={v.src}
+                    posterSrc={v.bg}
+                    disableLoader
+                    disableAnimation
                   />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Dots Indicator */}
+          {/* Dots */}
           <div className="flex justify-center gap-2 mt-4">
             {[0, 1, 2].map((index) => (
               <button
@@ -105,7 +100,7 @@ export default function Videos({ id }: AnimatedProps) {
                     const itemWidth = scrollRef.current.offsetWidth * 0.75;
                     scrollRef.current.scrollTo({
                       left: index * (itemWidth + 16),
-                      behavior: "auto", // ⚡ no smooth scroll for faster feel
+                      behavior: "auto",
                     });
                   }
                 }}
@@ -121,7 +116,7 @@ export default function Videos({ id }: AnimatedProps) {
     );
   }
 
-  // ✅ Desktop version (with animations)
+  // ✅ Desktop version (with motion)
   return (
     <motion.section
       className="relative w-full min-h-screen py-12 md:py-20"
