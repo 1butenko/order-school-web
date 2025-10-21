@@ -21,7 +21,7 @@ export default function Timeline({ id }: AnimatedProps) {
       <ol className="relative mt-12 md:mt-20 space-y-8 before:absolute before:left-7.5 before:top-0 before:h-full before:w-[3px] before:bg-primary md:before:left-1/2 md:before:-translate-x-1/2">
         <TimelineItem
           module="Модуль 1"
-          date="01.11 - 08.11"
+          date="02.11 - 08.11"
           text="Знайомство зі структурою курсу, форматом занять і основними навичками: аргументація, дебати, робота з кейсами. На практиці випробуємо, як виглядає семінар у форматі діалогу."
           label="Вступ"
           image={module1}
@@ -49,7 +49,7 @@ export default function Timeline({ id }: AnimatedProps) {
         />
         <TimelineItem
           module="Модуль 5"
-          date="10.01 - 17.01"
+          date="17.01 - 24.01"
           text="Як держави взаємодіють між собою та чому їхні інтереси часто стикаються? Обговоримо агресію РФ проти України, можливість вступу до ЄС і НАТО, а також відмінності політичного мислення у Європі, США, РФ та Китаї."
           label="Війна, торг, правила"
           image={module5}
