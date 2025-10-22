@@ -166,9 +166,11 @@ export default function AboutCourse() {
 
         {isMobile && (
           <motion.div>
-              <Button className="bg-primary text-white mt-2 text-xs md:text-xl py-7 md:py-8 px-8 md:px-12 uppercase font-medium font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer w-full md:w-auto rounded-xl transition-colors">
+              <a href="/onboarding">
+                <Button className="bg-primary text-white mt-2 text-xs md:text-xl py-7 md:py-8 px-8 md:px-12 uppercase font-medium font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer w-full md:w-auto rounded-xl transition-colors">
                     Дізнатися більше
-                  </Button>
+                </Button>
+              </a>
           </motion.div>
         )}
       </div>
