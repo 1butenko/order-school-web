@@ -12,12 +12,12 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 
 const navLinks = [
-  { href: "#knowledge", text: "Навички і знання" },
-  { href: "#structure", text: "Структура курсу" },
-  { href: "#timeline", text: "Таймлайн модулів" },
-  { href: "#audience", text: "Для кого" },
-  { href: "#teachers", text: "Викладачі" },
-  { href: "#interview", text: "Інтерв'ю" },
+  { href: "/#knowledge", text: "Навички і знання" },
+  { href: "/#structure", text: "Структура курсу" },
+  { href: "/#timeline", text: "Таймлайн модулів" },
+  { href: "/#audience", text: "Для кого" },
+  { href: "/#teachers", text: "Викладачі" },
+  { href: "/#interview", text: "Інтерв'ю" },
 ];
 
 import logo from "@/assets/logo.svg"
@@ -73,8 +73,9 @@ export function Navigation() {
             : "bg-transparent text-white"
         }`}
       >
-
-        <Image src={scrolled ? logo_mobile : logo} alt="Logo" className="h-7 md:h-12 w-auto flex-shrink-0" />
+        <a href="/">
+          <Image src={scrolled ? logo_mobile : logo} alt="Logo" className="h-7 md:h-12 w-auto flex-shrink-0 cursor-pointer" />
+        </a>
 
         <NavigationMenu className="hidden lg:block flex-1">
           <NavigationMenuList className="flex justify-center font-medium text-[10px] lg:text-xs xl:text-sm 2xl:text-base uppercase space-x-1 lg:space-x-2 xl:space-x-3 2xl:space-x-4">
@@ -95,7 +96,7 @@ export function Navigation() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <a href="https://forms.gle/Cqax94UHrydS7tEq6" className="hidden lg:block flex-shrink-0">
+        <a href="/onboarding" className="hidden lg:block flex-shrink-0">
           <Button className="uppercase py-4 lg:py-3 xl:py-4 2xl:py-6 px-3 lg:px-4 xl:px-6 2xl:px-12 text-[10px] lg:text-xs xl:text-sm 2xl:text-base rounded-xm hover:bg-white hover:text-primary cursor-pointer whitespace-nowrap">
             Хочу на курс
           </Button>
@@ -121,7 +122,9 @@ export function Navigation() {
       >
         <div className="flex flex-col h-screen overflow-hidden">
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/30 flex-shrink-0">
-            <Image src={logo} alt="Logo" className="h-8 w-auto" priority quality={100} />
+            <a href="/">
+              <Image src={logo} alt="Logo" className="h-8 w-auto" priority quality={100} />
+            </a>
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="w-10 h-10 flex items-center justify-center flex-shrink-0"
