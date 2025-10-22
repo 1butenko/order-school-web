@@ -61,7 +61,7 @@ export default function Timeline({ id }: AnimatedProps) {
       </h2>
 
       <div className="mt-4 md:mt-2 flex items-center justify-center tracking-wider px-6">
-        <a href="https://docs.google.com/document/d/1wWxFdJo5cmMuA-vSaSMeI0y0GvrWxxek/edit">
+        <a href="/onboarding">
           <Button className="cursor-pointer px-8 md:px-12 py-5 md:py-6 font-sans text-lg md:text-2xl uppercase hover:bg-white hover:text-primary w-full md:w-auto">
             Повна програма
           </Button>

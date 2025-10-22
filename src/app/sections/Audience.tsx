@@ -87,7 +87,7 @@ export default function Audience() {
             </div>
           </div>
 
-          <a href="https://forms.gle/Cqax94UHrydS7tEq6">
+          <a href="/onboarding">
             <Button className="text-base bg-[#F42B39] py-7 px-8 uppercase font-medium font-mono tracking-wide hover:bg-white hover:text-primary cursor-pointer rounded-[20px] w-full">
               Дізнатися більше
             </Button>

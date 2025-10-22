@@ -43,7 +43,7 @@ export default function Hero({ id }: AnimatedProps) {
             <span className="text-primary drop-shadow-2xl">політології</span> від КSE <br />
             Відкривай світ суспільних змін
           </h1>
-          <a href="https://forms.gle/Cqax94UHrydS7tEq6">
+          <a href="/onboarding">
             <Button className="uppercase bg-white text-primary mt-[26px] md:mt-16 h-11 md:h-auto md:py-8 w-[231px] md:w-auto md:px-16 text-sm md:text-2xl tracking-[0] md:tracking-wider hover:bg-primary hover:text-white cursor-pointer rounded-[10px] flex items-center justify-center font-medium transition-all shadow-lg">
               Хочу на курс
             </Button>
