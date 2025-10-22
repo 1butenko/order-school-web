@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
-
 import { useInView } from "react-intersection-observer";
 
 import "swiper/css";
@@ -74,9 +73,6 @@ export default function Teachers() {
     },
   ];
 
-  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
-
-
   const [isMobile, setIsMobile] = useState(false);
   const { ref, inView } = useInView({ threshold: 0.3 });
 
@@ -86,6 +82,18 @@ export default function Teachers() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const swiperRefs = useRef<any[]>([]);
+
+  const handleClick = (index: number) => {
+    const swiper = swiperRefs.current[index];
+    if (!swiper) return;
+    if (swiper.isEnd) {
+      swiper.slidePrev();
+    } else {
+      swiper.slideNext();
+    }
+  };
 
   return (
     <motion.section
@@ -104,89 +112,70 @@ export default function Teachers() {
       </div>
 
       <div className="flex flex-wrap items-center justify-center mt-18 mx-2 sm:mx-0">
-        {teachers.map((teacher, idx) => {
-          let swiperRef: any = null;
-
-          return (
-            <Swiper
-              key={idx}
-              effect={"flip"}
-              grabCursor={true}
-              modules={[EffectFlip, Pagination, Navigation]}
-              className="w-full max-w-md h-[600px] cursor-pointer my-4 sm:my-0"
-              onSwiper={(swiper) => (swiperRef = swiper)}
-              onClick={() => {
-                if (!swiperRef) return;
-                if (swiperRef.isEnd) {
-                  swiperRef.slidePrev();
-                } else {
-                  swiperRef.slideNext();
-                }
-              }}
-            >
-              <SwiperSlide className="cursor-pointer">
+        {teachers.map((teacher, idx) => (
+          <Swiper
+            key={idx}
+            effect={"flip"}
+            grabCursor={true}
+            modules={[EffectFlip, Pagination, Navigation]}
+            className="w-full max-w-md h-[600px] cursor-pointer my-4 sm:my-0"
+            onSwiper={(swiper) => (swiperRefs.current[idx] = swiper)}
+            onClick={() => handleClick(idx)}
+          >
+            <SwiperSlide className="cursor-pointer">
+              <motion.div
+                ref={ref}
+                className="relative w-full h-full bg-primary rounded-2xl font-mono text-2xl/7 text-center text-white font-medium flex flex-col items-center justify-center p-4 overflow-hidden"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6 }}
+              >
                 <motion.div
-                  ref={ref}
-                  className="relative w-full h-full bg-primary rounded-2xl font-mono text-2xl/7 text-center text-white font-medium flex flex-col items-center justify-center p-4 overflow-hidden"
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.6 }}
-                  whileHover={!isMobile ? "hover" : undefined}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent rounded-2xl pointer-events-none z-20"
-                    variants={{
-                      hover: { opacity: 1 },
-                    }}
-                    initial={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-
-                  <div className="w-full h-128 relative mb-4">
-                    <Image
-                      src={teacher.img}
-                      alt={`Teacher: ${teacher.name} ${teacher.surname}`}
-                      className="rounded-2xl border-2 border-foreground object-cover"
-                      fill
-                    />
-                  </div>
-
-                  {/* Читати більше */}
-                  <motion.div
-                    className="absolute bottom-32 left-1/2 -translate-x-1/2 pointer-events-none z-30"
-                    variants={{
-                      hover: { y: 0, opacity: 1 },
-                    }}
-                    initial={{ y: 30, opacity: 0 }}
-                    animate={isMobile && inView ? { y: 0, opacity: 1 } : {}}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <span className="text-white text-xl font-bold whitespace-nowrap">
-                      Читати більше
-                    </span>
-                    <div className="my-2 mx-auto max-w-3xs h-1 bg-primary rounded-full"></div>
-                  </motion.div>
-
-                  <h2 className="text-2xl font-bold relative z-10">
-                    {teacher.name}
-                  </h2>
-                  <h2 className="text-2xl font-bold relative z-10">
-                    {teacher.surname}
-                  </h2>
-                </motion.div>
-              </SwiperSlide>
-
-              <SwiperSlide className="cursor-pointer">
-                <TeacherDescription
-                  name={teacher.name}
-                  surname={teacher.surname}
-                  description={teacher.description}
+                  className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent rounded-2xl pointer-events-none z-20"
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
                 />
-              </SwiperSlide>
-            </Swiper>
-          );
-        })}
+
+                <div className="w-full h-128 relative mb-4">
+                  <Image
+                    src={teacher.img}
+                    alt={`Teacher: ${teacher.name} ${teacher.surname}`}
+                    className="rounded-2xl border-2 border-foreground object-cover"
+                    fill
+                  />
+                </div>
+
+                <motion.div
+                  className="absolute bottom-32 left-1/2 -translate-x-1/2 pointer-events-none z-30"
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={isMobile && inView ? { y: 0, opacity: 1 } : {}}
+                  transition={{ duration: 0.3 }}
+                >
+                  <span className="text-white text-xl font-bold whitespace-nowrap">
+                    Читати більше
+                  </span>
+                  <div className="my-2 mx-auto max-w-3xs h-1 bg-primary rounded-full"></div>
+                </motion.div>
+
+                <h2 className="text-2xl font-bold relative z-10">
+                  {teacher.name}
+                </h2>
+                <h2 className="text-2xl font-bold relative z-10">
+                  {teacher.surname}
+                </h2>
+              </motion.div>
+            </SwiperSlide>
+
+            <SwiperSlide className="cursor-pointer">
+              <TeacherDescription
+                name={teacher.name}
+                surname={teacher.surname}
+                description={teacher.description}
+              />
+            </SwiperSlide>
+          </Swiper>
+        ))}
       </div>
     </motion.section>
   );
