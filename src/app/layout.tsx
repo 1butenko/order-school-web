@@ -1,5 +1,5 @@
 "use client"
-
+import { Suspense } from 'react';
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -9,11 +9,9 @@ import { Navigation } from "@/components/Navigation";
 
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-import * as fbq from "../lib/tracker";
 import { FB_PIXEL_ID } from "@/lib/tracker";
 
-import { useEffect } from "react";
-import { usePathname, useSearchParams } from 'next/navigation';
+import PixelTracker from '@/components/PixelTracker';
 
 const gothamPro = localFont({
   src: [
@@ -110,13 +108,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    fbq.pageview();
-    }, [pathname, searchParams]);
-
   return (
     <html lang="uk">
       <head>
@@ -140,6 +131,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${grotesk.variable} ${gothamPro.variable} antialiased`}>
+        <Suspense fallback={null}>
+          <PixelTracker />
+        </Suspense>
         <Navigation />
         {children}
       </body>
