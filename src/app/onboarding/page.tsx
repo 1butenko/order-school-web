@@ -54,7 +54,7 @@ export default function PoliticalStudiesForm() {
           body: JSON.stringify(value),
         });
         
-        fbq.event('SubmitApplication');
+        fbq.event('CompleteRegistration');
 
         setShowSuccess(true);
         
