@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import localFont from 'next/font/local';
+import localFont from "next/font/local";
 import "./globals.css";
+import Script from "next/script";
 
 import { Navigation } from "@/components/Navigation";
 
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from "@next/third-parties/google";
+
+import * as fbq from "../lib/tracker";
+import { FB_PIXEL_ID } from "@/lib/tracker";
+
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const gothamPro = localFont({
   src: [
@@ -60,14 +67,14 @@ const gothamPro = localFont({
     },
   ],
   variable: "--font-gotham-pro",
-  display: "swap"
+  display: "swap",
 });
 
 const grotesk = localFont({
-  src : "/fonts/cy-grotesk/cy-grotesk-wide.ttf",
+  src: "/fonts/cy-grotesk/cy-grotesk-wide.ttf",
   display: "swap",
-  variable : "--font-grotesk"
-})
+  variable: "--font-grotesk",
+});
 
 export const metadata: Metadata = {
   title: "Гурток політології",
@@ -101,11 +108,44 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
+
+  useEffect(() => {
+    fbq.pageview();
+
+    const handleRouteChange = () => {
+      fbq.pageview();
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <html lang="uk">
-      <body
-        className={`${grotesk.variable} ${gothamPro.variable} antialiased`}
-      >
+      <head>
+        <Script
+          id="fb-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '${FB_PIXEL_ID}');
+            fbq('track', 'PageView');
+          `,
+          }}
+        />
+      </head>
+      <body className={`${grotesk.variable} ${gothamPro.variable} antialiased`}>
         <Navigation />
         {children}
       </body>
