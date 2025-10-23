@@ -22,6 +22,8 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 
+import * as fbq from '@/lib/tracker';
+
 export default function PoliticalStudiesForm() {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [showSuccess, setShowSuccess] = React.useState(false);
@@ -52,6 +54,8 @@ export default function PoliticalStudiesForm() {
           body: JSON.stringify(value),
         });
         
+        fbq.event('SubmitApplication');
+
         setShowSuccess(true);
         
         form.reset();
