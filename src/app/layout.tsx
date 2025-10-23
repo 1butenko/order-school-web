@@ -13,7 +13,7 @@ import * as fbq from "../lib/tracker";
 import { FB_PIXEL_ID } from "@/lib/tracker";
 
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { usePathname, useSearchParams } from 'next/navigation';
 
 const gothamPro = localFont({
   src: [
@@ -78,7 +78,7 @@ const grotesk = localFont({
   variable: "--font-grotesk",
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Гурток політології",
   description:
     "Школа Політології у Київській школі економіки ─ офлайн-курси для учнів 8-11 класів, які хочуть поглибити знання з політології, критичного мислення та соціальних наук.",
@@ -110,20 +110,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     fbq.pageview();
-
-    const handleRouteChange = () => {
-      fbq.pageview();
-    };
-
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
+    }, [pathname, searchParams]);
 
   return (
     <html lang="uk">
