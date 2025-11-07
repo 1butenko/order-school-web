@@ -1,182 +1,132 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-
-import "swiper/css";
-import "swiper/css/effect-flip";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
-import { EffectFlip, Pagination, Navigation } from "swiper/modules";
+import { motion, Variants, Transition } from "framer-motion";
+import Image, { StaticImageData } from "next/image";
 
 import mykyta from "@/assets/mykyta.jpg";
-import vlad from "@/assets/vlad.jpg";
+import vladyslav from "@/assets/vlad.jpg";
+import oksana from "@/assets/oksana.jpg";
 
-interface TeacherDescriptionProps {
+
+type AnimatedProps = { id?: string };
+
+const transition: Transition = { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] };
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition },
+};
+
+type Teacher = {
+  id: number;
   name: string;
-  surname: string;
-  description: string[];
-}
+  photo: StaticImageData;
+  details: string[];
+};
 
-const TeacherDescription: React.FC<TeacherDescriptionProps> = ({
-  name,
-  surname,
-  description,
-}) => {
+const teachers: Teacher[] = [
+  {
+    id: 1,
+    name: "Микита\nСеменов",
+    photo: mykyta,
+    details: [
+      "Співробітник дипломатичної місії США в Україні.",
+      "Магістр філософії НаУКМА.",
+      "Стипендіат Єнського університету ім. Фрідріха Шіллера.",
+      "Спеціалізується на праві, міжнародних відносинах, політичній філософії, етиці, моральній філософії.",
+    ],
+  },
+  {
+    id: 2,
+    name: "Владислав\nОзеранський",
+    photo: vladyslav,
+    details: [
+      'Політолог Католицького Університету спеціальності "Етика-Політика-Економіка".',
+      "Молодіжний лектор та тренер, волонтер, донор крові.",
+      "Спеціалізується на теорії міжнародної політики, ідеологіях, теорії ігор і пропаганді.",
+    ],
+  },
+  {
+    id: 3,
+    name: "Оксана\nСироїд",
+    photo: oksana,
+    details: [
+      "Випускниця Оттавського університету (Master of Laws), Магістра права КНУ імені Тараса Шевченка (2002) та бакалавр політології НаУКМА (1997).",
+      "З 2014 народний депутат України і до 2019 обіймала посаду заступника Голови Верховної Ради України.",
+      "З липня 2024 року військовослужбовиця.",
+      "З 2017 і до тепер викладач і доцент Київської школи економіки.",
+    ],
+  },
+];
+
+function TeacherCard({ teacher }: { teacher: Teacher }) {
   return (
-    <motion.div
-      className="relative w-full h-full bg-primary rounded-2xl px-8 py-10 flex flex-col items-center justify-center text-left"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.3 }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className="text-white font-mono font-medium text-lg max-w-64 flex flex-col items-center space-y-4">
-        {description.map((line, idx) => (
-          <p key={idx}>{line}</p>
-        ))}
-        <div className="mt-4 text-center">
-          <h2 className="font-bold text-2xl">{name}</h2>
-          <h2 className="font-bold text-2xl">{surname}</h2>
+    <motion.div variants={itemVariants} className="flex flex-col gap-6 h-full">
+      <div className="rounded-3xl border border-black bg-[#E8DED1] overflow-hidden">
+        <div className="relative h-[420px]">
+          <Image
+            src={teacher.photo}
+            alt={teacher.name.replace("\n", " ")}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 540px"
+            className="object-cover"
+            priority={teacher.id === 1}
+          />
         </div>
+        <div className="bg-[#F42B39] text-white py-4 text-center">
+          <h3 className="text-2xl font-bold leading-tight whitespace-pre-line">
+            {teacher.name}
+          </h3>
+        </div>
+      </div>
+
+      <div className="rounded-3xl border border-black bg-[#F42B39] text-white px-6 py-8 flex flex-col gap-8 flex-1">
+        <ul className="space-y-3 text-left leading-relaxed flex-1">
+          {teacher.details.map((info, idx) => (
+            <li key={idx}>{info}</li>
+          ))}
+        </ul>
       </div>
     </motion.div>
   );
-};
+}
 
-export default function Teachers() {
-  const teachers = [
-    {
-      img: mykyta,
-      name: "Микита",
-      surname: "Семенов",
-      description: [
-        "Співробітник дипломатичної місії США в Україні.",
-        "Магістр філософії НаУКМА",
-        "Стипендіат Єнського університету ім. Фрідріха Шиллера.",
-        "Спеціалізується на праві, міжнародних відносинах, політичній філософії, етиці, моральній філософії.",
-      ],
-    },
-    {
-      img: vlad,
-      name: "Владислав",
-      surname: "Озеранський",
-      description: [
-        'Політолог Католицького Університету спеціальності "Етика-Політика-Економіка"',
-        "Молодіжний лектор та тренер, волонтер, донор крові",
-        "Спеціалізується на теорії міжнародної політики, ідеологіях, теорії ігор і пропаганді.",
-      ],
-    },
-  ];
-
-  const [isMobile, setIsMobile] = useState(false);
-  const { ref, inView } = useInView({ threshold: 0.3 });
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const swiperRefs = useRef<any[]>([]);
-
-  const handleClick = (index: number) => {
-    const swiper = swiperRefs.current[index];
-    if (!swiper) return;
-    if (swiper.isEnd) {
-      swiper.slidePrev();
-    } else {
-      swiper.slideNext();
-    }
-  };
-
+export default function Teachers({ id }: AnimatedProps) {
   return (
     <motion.section
-      className="relative w-full min-h-screen py-20 bg-cover"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.2 }}
-      transition={{ duration: 0.8 }}
-      id="teachers"
+      id={id}
+      className="w-full min-h-screen py-20 bg-[#E8DED1]"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      style={{ fontFamily: '"Gotham Pro ", "Gotham Pro", sans-serif' }}
     >
-      <div className="max-w-6xl mx-auto text-center text-foreground px-4">
-        <h1 className="text-2xl md:text-4xl tracking-wider uppercase font-sans mb-2">
-          Викладачі
+      <motion.div
+        className="max-w-6xl mx-auto text-center px-4 mb-16"
+        variants={itemVariants}
+      >
+        <h1 className="text-4xl tracking-wider uppercase font-bold mb-2 relative inline-block">
+          ВИКЛАДАЧІ
+          <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#F42B39]" />
         </h1>
-        <div className="my-2 mx-auto max-w-36 md:max-w-3xs h-1 bg-primary rounded-full"></div>
-      </div>
-
-      <div className="flex flex-wrap items-center justify-center mt-18 mx-2 sm:mx-0">
-        {teachers.map((teacher, idx) => (
-          <Swiper
-            key={idx}
-            effect={"flip"}
-            grabCursor={true}
-            modules={[EffectFlip, Pagination, Navigation]}
-            className="w-full max-w-md h-[600px] cursor-pointer my-4 sm:my-0"
-            onSwiper={(swiper) => (swiperRefs.current[idx] = swiper)}
-            onClick={() => handleClick(idx)}
-          >
-            <SwiperSlide className="cursor-pointer">
-              <motion.div
-                ref={ref}
-                className="relative w-full h-full bg-primary rounded-2xl font-mono text-2xl/7 text-center text-white font-medium flex flex-col items-center justify-center p-4 overflow-hidden"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6 }}
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent rounded-2xl pointer-events-none z-20"
-                  initial={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-
-                <div className="w-full h-128 relative mb-4">
-                  <Image
-                    src={teacher.img}
-                    alt={`Teacher: ${teacher.name} ${teacher.surname}`}
-                    className="rounded-2xl border-2 border-foreground object-cover"
-                    fill
-                  />
-                </div>
-
-                <motion.div
-                  className="absolute bottom-32 left-1/2 -translate-x-1/2 pointer-events-none z-30"
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={isMobile && inView ? { y: 0, opacity: 1 } : {}}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="text-white text-xl font-bold whitespace-nowrap">
-                    Читати більше
-                  </span>
-                  <div className="my-2 mx-auto max-w-3xs h-1 bg-primary rounded-full"></div>
-                </motion.div>
-
-                <h2 className="text-2xl font-bold relative z-10">
-                  {teacher.name}
-                </h2>
-                <h2 className="text-2xl font-bold relative z-10">
-                  {teacher.surname}
-                </h2>
-              </motion.div>
-            </SwiperSlide>
-
-            <SwiperSlide className="cursor-pointer">
-              <TeacherDescription
-                name={teacher.name}
-                surname={teacher.surname}
-                description={teacher.description}
-              />
-            </SwiperSlide>
-          </Swiper>
-        ))}
-      </div>
+      </motion.div>
+      <motion.div
+        className="max-w-5xl mx-auto px-4"
+        variants={containerVariants}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-12 md:gap-y-0 md:auto-rows-[minmax(0,1fr)]">
+          {teachers.map((teacher) => (
+            <TeacherCard key={teacher.id} teacher={teacher} />
+          ))}
+        </div>
+      </motion.div>
     </motion.section>
   );
 }
