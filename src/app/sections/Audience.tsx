@@ -8,7 +8,9 @@ import audience from "@/assets/audience.png";
 import audienceMobile from "@/assets/audience-mobile.png";
 import { Button } from "@/components/ui/button";
 
-export default function Audience() {
+type AnimatedProps = { id?: string };
+
+export default function Audience({ id }: AnimatedProps) {
   const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.2 });
   const controls = useAnimation();
 
@@ -29,7 +31,7 @@ export default function Audience() {
 
   return (
     <section
-      id="audience"
+      id={id}
       ref={ref}
       className="relative w-full min-h-screen py-10 md:py-20"
     >

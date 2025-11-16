@@ -22,9 +22,9 @@ export default function Home() {
       <Knowlege id="knowledge" />
       <Structure id="structure" />
       <Timeline id="timeline" /> 
-      <Audience />
+      <Audience id="audience" />
       <Videos id="interview" />
-      <Teachers />
+      <Teachers id="teachers" />
       <NamedAfter />
       <Faq />
       <Footer />
