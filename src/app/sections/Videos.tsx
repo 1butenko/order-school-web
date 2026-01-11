@@ -8,13 +8,13 @@ import VideoPlayer from "@/components/sections/VideoPlayer";
 import interviewOneBg from "@/assets/prev_interview_1.png";
 import sectionBackground from "@/assets/videos-bg.png";
 
-import interviewTwo from "../../../videos/int2.mp4";
+import interviewTwo from "../../../videos/Polit2.mov";
 import interviewTwoBg from "@/assets/prev_interview_2.png";
 
 import interviewThreeBg from "@/assets/prev_interview_3.png";
 
 
-import interviewOne from "../../../videos/int1.mp4";
+import interviewOne from "../../../videos/Polit1.mov";
 
 const transition: Transition = { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] };
 
@@ -63,20 +63,20 @@ export default function Videos({ id }: AnimatedProps) {
         >
           <div className="flex justify-center gap-12 my-8 sm:my-12 md:my-16 lg:my-18">
             <motion.div variants={itemVariants} className="w-full max-w-2xl">
-              <VideoPlayer 
-                videoSrc={interviewOne} 
+              <VideoPlayer
+                videoSrc={interviewOne}
                 posterSrc={interviewOneBg}
               />
             </motion.div>
             <motion.div variants={itemVariants} className="w-full max-w-2xl">
-              <VideoPlayer 
-                videoSrc={interviewTwo} 
+              <VideoPlayer
+                videoSrc={interviewTwo}
                 posterSrc={interviewThreeBg}
               />
             </motion.div>
             <motion.div variants={itemVariants} className="w-full max-w-2xl">
-              <VideoPlayer 
-                videoSrc={interviewTwo} 
+              <VideoPlayer
+                videoSrc={interviewTwo}
                 posterSrc={interviewTwoBg}
               />
             </motion.div>
