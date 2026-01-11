@@ -8,8 +8,6 @@ import { Button } from "@/components/ui/button";
 import kse_building from "@/assets/kse-building.png";
 import kse_building_mobile from "@/assets/kse-building-mobile.png";
 
-
-
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false);
 
@@ -58,6 +56,93 @@ export default function AboutCourse() {
     visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: easeOut } },
   };
 
+  if (isMobile) {
+    return (
+      <section
+        id="about"
+        ref={ref}
+        
+        className="relative w-full min-h-screen h-auto flex flex-col pt-24 pb-0 overflow-hidden"
+      >
+        <div className="w-full px-6 flex flex-col h-full flex-grow z-20">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate={controls}
+            className="mb-6"
+          >
+            <h1 className="text-[26px] leading-[32px] uppercase font-bold font-sans text-black">
+              Чому варто обрати київський гурток{" "}
+              <span className="text-[#DB4236]">політичних</span> студій?
+            </h1>
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate={controls}
+            transition={{ delay: 0.2 }}
+            className="mb-8"
+          >
+            <div className="font-medium text-[15px] leading-[22px] text-black text-justify space-y-4">
+              <p>
+                Це практичний курс від факультету соціальних наук{" "}
+                <span className="text-[#DB4236] font-bold">KSE</span> для{" "}
+                <span className="text-[#DB4236] font-bold">
+                  учнів 8–11 класів
+                </span>
+                , які хочуть глибше зрозуміти політику та суспільство. Навчання
+                відбувається офлайн у головному кампусі університету. Тут ви
+                ознайомитеся з основами{" "}
+                <span className="text-[#DB4236] font-bold">
+                  політичних наук і політичної філософії
+                </span>
+                , вивчите історію політичних ідей та їхній вплив на сучасність.
+                Ви отримаєте інструменти, які допоможуть розуміти політичні
+                процеси та впливати на зміни у суспільстві.
+              </p>
+              <p>
+                Без зайвих спрощень, казуальності і поверхневості. Лише
+                поглиблене вивчення першоджерел і літератури, практичні кейси та
+                власні дослідження.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate={controls}
+            transition={{ delay: 0.4 }}
+            className="mb-6 flex justify-start"
+          >
+            <a href="/onboarding">
+              <Button className="bg-[#DB4236] text-white -mx-25 py-6 px-3 text-[14px] uppercase font-bold font-sans tracking-wide hover:bg-[#b03026] rounded-[10px] shadow-md transition-colors">
+                Дізнатися більше
+              </Button>
+            </a>
+          </motion.div>
+        </div>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate={controls}
+          transition={{ delay: 0.6 }}
+          className="relative w-full h-[250px] mt-auto z-10"
+        >
+        
+          <div className="absolute left-5 right-0 bottom-25 w-[100%] h-full flex items-end justify-end z-10">
+            <Image
+              src={kse_building_mobile}
+              alt="KSE Building"
+              className="w-full h-full object-contain object-bottom drop-shadow-xl"
+            />
+          </div>
+        </motion.div>
+      </section>
+    );
+  }
+
   return (
     <section
       id="about"
@@ -79,11 +164,17 @@ export default function AboutCourse() {
           </div>
         </motion.div>
 
-        {isMobile && <div className="flex justify-end">
-            <Image src={kse_building_mobile} alt="KSE Building" className="w-48 my-4" />
-          </div>}
+        {isMobile && (
+          <div className="flex justify-end">
+            <Image
+              src={kse_building_mobile}
+              alt="KSE Building"
+              className="w-48 my-4"
+            />
+          </div>
+        )}
 
-        {/* Зображення Desktop */}
+        {/*  Desktop */}
         <motion.div
           className="hidden md:block md:row-span-3 md:col-start-3"
           variants={fadeRight}
@@ -97,7 +188,6 @@ export default function AboutCourse() {
           />
         </motion.div>
 
-        {/* Текстовий контент */}
         <motion.div
           className="md:col-span-2 md:row-span-2 md:row-start-2 mb-6 md:mb-0"
           variants={fadeUp}
@@ -166,11 +256,11 @@ export default function AboutCourse() {
 
         {isMobile && (
           <motion.div>
-              <a href="/onboarding">
-                <Button className="bg-primary text-white mt-2 text-xs md:text-xl py-7 md:py-8 px-8 md:px-12 uppercase font-medium font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer w-full md:w-auto rounded-xl transition-colors">
-                    Дізнатися більше
-                </Button>
-              </a>
+            <a href="/onboarding">
+              <Button className="bg-primary text-white mt-2 text-xs md:text-xl py-7 md:py-8 px-8 md:px-12 uppercase font-medium font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer w-full md:w-auto rounded-xl transition-colors">
+                Дізнатися більше
+              </Button>
+            </a>
           </motion.div>
         )}
       </div>
