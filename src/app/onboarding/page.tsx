@@ -44,7 +44,7 @@ export default function PoliticalStudiesForm() {
       setIsSubmitting(true);
 
       try {
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwoi_Pn_J47ev5hIMGLqUJQ2Xi2f57v62jMdOmlp-nI7JZ1p0Uk7SndbLk_2vQC4Hug1A/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlmnbPihX9FPIcVju8YjOHzi1c7dM3n4f_Yg8PAFIK1ixg0RFW087hcxHTKD_wPjCmBA/exec';
 
         const response = await fetch(SCRIPT_URL, {
           method: 'POST',
