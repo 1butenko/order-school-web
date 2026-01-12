@@ -70,7 +70,7 @@ export default function AboutCourse() {
             animate={controls}
             className="mb-6"
           >
-            <h1 className="text-[20px] leading-[34px] md:text-[46px] md:leading-[54px] uppercase font-black font-mono text-black drop-shadow-[0_6px_6px_rgba(0,0,0,0.25)]">
+            <h1 className="text-[20px] leading-[34px] md:text-[46px] md:leading-[54px] uppercase font-black font-mono text-black">
               Чому варто обрати київський гурток{" "}
               <span className="text-[#F42B39]">політичних</span> студій?
             </h1>
