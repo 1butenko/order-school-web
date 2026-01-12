@@ -15,6 +15,7 @@ import { Button } from "./ui/button";
 const navLinks = [
   { href: "#knowledge", text: "Навички і знання" },
   { href: "#structure", text: "Структура курсу" },
+  { href: "#timeline", text: "Навчальні модулі" },
   { href: "#audience", text: "Для кого" },
   { href: "#teachers", text: "Викладачі" },
   { href: "#interview", text: "Інтерв'ю" },

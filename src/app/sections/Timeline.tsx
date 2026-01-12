@@ -9,6 +9,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+import { Button } from "@/components/ui/button";
+
 interface Module {
   id: string;
   title: string;
@@ -213,6 +215,14 @@ export default function Timeline({ id }: { id?: string }) {
           ))}
         </Accordion>
       </motion.div>
+
+      <div className="mt-4 md:mt-2 flex items-center justify-center tracking-wider px-6">
+        <a href="/onboarding">
+          <Button className="cursor-pointer px-8 md:px-12 py-5 md:py-6 font-sans text-lg md:text-2xl uppercase hover:bg-white hover:text-primary w-full md:w-auto">
+            Хочу на курс
+          </Button>
+        </a>
+      </div>
     </motion.section>
   );
 }
