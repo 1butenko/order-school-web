@@ -198,7 +198,7 @@ export default function Timeline({ id }: { id?: string }) {
           },
         }}
       >
-        <Accordion type="single" collapsible>
+       <Accordion type="single" collapsible>
           {modulesWithStatus.map((module) => (
             <motion.div
               key={module.id}
@@ -223,20 +223,28 @@ export default function Timeline({ id }: { id?: string }) {
                   <p className="text-foreground">{module.description}</p>
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem className="border-dashed">
-                <AccordionTrigger className="hover:no-underline group">
-                  <div className="flex flex-col text-left gap-1 font-sans">
-                    <div className="group-hover:underline font-medium">
-                      Інші модулі у розробці
-                    </div>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <p className="text-foreground">Ми прагнемо зробити навчальні модулі захопливими і практичними. Для цього ми ретельно готуємо кожен модуль та залучаємо досвідчених експертів та лекторів. Тому точна інформація про нові модулі буде з’являтися поступово</p>
-                </AccordionContent>
-              </AccordionItem>
             </motion.div>
           ))}
+          
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <AccordionItem value="other-modules" className="border-dashed">
+              <AccordionTrigger className="hover:no-underline group">
+                <div className="flex flex-col text-left gap-1 font-sans">
+                  <div className="group-hover:underline font-medium">
+                    Інші модулі у розробці
+                  </div>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-foreground">Ми прагнемо зробити навчальні модулі захопливими і практичними. Для цього ми ретельно готуємо кожен модуль та залучаємо досвідчених експертів та лекторів. Тому точна інформація про нові модулі буде з'являтися поступово</p>
+              </AccordionContent>
+            </AccordionItem>
+          </motion.div>
         </Accordion>
       </motion.div>
 
