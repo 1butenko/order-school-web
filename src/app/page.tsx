@@ -3,7 +3,7 @@ import AboutQuote from "./sections/AboutQuote";
 import AboutCourse from "./sections/AboutCourse";
 import Knowlege from "./sections/Knowledge";
 import Structure from "./sections/Structure";
-// import Timeline from "./sections/Timeline";
+import Timeline from "./sections/Timeline";
 import Audience from "./sections/Audience";
 import Teachers from "./sections/Teachers";
 import Videos from "./sections/Videos";
@@ -21,7 +21,7 @@ export default function Home() {
       <AboutCourse />
       <Knowlege id="knowledge" />
       <Structure id="structure" />
-      {/* <Timeline id="timeline" />  */}
+      <Timeline id="timeline" />
       <Audience id="audience" />
       <Videos id="interview" />
       <Teachers id="teachers" />

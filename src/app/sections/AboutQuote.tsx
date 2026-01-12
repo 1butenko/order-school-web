@@ -8,7 +8,7 @@ import quote from "@/assets/quote.png";
 
 export default function AboutQuote() {
   const sectionRef = useRef(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
@@ -16,34 +16,34 @@ export default function AboutQuote() {
 
   const textX = useTransform(scrollYProgress, [0, 0.5], [-100, 0]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [0, 0.5, 1]);
-  
+
   const imageX = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
   const imageOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [0, 0.5, 1]);
   const imageRotate = useTransform(scrollYProgress, [0, 0.5], [15, 0]);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="relative w-full mt-12 md:mt-20 flex items-center justify-center px-0 md:px-0"
     >
       <div className="grid grid-cols-1 md:grid-cols-[4fr_1fr] md:grid-rows-1 gap-4 md:gap-1 w-full max-w-[1800px] items-center">
-        <motion.div 
+        <motion.div
           className="flex items-center justify-center"
-          style={{ 
-            x: typeof window !== 'undefined' && window.innerWidth >= 768 ? textX : 0, 
-            opacity: typeof window !== 'undefined' && window.innerWidth >= 768 ? textOpacity : 1 
+          style={{
+            x: typeof window !== 'undefined' && window.innerWidth >= 768 ? textX : 0,
+            opacity: typeof window !== 'undefined' && window.innerWidth >= 768 ? textOpacity : 1
           }}
         >
           <div className="w-full border-3 border-l-0 md:border-l-0 py-6 md:py-10 px-4 md:px-16 rounded-r-4xl border-primary mr-2">
-            <h1 className="font-sans normal-case md:normal-case font-bold text-base md:text-3xl md:leading-snug tracking-wide md:tracking-normal">
+            <div className="font-sans normal-case md:normal-case font-bold text-base md:text-3xl md:leading-snug tracking-wide md:tracking-normal">
               "Демократія має народжуватися у кожному новому поколінні, і саме освіта допомагає їй з'явитися на світ." — Джон Дьюї
-            </h1>
+            </div>
           </div>
         </motion.div>
-        <motion.div 
+        <motion.div
           className="hidden md:flex justify-end md:justify-start"
-          style={{ 
-            x: typeof window !== 'undefined' && window.innerWidth >= 768 ? imageX : 0, 
+          style={{
+            x: typeof window !== 'undefined' && window.innerWidth >= 768 ? imageX : 0,
             opacity: typeof window !== 'undefined' && window.innerWidth >= 768 ? imageOpacity : 1,
             rotate: typeof window !== 'undefined' && window.innerWidth >= 768 ? imageRotate : 0
           }}

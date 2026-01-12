@@ -61,7 +61,7 @@ export default function AboutCourse() {
       <section
         id="about"
         ref={ref}
-        
+
         className="relative w-full min-h-screen h-auto flex flex-col pt-24 pb-0 overflow-hidden"
       >
         <div className="w-full px-6 flex flex-col h-full flex-grow z-20">
@@ -130,7 +130,7 @@ export default function AboutCourse() {
           transition={{ delay: 0.6 }}
           className="relative w-full h-[250px] mt-auto z-10"
         >
-        
+
           <div className="absolute left-5 right-0 bottom-25 w-[100%] h-full flex items-end justify-end z-10">
             <Image
               src={kse_building_mobile}
@@ -157,10 +157,10 @@ export default function AboutCourse() {
           animate={controls}
         >
           <div className="max-w-6xl md:ml-16 md:mt-16 text-left text-black">
-            <h1 className="text-2xl leading-[30px] md:text-4xl/12 tracking-normal md:tracking-wider uppercase font-bold font-sans">
+            <h2 className="text-2xl leading-[30px] md:text-4xl/12 tracking-normal md:tracking-wider uppercase font-bold font-sans">
               Чому варто обрати Київський Гурток{" "}
               <span className="text-primary">Політичних</span> Студій?
-            </h1>
+            </h2>
           </div>
         </motion.div>
 

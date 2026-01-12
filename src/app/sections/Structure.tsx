@@ -15,7 +15,7 @@ export default function Structure({ id }: AnimatedProps) {
   return (
     <section className="w-full min-h-screen py-20 overflow-x-hidden" id={id}>
       <div className="max-w-4xl mx-auto text-foreground px-4">
-        <motion.h1
+        <motion.h2
           className="text-2xl md:text-4xl tracking-wider uppercase font-sans text-center"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -23,7 +23,7 @@ export default function Structure({ id }: AnimatedProps) {
           viewport={{ once: true, amount: 0.3 }}
         >
           Cтруктура курсу
-        </motion.h1>
+        </motion.h2>
 
         <motion.div
           className="my-4 md:my-6 flex justify-center"
@@ -32,10 +32,10 @@ export default function Structure({ id }: AnimatedProps) {
           transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <Image src={outline} alt="Header outline" />
+          <Image src={outline} alt="" role="presentation" />
         </motion.div>
 
-        <motion.h2
+        <motion.p
           className="text-lg font-mono font-medium text-justify mt-8"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,7 +45,7 @@ export default function Structure({ id }: AnimatedProps) {
           Річна програма гуртка поділена на модулі відповідно до кожної теми.
           Кожен навчальний модуль триває 2 тижні і складається з трьох логічно
           пов'язаних занять: Теорія, Практика та Досвід.
-        </motion.h2>
+        </motion.p>
       </div>
 
       <motion.div
@@ -76,7 +76,7 @@ export default function Structure({ id }: AnimatedProps) {
               <div className="mt-auto pt-8 w-full flex justify-center items-end">
                 <Image
                   src={col1}
-                  alt="Column 1"
+                  alt="Теорія: вивчення політичних наук"
                   className="w-full max-w-sm md:max-w-md lg:max-w-full h-auto object-contain object-bottom"
                 />
               </div>
@@ -97,7 +97,7 @@ export default function Structure({ id }: AnimatedProps) {
               <div className="mt-auto pt-8 w-full flex justify-center items-end">
                 <Image
                   src={col2}
-                  alt="Column 2"
+                  alt="Практика: симуляції та дебати"
                   className="w-full max-w-sm md:max-w-md lg:max-w-full h-auto object-contain object-bottom"
                 />
               </div>
@@ -118,7 +118,7 @@ export default function Structure({ id }: AnimatedProps) {
               <div className="mt-auto pt-8 w-full flex justify-center items-end">
                 <Image
                   src={col3}
-                  alt="Column 3"
+                  alt="Досвід: зустрічі та екскурсії"
                   className="w-full max-w-sm md:max-w-md lg:max-w-full h-auto object-contain object-bottom"
                 />
               </div>

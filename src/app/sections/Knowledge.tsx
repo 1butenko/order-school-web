@@ -38,13 +38,13 @@ export default function Knowledge({ id }: AnimatedProps) {
         style={{ opacity: opacity1, y: y1 }}
         className="max-w-6xl mx-auto text-center text-foreground px-6 md:px-4"
       >
-        <h1 className="hidden md:block text-[22px] leading-[30px] md:text-4xl tracking-normal md:tracking-wider uppercase font-sans font-bold mb-2">
+        <h2 className="hidden md:block text-[22px] leading-[30px] md:text-4xl tracking-normal md:tracking-wider uppercase font-sans font-bold mb-2">
           Навички і знання, які ти отримаєш
-        </h1>
-        <h2 className="hidden md:block text-lg font-mono font-medium">
+        </h2>
+        <h3 className="hidden md:block text-lg font-mono font-medium">
           Ти розберешся, як працює політика на різних рівнях — від ідей та
           історії до сучасних процесів:
-        </h2>
+        </h3>
       </motion.div>
 
       <motion.div

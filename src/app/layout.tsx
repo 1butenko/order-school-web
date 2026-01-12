@@ -77,19 +77,31 @@ const grotesk = localFont({
 });
 
 const metadata: Metadata = {
-  title: "Гурток політології",
+  metadataBase: new URL("https://www.orderschool.online"),
+  title: {
+    default: "Гурток політології | Київська школа економіки",
+    template: "%s | Гурток політології",
+  },
   description:
-    "Гурток Політології у Київській школі економіки ─ офлайн-курси для учнів 8-11 класів, які хочуть поглибити знання з політології, критичного мислення та соціальних наук.",
+    "Гурток Політології у Київській школі економіки ─ офлайн-курси для учнів 8-11 класів. Поглиблене вивчення політичних наук, критичного мислення та суспільних процесів.",
   keywords:
     "літня школа для учнів Київ, літня школа з політології, курси критичного мислення Київ, освітні курси соціальні науки, програми для старшокласників Київ, інтенсиви для школярів літо, курси для майбутніх студентів, профорієнтаційні програми Київ, академічні курси для дітей, навчання в Київській школі економіки, літні освітні програми для підлітків, літні інтенсиви Україна, курси суспільних наук для школярів, підготовка до вступу у виш, освітній табір Київ, курси для старшокласників з політології, школа критичного мислення Україна, сучасна освіта для підлітків, навчальні програми 8-11 клас, розвиток лідерських навичок школярів, summer school Ukraine, Kyiv academic summer program, Ukrainian summer school for high school, high school political science Kyiv, critical thinking summer camp, social sciences for teenagers, pre-university courses Ukraine, leadership school Kyiv, Kyiv School of Economics summer program, educational summer camp Kyiv",
   openGraph: {
-    title: "Гурток політології",
+    title: "Гурток політології | Київська школа економіки",
     description:
       "Офлайн-курси для учнів 8-11 класів. Політологія, критичне мислення та соціальні науки в Київській школі економіки.",
     type: "website",
     url: "https://www.orderschool.online/",
     locale: "uk_UA",
     siteName: "Гурток політології",
+    images: [
+      {
+        url: "/og-image.jpg", // Ensure there is a default OG image if possible, or leave as is if dynamic
+        width: 1200,
+        height: 630,
+        alt: "Гурток політології KSE",
+      },
+    ],
   },
   robots: {
     index: true,
@@ -100,6 +112,7 @@ const metadata: Metadata = {
     title: "Гурток Політології — Київська школа економіки",
     description:
       "Офлайн-курси для учнів 8-11 класів. Політологія, критичне мислення та соціальні науки.",
+    // images: ["/twitter-image.jpg"], // Optional: Add if you have one
   },
 };
 

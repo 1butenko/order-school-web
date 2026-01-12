@@ -12,10 +12,13 @@ export default function StructureCols({
       <h3 className="uppercase font-mono font-bold text-2xl tracking-wide">
         {header}
       </h3>
-      <p className="text-base text-justify font-mono font-medium mt-2">
-        {paragph1} <br />
-        <p className="mt-4"><span className="text-primary font-bold">{span} </span>{paragph2}</p>
-      </p>
+      <div className="text-base text-justify font-mono font-medium mt-2">
+        {paragph1}
+        <p className="mt-4">
+          <span className="text-primary font-bold">{span} </span>
+          {paragph2}
+        </p>
+      </div>
     </div>
   );
 }
