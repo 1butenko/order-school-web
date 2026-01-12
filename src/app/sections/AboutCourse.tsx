@@ -61,8 +61,7 @@ export default function AboutCourse() {
       <section
         id="about"
         ref={ref}
-        
-        className="relative w-full min-h-screen h-auto flex flex-col pt-24 pb-0 overflow-hidden"
+        className="relative w-full min-h-screen h-auto flex flex-col pt-24 pb-0 overflow-hidden font-mono font-medium"
       >
         <div className="w-full px-6 flex flex-col h-full flex-grow z-20">
           <motion.div
@@ -71,9 +70,9 @@ export default function AboutCourse() {
             animate={controls}
             className="mb-6"
           >
-            <h1 className="text-[26px] leading-[32px] uppercase font-bold font-sans text-black">
+            <h1 className="text-[20px] leading-[34px] md:text-[46px] md:leading-[54px] uppercase font-black font-mono text-black drop-shadow-[0_6px_6px_rgba(0,0,0,0.25)]">
               Чому варто обрати київський гурток{" "}
-              <span className="text-[#DB4236]">політичних</span> студій?
+              <span className="text-[#F42B39]">політичних</span> студій?
             </h1>
           </motion.div>
 
@@ -87,14 +86,14 @@ export default function AboutCourse() {
             <div className="font-medium text-[15px] leading-[22px] text-black text-justify space-y-4">
               <p>
                 Це практичний курс від факультету соціальних наук{" "}
-                <span className="text-[#DB4236] font-bold">KSE</span> для{" "}
-                <span className="text-[#DB4236] font-bold">
+                <span className="text-[#F42B39] font-bold">KSE</span> для{" "}
+                <span className="text-[#F42B39] font-bold">
                   учнів 8–11 класів
                 </span>
                 , які хочуть глибше зрозуміти політику та суспільство. Навчання
                 відбувається офлайн у головному кампусі університету. Тут ви
                 ознайомитеся з основами{" "}
-                <span className="text-[#DB4236] font-bold">
+                <span className="text-[#F42B39] font-bold">
                   політичних наук і політичної філософії
                 </span>
                 , вивчите історію політичних ідей та їхній вплив на сучасність.
@@ -117,7 +116,7 @@ export default function AboutCourse() {
             className="mb-6 flex justify-start"
           >
             <a href="/onboarding">
-              <Button className="bg-[#DB4236] text-white -mx-25 py-6 px-3 text-[14px] uppercase font-bold font-sans tracking-wide hover:bg-[#b03026] rounded-[10px] shadow-md transition-colors">
+              <Button className="bg-[#F42B39] text-white -mx-25 py-6 px-3 text-[14px] uppercase font-medium font-mono tracking-wide hover:bg-[#d12432] rounded-[10px] shadow-md transition-colors">
                 Дізнатися більше
               </Button>
             </a>
@@ -128,16 +127,15 @@ export default function AboutCourse() {
           initial="hidden"
           animate={controls}
           transition={{ delay: 0.6 }}
-          className="relative w-full h-[250px] mt-auto z-10"
+          className="relative w-full aspect-[3/2] ml-5 -mt-25 z-10"
         >
-        
-          <div className="absolute left-5 right-0 bottom-25 w-[100%] h-full flex items-end justify-end z-10">
-            <Image
-              src={kse_building_mobile}
-              alt="KSE Building"
-              className="w-full h-full object-contain object-bottom drop-shadow-xl"
-            />
-          </div>
+          <Image
+            src={kse_building_mobile}
+            alt="KSE Building"
+            fill
+            sizes="100vw"
+            className="object-contain object-bottom drop-shadow-xl"
+          />
         </motion.div>
       </section>
     );
@@ -147,7 +145,7 @@ export default function AboutCourse() {
     <section
       id="about"
       ref={ref}
-      className="relative w-full min-h-screen flex items-start justify-start overflow-hidden pt-24 pb-12 md:py-0 md:items-center md:justify-center"
+      className="relative w-full min-h-screen flex items-start justify-start overflow-hidden pt-24 pb-12 md:py-0 md:items-center md:justify-center font-mono font-medium"
     >
       <div className="w-full max-w-[430px] md:max-w-none md:grid md:grid-cols-3 md:grid-rows-3 md:gap-4 px-6 md:px-0">
         <motion.div
@@ -157,9 +155,9 @@ export default function AboutCourse() {
           animate={controls}
         >
           <div className="max-w-6xl md:ml-16 md:mt-16 text-left text-black">
-            <h1 className="text-2xl leading-[30px] md:text-4xl/12 tracking-normal md:tracking-wider uppercase font-bold font-sans">
+            <h1 className="text-[28px] leading-[34px] md:text-[46px] md:leading-[54px] tracking-normal md:tracking-wider uppercase font-black font-mono text-black drop-shadow-[0_6px_6px_rgba(0,0,0,0.25)]">
               Чому варто обрати Київський Гурток{" "}
-              <span className="text-primary">Політичних</span> Студій?
+              <span className="text-[#F42B39]">Політичних</span> Студій?
             </h1>
           </div>
         </motion.div>
@@ -176,16 +174,20 @@ export default function AboutCourse() {
 
         {/*  Desktop */}
         <motion.div
-          className="hidden md:block md:row-span-3 md:col-start-3"
+          className="hidden md:flex md:row-span-3 md:col-start-3 items-end justify-end"
           variants={fadeRight}
           initial="hidden"
           animate={controls}
         >
-          <Image
-            src={kse_building}
-            alt="KSE building"
-            className="w-full h-full object-cover md:min-w-[700px]"
-          />
+          <div className="relative w-full max-w-[760px] aspect-[3/4] lg:aspect-[4/5]">
+            <Image
+              src={kse_building}
+              alt="KSE building"
+              fill
+              sizes="(min-width: 1280px) 700px, (min-width: 1024px) 520px, 45vw"
+              className="object-cover md:object-contain lg:object-cover"
+            />
+          </div>
         </motion.div>
 
         <motion.div
@@ -227,7 +229,7 @@ export default function AboutCourse() {
                   Поспішай, кількість місць обмежена
                 </h2>
                 <a href="/onboarding">
-                  <Button className="bg-primary text-white mt-2 text-[17px] md:text-xl py-7 md:py-8 px-8 md:px-12 uppercase font-bold font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer w-full md:w-auto rounded-[20px] transition-colors">
+                  <Button className="bg-primary text-white mt-2 text-[17px] md:text-xl py-7 md:py-8 px-8 md:px-12 uppercase font-medium font-mono tracking-wide hover:bg-white hover:text-primary cursor-pointer w-full md:w-auto rounded-[20px] transition-colors">
                     Дізнатися більше
                   </Button>
                 </a>
@@ -257,7 +259,7 @@ export default function AboutCourse() {
         {isMobile && (
           <motion.div>
             <a href="/onboarding">
-              <Button className="bg-primary text-white mt-2 text-xs md:text-xl py-7 md:py-8 px-8 md:px-12 uppercase font-medium font-sans tracking-wide hover:bg-white hover:text-primary cursor-pointer w-full md:w-auto rounded-xl transition-colors">
+              <Button className="bg-primary text-white mt-2 text-xs md:text-xl py-7 md:py-8 px-8 md:px-12 uppercase font-medium font-mono tracking-wide hover:bg-white hover:text-primary cursor-pointer w-full md:w-auto rounded-xl transition-colors">
                 Дізнатися більше
               </Button>
             </a>
