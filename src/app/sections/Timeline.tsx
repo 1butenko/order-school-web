@@ -171,7 +171,19 @@ export default function Timeline({ id }: { id?: string }) {
           Навчальні модулі
         </h1>
         <div className="my-6 mx-auto max-w-36 md:max-w-xl h-1 bg-primary rounded-full"></div>
+
+        <motion.p
+          className="text-lg font-mono font-medium text-center mt-8"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          Ви можете обирати будь-який модуль або повну річну програму
+        </motion.p>
       </div>
+
+
 
       <motion.div
         className="max-w-7xl mx-auto font-mono my-16 px-4 sm:px-0"
