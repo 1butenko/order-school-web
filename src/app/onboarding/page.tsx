@@ -286,11 +286,11 @@ export default function PoliticalStudiesForm() {
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="intro">Вступ</SelectItem>
-                            <SelectItem value="thick-ideologies">"Товсті" Ідеології. Частина 1</SelectItem>
-                            <SelectItem value="thin-ideologies">"Тонкі" Ідеології. Частина 2</SelectItem>
-                            <SelectItem value="moral-politics">Мораль в політиці</SelectItem>
-                            <SelectItem value="war-bargain-rules">Війна, торг, правила</SelectItem>
-                            <SelectItem value="full-course">Весь курс</SelectItem>
+                            <SelectItem value="Міжнародне право">Міжнародне право</SelectItem>
+                            <SelectItem value="Війна, торг, правила">Війна, торг, правила</SelectItem>
+                            <SelectItem value="Політичні Режими">Політичні Режими</SelectItem>
+                            <SelectItem value="Корупція та як політики (не)можуть на неї впливати">Корупція та як політики (не)можуть на неї впливати</SelectItem>
+                            <SelectItem value="Весь курс">Весь курс</SelectItem>
                           </SelectContent>
                         </Select>
                         {field.state.meta.errors.length > 0 && (
