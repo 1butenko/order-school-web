@@ -198,7 +198,8 @@ export default function Timeline({ id }: { id?: string }) {
           },
         }}
       >
-       <Accordion type="single" collapsible>
+
+        <Accordion type="single" collapsible>
           {modulesWithStatus.map((module) => (
             <motion.div
               key={module.id}
@@ -225,7 +226,7 @@ export default function Timeline({ id }: { id?: string }) {
               </AccordionItem>
             </motion.div>
           ))}
-          
+
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 20 },
