@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Accordion,
@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 
 interface Module {
   id: string;
+  moduleId: number;
   title: string;
   startDate: string;
   endDate: string;
@@ -78,12 +79,12 @@ const modules: Module[] = [
   },
   {
     id: "module-8",
-    title: "Модуль 8: Корупція та як політики (не)можуть на неї впливати",
+    title: "Модуль 8: Корупція та теорія ігор",
     startDate: "2026-02-28",
     endDate: "2026-03-07",
     description:
-      "Цей модуль перетворює хаос політичних конфліктів на чіткі стратегічні моделі. Ми розглянемо політику крізь призму теорії ігор, щоб зрозуміти, чому цілком раціональні лідери часом приймають самовбивчі рішення. Ти дізнаєшся, як працює «Дилема в'язня», чому ядерний шантаж — це гра в «Боягуза» і як математика пояснює зраду та співпрацю. Це набір інструментів для прорахунку ходів опонента, де перемога залежить від холодної логіки, а не від емоцій.",
-  }
+      "Цей модуль перетворює хаос політичних конфліктів на стратегічні моделі. Ми розглянемо політику крізь призму теорії ігор: «Дилема в'язня», гра в «Боягуза», ядерний шантаж, зрада і співпраця. Це набір інструментів для прорахунку ходів опонента, де вирішує холодна логіка, а не емоції.",
+  },
 ];
 
 type ModuleStatus = "upcoming" | "current" | "next" | "completed";
@@ -97,31 +98,46 @@ function formatDateRange(startDate: string, endDate: string): string {
 }
 
 export default function Timeline({ id }: { id?: string }) {
+  const [modules, setModules] = useState<Module[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   const now = useMemo(() => new Date(), []);
   const currentYear = now.getFullYear();
 
-  const modulesWithStatus = useMemo(() => {
-    const firstModuleThisYearIndex = modules.findIndex(
-      (m) => new Date(m.startDate).getFullYear() === currentYear
-    );
+  useEffect(() => {
+    async function fetchModules() {
+      try {
+        const response = await fetch("/api/modules");
+        if (!response.ok) throw new Error("Failed to fetch modules");
+        const data = await response.json();
+        setModules(data.modules);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    }
 
-    return modules.map((module, index) => {
+    fetchModules();
+  }, []);
+
+  const { modulesWithStatus, activeModuleId } = useMemo(() => {
+    let foundNext = false;
+    let activeId: string | undefined;
+
+    const processedModules = modules.map((module) => {
       const start = new Date(module.startDate);
       const end = new Date(module.endDate);
-
       let status: ModuleStatus = "completed";
 
       if (now >= start && now <= end) {
         status = "current";
-      } else if (now < start) {
-        if (index === firstModuleThisYearIndex) {
-          status = "upcoming"; // «Незабаром почнеться»
-        } else if (
-          index === firstModuleThisYearIndex + 1 &&
-          now >= new Date(modules[firstModuleThisYearIndex].endDate)
-        ) {
-          status = "next";
-        }
+        if (!activeId) activeId = module.id;
+      } else if (now < start && !foundNext) {
+        status = "next";
+        foundNext = true;
+        if (!activeId) activeId = module.id;
       }
 
       return {
@@ -130,17 +146,14 @@ export default function Timeline({ id }: { id?: string }) {
         dateRange: formatDateRange(module.startDate, module.endDate),
       };
     });
-  }, [now, currentYear]);
+
+    return { modulesWithStatus: processedModules, activeModuleId: activeId };
+  }, [modules, now]);
 
   const getStatusBadge = (status: ModuleStatus) => {
     if (status === "completed") return null;
 
     const badges = {
-      upcoming: {
-        text: "Незабаром початок",
-        className:
-          "bg-primary text-white font-medium uppercase text-xs px-2 py-0.5 rounded-sm tracking-wider",
-      },
       current: {
         text: "Триває",
         className:
@@ -153,9 +166,39 @@ export default function Timeline({ id }: { id?: string }) {
       },
     };
 
-    const badge = badges[status];
+    const badge = badges[status as keyof typeof badges];
     return badge ? <span className={badge.className}>{badge.text}</span> : null;
   };
+
+  if (loading) {
+    return (
+      <section id={id || "timeline"} className="relative w-full min-h-screen py-12 md:py-20">
+        <div className="max-w-6xl mx-auto text-center text-black px-6 md:px-4">
+          <h1 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2 md:mb-2">
+            Навчальні модулі
+          </h1>
+          <div className="my-6 mx-auto max-w-36 md:max-w-xl h-1 bg-primary rounded-full"></div>
+          <p className="text-lg font-mono font-medium mt-8">Завантаження...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id={id || "timeline"} className="relative w-full min-h-screen py-12 md:py-20">
+        <div className="max-w-6xl mx-auto text-center text-black px-6 md:px-4">
+          <h1 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2 md:mb-2">
+            Навчальні модулі
+          </h1>
+          <div className="my-6 mx-auto max-w-36 md:max-w-xl h-1 bg-primary rounded-full"></div>
+          <p className="text-lg font-mono font-medium mt-8 text-red-600">
+            Помилка: {error}
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <motion.section
@@ -183,71 +226,46 @@ export default function Timeline({ id }: { id?: string }) {
         </motion.p>
       </div>
 
-
-
-      <motion.div
-        className="max-w-7xl mx-auto font-mono my-16 px-4 sm:px-0"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.08 },
-          },
-        }}
-      >
-
-        <Accordion type="single" collapsible>
+      <div className="max-w-7xl mx-auto font-mono my-16 px-4 sm:px-0">
+        <Accordion type="single" collapsible defaultValue={activeModuleId}>
           {modulesWithStatus.map((module) => (
-            <motion.div
-              key={module.id}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-            >
-              <AccordionItem value={module.id} className="border-dashed">
-                <AccordionTrigger className="hover:no-underline group">
-                  <div className="flex flex-col text-left gap-1 font-sans">
-                    <div className="flex items-center gap-2 font-medium">
-                      <span>{module.dateRange}</span>
-                      {getStatusBadge(module.status)}
-                    </div>
-                    <div className="group-hover:underline font-medium">
-                      {module.title}
-                    </div>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <p className="text-foreground">{module.description}</p>
-                </AccordionContent>
-              </AccordionItem>
-            </motion.div>
-          ))}
-
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <AccordionItem value="other-modules" className="border-dashed">
+            <AccordionItem key={module.id} value={module.id} className="border-dashed">
               <AccordionTrigger className="hover:no-underline group">
                 <div className="flex flex-col text-left gap-1 font-sans">
+                  <div className="flex items-center gap-2 font-medium">
+                    <span>{module.dateRange}</span>
+                    {getStatusBadge(module.status)}
+                  </div>
                   <div className="group-hover:underline font-medium">
-                    Інші модулі у розробці
+                    Модуль {module.moduleId}: {module.title}
                   </div>
                 </div>
               </AccordionTrigger>
               <AccordionContent>
-                <p className="text-foreground">Ми прагнемо зробити навчальні модулі захопливими і практичними. Для цього ми ретельно готуємо кожен модуль та залучаємо досвідчених експертів та лекторів. Тому точна інформація про нові модулі буде з'являтися поступово</p>
+                <p className="text-foreground">{module.description}</p>
               </AccordionContent>
             </AccordionItem>
-          </motion.div>
+          ))}
+
+          <AccordionItem value="other-modules" className="border-dashed">
+            <AccordionTrigger className="hover:no-underline group">
+              <div className="flex flex-col text-left gap-1 font-sans">
+                <div className="group-hover:underline font-medium">
+                  Інші модулі у розробці
+                </div>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <p className="text-foreground">
+                Ми прагнемо зробити навчальні модулі захопливими і практичними. Для
+                цього ми ретельно готуємо кожен модуль та залучаємо досвідчених
+                експертів та лекторів. Тому точна інформація про нові модулі буде
+                з'являтися поступово
+              </p>
+            </AccordionContent>
+          </AccordionItem>
         </Accordion>
-      </motion.div>
+      </div>
 
       <div className="mt-4 md:mt-2 flex items-center justify-center tracking-wider px-6">
         <a href="/onboarding">
