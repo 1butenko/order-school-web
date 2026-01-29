@@ -30,8 +30,8 @@ export default function AboutQuote() {
         <motion.div
           className="flex items-center justify-center"
           style={{
-            x: typeof window !== 'undefined' && window.innerWidth >= 768 ? textX : 0,
-            opacity: typeof window !== 'undefined' && window.innerWidth >= 768 ? textOpacity : 1
+            x: textX,
+            opacity: textOpacity
           }}
         >
           <div className="w-full border-3 border-l-0 md:border-l-0 py-6 md:py-10 px-4 md:px-16 rounded-r-4xl border-primary mr-2">
@@ -43,9 +43,9 @@ export default function AboutQuote() {
         <motion.div
           className="hidden md:flex justify-end md:justify-start"
           style={{
-            x: typeof window !== 'undefined' && window.innerWidth >= 768 ? imageX : 0,
-            opacity: typeof window !== 'undefined' && window.innerWidth >= 768 ? imageOpacity : 1,
-            rotate: typeof window !== 'undefined' && window.innerWidth >= 768 ? imageRotate : 0
+            x: imageX,
+            opacity: imageOpacity,
+            rotate: imageRotate
           }}
         >
           <div className="w-32 md:w-full md:max-w-sm flex-shrink-0">

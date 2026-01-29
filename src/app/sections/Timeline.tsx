@@ -8,110 +8,93 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-
 import { Button } from "@/components/ui/button";
+
+interface ModuleRaw {
+  id: string;
+  moduleId: number;
+  title: string;
+  dateRange?: string; // Format: "DD.MM-DD.MM" (optional for backward compatibility)
+  startDate?: string; // ISO format or parseable date string
+  endDate?: string;   // ISO format or parseable date string
+  description: string;
+}
 
 interface Module {
   id: string;
   moduleId: number;
   title: string;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
   description: string;
 }
 
-const modules: Module[] = [
-  {
-    id: "module-1",
-    moduleId: 1,
-    title: "Модуль 1: Вступ",
-    startDate: "2025-10-17",
-    endDate: "2025-10-25",
-    description:
-      "Ми зʼясуємо що таке політологія, навіщо її вивчати і як вона допомагає зрозуміти владу та ключові суспільні процеси. Ми розберемося, чому дебати та вміння будувати сильні аргументи є одним із найважливіших політичних інструментів. Цей модуль закладе фундамент для всіх наших майбутніх дискусій.",
-  },
-  {
-    id: "module-2",
-    moduleId: 2,
-    title: "Модуль 2: «Товсті» ідеології. Частина 1",
-    startDate: "2025-11-01",
-    endDate: "2025-11-08",
-    description:
-      "Досліджуємо класичні, фундаментальні ідеології через призму чотирьох основних джерел політики: порядок, свобода, справедливість та приналежність. Наша мета — відчути «дух» кожної ідеології, зрозуміти її як технологічний проєкт та спрощення дійсності. Навчимося впізнавати прояви цих ідеологій у різноманітних «текстах» і визначимо, яка з них є для нас найближчою чи найвіддаленішою.",
-  },
-  {
-    id: "module-3",
-    moduleId: 3,
-    title: "Модуль 3: «Тонкі» ідеології",
-    startDate: "2025-11-15",
-    endDate: "2025-11-22",
-    description:
-      "Досліджуємо букет сучасних «тонких» ідеологій (фемінізм, екологізм, популізм та інші), які впливають на політику через призму понять «народ», «тіло» та «планета». Розглянемо їхню взаємодію з класичними ідеологіями. Спробуємо себе в ролі політтехнологів, сконструюємо нову ідеологію та визначимо власну позицію щодо суспільних питань.",
-  },
-  {
-    id: "module-4",
-    moduleId: 4,
-    title: "Модуль 4: Мораль в політиці",
-    startDate: "2025-12-13",
-    endDate: "2025-12-20",
-    description:
-      "Досліджуємо моральний бік політики. Думаємо, чи існує він взагалі. Вчимося використовувати специфічний інструментарій моральної філософії для аналізу політичних рішень.",
-  },
-  {
-    id: "module-5",
-    moduleId: 5,
-    title: "Модуль 5: Міжнародне право",
-    startDate: "2026-01-17",
-    endDate: "2026-01-24",
-    description:
-      "Вторгнутись у Венесуелу виправдано, а в Палестину — ні? Чи спрацює ордер на арешт Путіна від міжнародного суду? Чому так складно використати заморожені активи РФ? Ми розбиратимемось у фундаментальних принципах міжнародного права, структурі міжнародної системи, її органах, правах та обмеженнях. Дебатуватимемо на гострі теми та аналізуватимемо реальні кейси.",
-  },
-  {
-    id: "module-6",
-    moduleId: 6,
-    title: "Модуль 6: Війна, торг, правила",
-    startDate: "2026-01-31",
-    endDate: "2026-02-07",
-    description:
-      "Як держави взаємодіють між собою та чому їхні інтереси часто стикаються? Обговоримо агресію РФ проти України, можливість вступу до ЄС і НАТО, а також відмінності політичного мислення у Європі, США, РФ та Китаї.",
-  },
-  {
-    id: "module-7",
-    moduleId: 7,
-    title: "Модуль 7: Політичні режими",
-    startDate: "2026-02-14",
-    endDate: "2026-02-21",
-    description:
-      "Чи завжди демократія — це шлях до процвітання, а авторитаризм — абсолютне зло? Ми дослідимо політичний спектр: від анархії до ефективних диктатур на кшталт Сінгапуру. Проаналізуємо легітимність влади та теорію «хвиль демократії» Хантінгтона, щоб зрозуміти механіку падіння й відродження режимів.",
-  },
-  {
-    id: "module-8",
-    moduleId: 8,
-    title: "Модуль 8: Корупція та теорія ігор",
-    startDate: "2026-02-28",
-    endDate: "2026-03-07",
-    description:
-      "Цей модуль перетворює хаос політичних конфліктів на стратегічні моделі. Ми розглянемо політику крізь призму теорії ігор: «Дилема в'язня», гра в «Боягуза», ядерний шантаж, зрада і співпраця. Це набір інструментів для прорахунку ходів опонента, де вирішує холодна логіка, а не емоції.",
-  },
-];
+type ModuleStatus = "триває" | "наступний" | "незабаром початок" | null;
 
-type ModuleStatus = "upcoming" | "current" | "next" | "completed";
+// STEP 1: DATE NORMALIZATION
+function normalizeModule(raw: ModuleRaw, baseYear: number): Module | null {
+  let startDate: Date;
+  let endDate: Date;
 
-function formatDateRange(startDate: string, endDate: string): string {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
+  // Handle dateRange format (DD.MM-DD.MM)
+  if (raw.dateRange) {
+    const parts = raw.dateRange.split("-");
+    if (parts.length !== 2) return null;
+
+    const [startPart, endPart] = parts;
+    const [startDay, startMonth] = startPart.split(".").map(Number);
+    const [endDay, endMonth] = endPart.split(".").map(Number);
+
+    if (!startDay || !startMonth || !endDay || !endMonth) return null;
+
+    let startYear = baseYear;
+    let endYear = baseYear;
+
+    // If end month is less than start month, it wraps to next year
+    if (endMonth < startMonth) {
+      endYear = baseYear + 1;
+    }
+
+    startDate = new Date(startYear, startMonth - 1, startDay);
+    endDate = new Date(endYear, endMonth - 1, endDay);
+  }
+  // Handle existing startDate/endDate format
+  else if (raw.startDate && raw.endDate) {
+    startDate = new Date(raw.startDate);
+    endDate = new Date(raw.endDate);
+
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+      return null;
+    }
+  }
+  else {
+    return null; // Invalid format
+  }
+
+  return {
+    id: raw.id,
+    moduleId: raw.moduleId,
+    title: raw.title,
+    startDate,
+    endDate,
+    description: raw.description,
+  };
+}
+
+function formatDateRange(startDate: Date, endDate: Date): string {
   const formatDate = (d: Date) =>
     d.toLocaleDateString("uk-UA", { day: "2-digit", month: "2-digit" });
-  return `${formatDate(start)}-${formatDate(end)}`;
+  return `${formatDate(startDate)}-${formatDate(endDate)}`;
 }
 
 export default function Timeline({ id }: { id?: string }) {
-  const [modules, setModules] = useState<Module[]>([]);
+  const [rawModules, setRawModules] = useState<ModuleRaw[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const now = useMemo(() => new Date(), []);
   const currentYear = now.getFullYear();
+  const baseYear = now.getMonth() >= 8 ? currentYear : currentYear - 1; // Academic year starts in September
 
   useEffect(() => {
     async function fetchModules() {
@@ -119,7 +102,7 @@ export default function Timeline({ id }: { id?: string }) {
         const response = await fetch("/api/modules");
         if (!response.ok) throw new Error("Failed to fetch modules");
         const data = await response.json();
-        setModules(data.modules);
+        setRawModules(data.modules);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
@@ -131,21 +114,61 @@ export default function Timeline({ id }: { id?: string }) {
   }, []);
 
   const { modulesWithStatus, activeModuleId } = useMemo(() => {
-    let foundNext = false;
+    // STEP 1: Normalize all modules
+    const normalized: Module[] = rawModules
+      .map((raw) => normalizeModule(raw, baseYear))
+      .filter((m): m is Module => m !== null);
+
+    // STEP 2: Sort by startDate (MANDATORY)
+    const sorted = [...normalized].sort((a, b) => {
+      return a.startDate.getTime() - b.startDate.getTime();
+    });
+
+    const nowTime = now.getTime();
+    let activeIndex = -1;
+    let soonIndex = -1;
+
+    // STEP 3: CASE A - Find active module
+    for (let i = 0; i < sorted.length; i++) {
+      const start = sorted[i].startDate.getTime();
+      const end = sorted[i].endDate.getTime();
+      if (nowTime >= start && nowTime <= end) {
+        activeIndex = i;
+        break;
+      }
+    }
+
+    // STEP 3: CASE B - If no active, find nearest future
+    if (activeIndex === -1) {
+      for (let i = 0; i < sorted.length; i++) {
+        const start = sorted[i].startDate.getTime();
+        if (start > nowTime) {
+          soonIndex = i;
+          break;
+        }
+      }
+    }
+
     let activeId: string | undefined;
 
-    const processedModules = modules.map((module) => {
-      const start = new Date(module.startDate);
-      const end = new Date(module.endDate);
-      let status: ModuleStatus = "completed";
+    // Assign statuses based on strict rules
+    const processed = sorted.map((module, index) => {
+      let status: ModuleStatus = null;
 
-      if (now >= start && now <= end) {
-        status = "current";
-        if (!activeId) activeId = module.id;
-      } else if (now < start && !foundNext) {
-        status = "next";
-        foundNext = true;
-        if (!activeId) activeId = module.id;
+      if (activeIndex !== -1) {
+        // CASE A: Active module exists
+        if (index === activeIndex) {
+          status = "триває";
+          if (!activeId) activeId = module.id;
+        } else if (index === activeIndex + 1) {
+          status = "наступний";
+        }
+      } else {
+        // CASE B: No active module
+        if (index === soonIndex) {
+          status = "незабаром початок";
+          if (!activeId) activeId = module.id;
+        }
       }
 
       return {
@@ -155,27 +178,32 @@ export default function Timeline({ id }: { id?: string }) {
       };
     });
 
-    return { modulesWithStatus: processedModules, activeModuleId: activeId };
-  }, [modules, now]);
+    return { modulesWithStatus: processed, activeModuleId: activeId };
+  }, [rawModules, now, baseYear]);
 
   const getStatusBadge = (status: ModuleStatus) => {
-    if (status === "completed") return null;
+    if (!status) return null;
 
-    const badges = {
-      current: {
+    const badges: Record<Exclude<ModuleStatus, null>, { text: string; className: string }> = {
+      "триває": {
         text: "Триває",
         className:
           "bg-primary text-white font-medium uppercase text-xs px-2 py-0.5 rounded-sm tracking-wider",
       },
-      next: {
+      "наступний": {
         text: "Наступний",
         className:
           "text-primary border border-dashed font-medium uppercase text-xs px-2 py-0.5 rounded-sm tracking-wider",
       },
+      "незабаром початок": {
+        text: "Незабаром початок",
+        className:
+          "bg-primary text-white font-medium uppercase text-xs px-2 py-0.5 rounded-sm tracking-wider",
+      },
     };
 
-    const badge = badges[status as keyof typeof badges];
-    return badge ? <span className={badge.className}>{badge.text}</span> : null;
+    const badge = badges[status];
+    return <span className={badge.className}>{badge.text}</span>;
   };
 
   if (loading) {
