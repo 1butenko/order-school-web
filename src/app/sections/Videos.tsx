@@ -43,9 +43,9 @@ export default function Videos({ id }: AnimatedProps) {
         className="relative z-10 max-w-6xl mx-auto text-center text-black px-4 mb-8 md:mb-16"
         variants={itemVariants}
       >
-        <h1 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2">
+        <h2 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2">
           Інтервʼю з випускниками
-        </h1>
+        </h2>
       </motion.div>
 
       <div

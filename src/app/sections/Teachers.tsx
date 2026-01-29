@@ -112,10 +112,10 @@ export default function Teachers({ id }: AnimatedProps) {
         className="max-w-6xl mx-auto text-center px-4 mb-16"
         variants={itemVariants}
       >
-        <h1 className="text-4xl tracking-wider uppercase font-bold mb-2 relative inline-block">
+        <h2 className="text-4xl tracking-wider uppercase font-bold mb-2 relative inline-block">
           ВИКЛАДАЧІ
           <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#F42B39]" />
-        </h1>
+        </h2>
       </motion.div>
       <motion.div
         className="max-w-5xl mx-auto px-4"

@@ -51,9 +51,9 @@ export default function Audience({ id }: AnimatedProps) {
 
         {/* Content */}
         <div className="relative z-10 px-6 py-8">
-          <h1 className="text-2xl tracking-tight uppercase font-mono font-bold mb-8 text-black leading-tight">
+          <h2 className="text-2xl tracking-tight uppercase font-mono font-bold mb-8 text-black leading-tight">
             Для кого створений Гурток Політичних Студій
-          </h1>
+          </h2>
 
           <div className="space-y-4 mb-8">
             {/* Item 1 */}
@@ -107,9 +107,9 @@ export default function Audience({ id }: AnimatedProps) {
               animate={controls}
               className="space-y-10"
             >
-              <h1 className="text-3xl lg:text-4xl tracking-wide uppercase font-sans font-bold text-black leading-tight">
+              <h2 className="text-3xl lg:text-4xl tracking-wide uppercase font-sans font-bold text-black leading-tight">
                 Для кого створений<br />Гурток Політичних<br />Студій
-              </h1>
+              </h2>
 
               <ul className="space-y-6 text-black font-sans">
                 <li className="flex items-start gap-4">

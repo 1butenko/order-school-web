@@ -86,11 +86,7 @@ export async function getModules(): Promise<Module[]> {
                 };
             })
             // Filter out modules that are explicitly marked as "Draft"
-            .filter((module: any) => module.status !== "Draft")
-            // Sort modules by moduleId (integer) to ensure correct order
-            .sort((a: Module, b: Module) => {
-                return a.moduleId - b.moduleId;
-            });
+            .filter((module: any) => module.status !== "Draft");
 
         return modules;
     } catch (error) {

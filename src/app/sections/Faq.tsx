@@ -19,9 +19,9 @@ export default function Faq() {
         viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        <h1 className="text-2xl md:text-4xl tracking-wider uppercase font-sans mb-2">
+        <h2 className="text-2xl md:text-4xl tracking-wider uppercase font-sans mb-2">
           Відповіді на поширені запитання
-        </h1>
+        </h2>
         <div className="my-6 mx-auto max-w-36 md:max-w-xl h-1 bg-primary rounded-full"></div>
       </motion.div>
 

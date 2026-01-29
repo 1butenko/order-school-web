@@ -33,42 +33,67 @@ type ModuleStatus = "триває" | "наступний" | "незабаром 
 
 // STEP 1: DATE NORMALIZATION
 function normalizeModule(raw: ModuleRaw, baseYear: number): Module | null {
-  let startDate: Date;
-  let endDate: Date;
+  let startDate: Date | null = null;
+  let endDate: Date | null = null;
 
-  // Handle dateRange format (DD.MM-DD.MM)
-  if (raw.dateRange) {
-    const parts = raw.dateRange.split("-");
-    if (parts.length !== 2) return null;
+  const parseDDMM = (str: string, bYear: number) => {
+    const parts = str.trim().split(".");
+    if (parts.length < 2) return null;
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10);
+    if (isNaN(day) || isNaN(month)) return null;
 
-    const [startPart, endPart] = parts;
-    const [startDay, startMonth] = startPart.split(".").map(Number);
-    const [endDay, endMonth] = endPart.split(".").map(Number);
+    // Academic year logic: months 1-8 (Jan-Aug) belong to the next calendar year
+    const year = month < 9 ? bYear + 1 : bYear;
+    return new Date(year, month - 1, day);
+  };
 
-    if (!startDay || !startMonth || !endDay || !endMonth) return null;
+  // Determine the date range string
+  const rangeStr = raw.dateRange || (raw.startDate?.includes("-") ? raw.startDate : null);
 
-    let startYear = baseYear;
-    let endYear = baseYear;
-
-    // If end month is less than start month, it wraps to next year
-    if (endMonth < startMonth) {
-      endYear = baseYear + 1;
-    }
-
-    startDate = new Date(startYear, startMonth - 1, startDay);
-    endDate = new Date(endYear, endMonth - 1, endDay);
-  }
-  // Handle existing startDate/endDate format
-  else if (raw.startDate && raw.endDate) {
-    startDate = new Date(raw.startDate);
-    endDate = new Date(raw.endDate);
-
-    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-      return null;
+  if (rangeStr) {
+    const parts = rangeStr.split("-");
+    if (parts.length === 2) {
+      startDate = parseDDMM(parts[0], baseYear);
+      endDate = parseDDMM(parts[1], baseYear);
     }
   }
-  else {
-    return null; // Invalid format
+
+  // Fallback to separate startDate and endDate if not already parsed from range
+  if (!startDate && raw.startDate) {
+    if (raw.startDate.includes(".")) {
+      startDate = parseDDMM(raw.startDate, baseYear);
+    } else {
+      // Parse ISO date or other standard formats
+      const parsed = new Date(raw.startDate);
+      if (!isNaN(parsed.getTime())) {
+        startDate = parsed;
+      }
+    }
+  }
+
+  if (!endDate && raw.endDate) {
+    if (raw.endDate.includes(".")) {
+      endDate = parseDDMM(raw.endDate, baseYear);
+    } else {
+      // Parse ISO date or other standard formats
+      const parsed = new Date(raw.endDate);
+      if (!isNaN(parsed.getTime())) {
+        endDate = parsed;
+      }
+    }
+  }
+
+  if (!startDate || isNaN(startDate.getTime())) return null;
+
+  // If endDate is missing or invalid, default to startDate
+  if (!endDate || isNaN(endDate.getTime())) {
+    endDate = new Date(startDate);
+  }
+
+  // Ensure endDate is not before startDate (e.g., year wrap within range)
+  if (endDate < startDate) {
+    endDate.setFullYear(endDate.getFullYear() + 1);
   }
 
   return {
@@ -119,9 +144,9 @@ export default function Timeline({ id }: { id?: string }) {
       .map((raw) => normalizeModule(raw, baseYear))
       .filter((m): m is Module => m !== null);
 
-    // STEP 2: Sort by startDate (MANDATORY)
+    // STEP 2: Sort by moduleId
     const sorted = [...normalized].sort((a, b) => {
-      return a.startDate.getTime() - b.startDate.getTime();
+      return a.moduleId - b.moduleId;
     });
 
     const nowTime = now.getTime();
@@ -210,9 +235,9 @@ export default function Timeline({ id }: { id?: string }) {
     return (
       <section id={id || "timeline"} className="relative w-full min-h-screen py-12 md:py-20">
         <div className="max-w-6xl mx-auto text-center text-black px-6 md:px-4">
-          <h1 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2 md:mb-2">
+          <h2 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2 md:mb-2">
             Навчальні модулі
-          </h1>
+          </h2>
           <div className="my-6 mx-auto max-w-36 md:max-w-xl h-1 bg-primary rounded-full"></div>
           <p className="text-lg font-mono font-medium mt-8">Завантаження...</p>
         </div>
@@ -224,9 +249,9 @@ export default function Timeline({ id }: { id?: string }) {
     return (
       <section id={id || "timeline"} className="relative w-full min-h-screen py-12 md:py-20">
         <div className="max-w-6xl mx-auto text-center text-black px-6 md:px-4">
-          <h1 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2 md:mb-2">
+          <h2 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2 md:mb-2">
             Навчальні модулі
-          </h1>
+          </h2>
           <div className="my-6 mx-auto max-w-36 md:max-w-xl h-1 bg-primary rounded-full"></div>
           <p className="text-lg font-mono font-medium mt-8 text-red-600">
             Помилка: {error}
@@ -246,9 +271,9 @@ export default function Timeline({ id }: { id?: string }) {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div className="max-w-6xl mx-auto text-center text-black px-6 md:px-4">
-        <h1 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2 md:mb-2">
+        <h2 className="text-2xl md:text-4xl tracking-wide md:tracking-wider uppercase font-sans font-bold mb-2 md:mb-2">
           Навчальні модулі
-        </h1>
+        </h2>
         <div className="my-6 mx-auto max-w-36 md:max-w-xl h-1 bg-primary rounded-full"></div>
 
         <motion.p
